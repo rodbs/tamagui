@@ -56,7 +56,7 @@ export function Hero() {
                   maxWidth: 550,
                   mx: 'auto',
                 }}
-                space="$8"
+                space="$7"
               >
                 <YStack ai="flex-start" $gtSm={{ ai: 'center' }} space="$5">
                   <Title

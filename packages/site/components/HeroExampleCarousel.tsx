@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView } from 'react-native'
-import { Button, H2, H3, H4, Paragraph, Theme, XStack, YStack } from 'tamagui'
+import { Button, H2, H3, H4, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
 
 import { colorSchemes } from '../constants/themes'
 import { ContainerLarge } from './Container'
@@ -53,14 +53,13 @@ export function HeroExampleCarousel() {
         <YStack ai="center" als="center" maxWidth={480} space="$2">
           {/* <H4 size="$8">Nest sub-themes infinitely</H4> */}
 
-          <Paragraph mb="$3" ta="left" size="$6">
+          <Paragraph mb="$3" ta="center" size="$6">
             Create a dark theme, give it a variety of dark <span className="rainbow">colors</span>.
-            For each color, add a <strong>stronger</strong> or more subtle tint. For each tint, a
-            unique Button and Input theme.
-          </Paragraph>
-
-          <Paragraph ta="center" fontStyle="italic" mb="$3" size="$6">
-            Nest as many themes as you want, customize any component at any level.
+            For&nbsp;each&nbsp;color, a <strong>stronger</strong> or more subtle tint. For each
+            tint, a unique Button or Input theme.{' '}
+            <Text fontStyle="italic">
+              Unlimited nesting, with optional custom component themes at any level.
+            </Text>
           </Paragraph>
 
           <Button theme="blue" tag="a">
