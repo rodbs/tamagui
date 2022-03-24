@@ -22,7 +22,7 @@ import {
 
 import { Frontmatter } from '../types/frontmatter'
 import { BenchmarkChart } from './BenchmarkChart'
-import { Code } from './Code'
+import { Code, CodeInline } from './Code'
 import { DemoButton } from './DemoButton'
 import * as Demos from './demos'
 import { Description } from './Description'
@@ -187,22 +187,7 @@ export const components = {
     const { hero, line, scrollable, className, children, id, showLineNumbers, collapsed, ...rest } =
       props
     if (!className) {
-      return (
-        // inline
-        <Paragraph
-          fontFamily="$mono"
-          theme="alt2"
-          color="$color"
-          backgroundColor="$background"
-          br="$1"
-          lineHeight={18}
-          px="$1"
-          py={3}
-          fontSize={14}
-        >
-          {children}
-        </Paragraph>
-      )
+      return <CodeInline>{children}</CodeInline>
     }
     return (
       <DocCodeBlock

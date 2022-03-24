@@ -228,7 +228,7 @@ export function createExtractor() {
           if (disableExtraction) {
             if (!hasLogged) {
               console.log(
-                prefixLogs,
+                prefixLogs || '      »',
                 'Tamagui disableExtraction set: no CSS or optimizations will be run'
               )
               hasLogged = true

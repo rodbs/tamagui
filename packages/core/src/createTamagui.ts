@@ -31,8 +31,11 @@ export type CreateTamaguiProps =
         [key: string]: string | number | Variable
       }
     }
+
+    // TODO document
     // for ssr/native, will default to active
     mediaQueryDefaultActive?: MediaQueryKey[]
+    cssStyleSeparator?: string
   }
 
 const createdConfigs = new WeakMap<any, boolean>()
@@ -105,7 +108,7 @@ export function createTamagui<Conf extends CreateTamaguiProps>(
           }
         }
       }
-      const sep = process.env.NODE_ENV === 'development' ? '\n  ' : ''
+      const sep = process.env.NODE_ENV === 'development' ? config.cssStyleSeparator || ' ' : ''
       cssRules.push(`:root {${sep}${[...tokenRules].join(`;${sep}`)}${sep}}`)
     }
 
