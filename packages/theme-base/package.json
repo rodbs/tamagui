@@ -1,0 +1,23 @@
+{
+  "name": "@tamagui/theme-base",
+  "version": "1.0.0-alpha.68",
+  "typings": "types",
+  "main": "dist/cjs",
+  "module": "dist/esm",
+  "module:jsx": "dist/jsx",
+  "files": [
+    "types",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tamagui-build",
+    "watch": "tamagui-build --watch"
+  },
+  "devDependencies": {
+    "@tamagui/build": "^1.0.0-alpha.64",
+    "@tamagui/colors": "^1.0.0-alpha.64"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
