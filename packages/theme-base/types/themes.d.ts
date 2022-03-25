@@ -302,7 +302,7 @@ export declare const colorSchemes: readonly [{
 }];
 export declare type ColorNames = typeof colorSchemes[number]['name'];
 export declare const lightGradient: (string | Variable)[];
-export declare const darkGradient: (string | Variable)[];
+export declare const darkGradient: string[];
 declare const baseThemes: {
     dark_active: any;
     dark: {

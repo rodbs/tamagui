@@ -117,20 +117,27 @@ export const lightGradient = [
 ]
 
 export const darkGradient = [
-  '#151515',
-  '#222',
-  '#272727',
-  tokens.color.gray11,
-  tokens.color.gray10,
-  tokens.color.gray9,
-  tokens.color.gray8,
-  tokens.color.gray7,
-  tokens.color.gray6,
-  tokens.color.gray5,
-  tokens.color.gray4,
-  tokens.color.gray3,
-  tokens.color.gray2,
-  tokens.color.gray1,
+  '#0f0f0f',
+  '#141414',
+  '#191919',
+  '#242424',
+  '#292929',
+  '#323232',
+  '#383838',
+  '#424242',
+  '#494949',
+  // tokens.color.gray12,
+  // tokens.color.gray11,
+  // tokens.color.gray10,
+  // tokens.color.gray9,
+  // tokens.color.gray8,
+  // tokens.color.gray7,
+  // tokens.color.gray6,
+  // tokens.color.gray5,
+  // tokens.color.gray4,
+  // tokens.color.gray3,
+  // tokens.color.gray2,
+  // tokens.color.gray1,
 ]
 
 const makeLightTheme = themeCreator({
@@ -145,7 +152,7 @@ const makeDarkTheme = themeCreator({
   isLight: false,
   isBase: true,
   offsets: {
-    color: [0, 7, 8, 9],
+    color: [0, 7, 8, 9, 10],
   },
 })
 
