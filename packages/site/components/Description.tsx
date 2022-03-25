@@ -5,8 +5,8 @@ export const Description = ({ children, ...props }) => {
   // https://github.com/wooorm/xdm/issues/47
   const childText = typeof children === 'string' ? children : children.props.children
   return (
-    <ThemeReset debug>
-      <H3 size="$7" theme="alt1" fontWeight="300" tag="p" mb="$2" mt="$0" {...props}>
+    <ThemeReset>
+      <H3 size="$7" theme="alt3" fontWeight="300" tag="p" mb="$2" mt="$0" {...props}>
         {childText}
       </H3>
     </ThemeReset>

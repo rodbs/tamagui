@@ -43,14 +43,16 @@ const themeCreator =
     backgrounds: (string | Variable)[]
     colors?: (string | Variable)[]
     offsets?: {
-      color?: number[]
-      background?: number[]
+      color?: number[] | null
+      background?: number[] | null
+      borderColor?: number[] | null
     }
     isLight?: boolean
     isBase?: boolean
   }) =>
   (str = 1) => {
     const offsets = {
+      borderColor: offsetsProp?.borderColor ?? offsetsProp?.background ?? [0, 0, 0, 0],
       background: offsetsProp?.background ?? [0, 0, 0, 0],
       color: offsetsProp?.color ?? [0, 0, 0, 0],
     }
@@ -177,7 +179,15 @@ const colorThemeEntries = colorSchemes.flatMap(({ name, colors, darkColors }) =>
   const [altLightThemes, altDarkThemes] = [colors, darkColors].map((colors, i) => {
     const isLight = i === 0
     const scheme = isLight ? 'light' : 'dark'
-    const getter = themeCreator({ backgrounds: Object.values(colors), isLight, isBase: false })
+    const getter = themeCreator({
+      backgrounds: Object.values(colors),
+      isLight,
+      isBase: false,
+      offsets: {
+        background: isLight ? [1, 1, 1, 1] : null,
+        color: isLight ? [0, -1, -1, -1] : null,
+      },
+    })
     const themeWithAlts = createThemeWithAlts(name, getter)
     return Object.entries(themeWithAlts).map(([k, v]) => [`${scheme}_${k}`, v])
   })

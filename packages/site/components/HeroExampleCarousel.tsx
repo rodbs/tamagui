@@ -47,16 +47,18 @@ export function HeroExampleCarousel() {
         <YStack ai="center" als="center" maxWidth={480} space="$2">
           {/* <H4 size="$8">Nest sub-themes infinitely</H4> */}
 
-          <Paragraph mb="$3" ta="center" size="$6">
-            Dark, light, [insert yours].
+          <Paragraph mb="$3" ta="center" size="$5">
+            Dark, light, or [insert yours].
             <br />
-            Maybe a few <span className="rainbow">color alts</span> for each.
+            Sprinkle a few <span className="rainbow">color alts</span> for each.
             <br />
             Below that, add a <Text o={0.66}>few</Text> <Text o={0.5}>different</Text>{' '}
             <Text o={0.33}>shades</Text>.
             <br />
-            At any level, custom <CodeInline size="$4">&lt;Button /&gt;</CodeInline> or{' '}
+            At any level, customize <CodeInline size="$4">&lt;Button /&gt;</CodeInline> or{' '}
             <CodeInline size="$4">&lt;Input /&gt;</CodeInline>.
+            <br />
+            Nested themes - as easy as <CodeInline size="$4">dark_red_shade2_button</CodeInline>
           </Paragraph>
 
           <Link href="/docs/intro/themes" passHref>

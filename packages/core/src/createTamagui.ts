@@ -38,6 +38,8 @@ export type CreateTamaguiProps =
     cssStyleSeparator?: string
   }
 
+const PRE = THEME_CLASSNAME_PREFIX
+
 const createdConfigs = new WeakMap<any, boolean>()
 
 // for quick testing types:
@@ -179,19 +181,25 @@ export function createTamagui<Conf extends CreateTamaguiProps>(
         }
 
         for (const combo of selectorCombos) {
-          const selector = combo.map((x) => `.${THEME_CLASSNAME_PREFIX}${x}`).join(' ')
+          const selector = combo.map((x) => `.${PRE}${x}`).join(' ')
           selectors.add(selector)
           // add specificity selector hacks
           for (const baseName of baseThemeNames) {
-            if (baseName === name) continue
-            selectors.add(`.${THEME_CLASSNAME_PREFIX}${baseName} ${selector}`)
+            if (baseName !== name) {
+              selectors.add(`.${PRE}${baseName} ${selector}`)
+            }
+            for (const baseName2 of baseThemeNames) {
+              if (baseName2 !== baseName) {
+                selectors.add(`.${PRE}${baseName} .${PRE}${baseName2} ${selector}`)
+              }
+            }
           }
         }
 
         const selectorsStr = [...selectors].join(', ')
-        if (themeName === 'dark_alt1') {
-          console.log('selectorsStr', selectorsStr.split(', '))
-        }
+        // if (themeName === 'dark_alt1') {
+        //   console.log('selectorsStr', selectorsStr.split(', '))
+        // }
         const cssRule = `${selectorsStr} {\n${vars}\n}`
         cssRules.push(cssRule)
       }

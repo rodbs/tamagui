@@ -11,10 +11,6 @@ export const ThemeReset = (props: { children?: any }) => {
   const themeManager = useContext(ThemeManagerContext)
   const [name, setName] = useState<string | null>(null)
 
-  if (props.debug) {
-    console.log('themeManager', name, themeManager)
-  }
-
   // this component doesn't work with SSR, so must run only client side
   // we could at least prevent more flickering by having the ssr head script
   // that changes to dark initially also go through and change all of these
@@ -22,14 +18,12 @@ export const ThemeReset = (props: { children?: any }) => {
   if (typeof document !== 'undefined') {
     useLayoutEffect(() => {
       if (name !== themeManager.parentName) {
-        console.log('whhasudhsad', themeManager.parentName)
         setName(themeManager.parentName)
       }
     }, [themeManager.parentName])
 
     useLayoutEffect(() => {
       return themeManager.onChangeTheme(() => {
-        console.log('wut wut', themeManager.parentName)
         setName(themeManager.parentName)
       })
     }, [])
