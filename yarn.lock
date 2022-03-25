@@ -4087,7 +4087,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tamagui/animations-reanimated@^1.0.0-alpha.67, @tamagui/animations-reanimated@workspace:packages/animations-reanimated":
+"@tamagui/animations-reanimated@^1.0.0-alpha.67, @tamagui/animations-reanimated@^1.0.0-alpha.68, @tamagui/animations-reanimated@workspace:packages/animations-reanimated":
   version: 0.0.0-use.local
   resolution: "@tamagui/animations-reanimated@workspace:packages/animations-reanimated"
   dependencies:
@@ -4343,6 +4343,7 @@ __metadata:
     "@docsearch/react": ^3.0.0
     "@expo/webpack-config": ^0.16.2
     "@next/bundle-analyzer": ^12.0.10
+    "@tamagui/animations-reanimated": ^1.0.0-alpha.68
     "@tamagui/colors": ^1.0.0-alpha.64
     "@tamagui/drawer": ^1.0.0-alpha.68
     "@tamagui/feather-icons": ^1.0.0-alpha.64
