@@ -3,6 +3,7 @@ import NextLink from 'next/link'
 import NextRouter from 'next/router'
 import rangeParser from 'parse-numeric-range'
 import React from 'react'
+import { ScrollView } from 'react-native'
 import {
   Box,
   EnsureFlexed,
@@ -30,17 +31,19 @@ import { DocCodeBlock } from './DocsCodeBlock'
 import { ExternalIcon } from './ExternalIcon'
 import { HeroContainer } from './HeroContainer'
 import { Highlights } from './Highlights'
+import { MediaPlayer } from './MediaPlayer'
 import { OffsetBox } from './OffsetBox'
 import { Preview } from './Preview'
 import { PropsTable } from './PropsTable'
 
 export const components = {
+  ScrollView,
   Text,
   Paragraph,
   YStack,
+  XStack,
   Box,
   BenchmarkChart,
-  // Title,
   Separator,
   Code,
   HeroContainer,
@@ -326,6 +329,14 @@ export const components = {
     }, [])
 
     return <Paragraph fontFamily="$mono" cursor="default" ref={triggerRef} {...props} />
+  },
+
+  MediaPlayerDemo: ({ theme, ...props }) => {
+    return (
+      <Theme name={theme}>
+        <MediaPlayer {...props} />
+      </Theme>
+    )
   },
 }
 

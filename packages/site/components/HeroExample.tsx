@@ -28,7 +28,7 @@ export function HeroExample() {
       <YStack zi={1} space="$5">
         <YStack space="$2">
           <H2 als="center">
-            Write less, runs better <span className="rainbow">everywhere</span>
+            Styles that run faster <span className="rainbow">everywhere</span>
           </H2>
           <H3 theme="alt2" als="center" fow="400">
             Faster runtime 🤝 less code 🤝 more platforms.

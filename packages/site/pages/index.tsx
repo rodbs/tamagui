@@ -40,7 +40,7 @@ function Performance() {
     <ContainerLarge position="relative">
       <YStack ai="center" zi={1} space="$4">
         <YStack ai="center" space="$2">
-          <H2>Really really fast</H2>
+          <H2>Really, really fast</H2>
           <H3 theme="alt2" fow="400">
             3-10x speed, even with inline styling.
           </H3>

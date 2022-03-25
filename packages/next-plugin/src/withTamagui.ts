@@ -64,7 +64,7 @@ export const withTamagui = (tamaguiOptions: TamaguiOptions) => {
           try {
             const regexStr = `\/react-native-web\/.*(${excludeExports.join('|')}).*\/`
             const regex = new RegExp(regexStr)
-            console.log(prefix, 'excluding:', regexStr)
+            console.log(prefix, 'exclude', regexStr)
             webpackConfig.plugins.push(
               new webpack.NormalModuleReplacementPlugin(
                 regex,
@@ -79,7 +79,7 @@ export const withTamagui = (tamaguiOptions: TamaguiOptions) => {
         }
 
         if (process.env.IGNORE_TS_CONFIG_PATHS) {
-          console.log(prefix, 'ignoring tsconfig paths, they mess up transpile')
+          console.log(prefix, 'ignoring tsconfig paths')
           delete webpackConfig.resolve.plugins[0].paths['@tamagui/*']
           delete webpackConfig.resolve.plugins[0].paths['tamagui']
         }

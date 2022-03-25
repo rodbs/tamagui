@@ -30,7 +30,7 @@ export function HeroExampleCarousel() {
                   py="$4"
                   className="faded-container"
                   x={index * 50}
-                  opacity={(4 - index) / 3}
+                  // opacity={(4 - index) / 3}
                 >
                   <MediaPlayer />
                   <MediaPlayer alt={1} />
@@ -48,20 +48,20 @@ export function HeroExampleCarousel() {
           {/* <H4 size="$8">Nest sub-themes infinitely</H4> */}
 
           <Paragraph mb="$3" ta="center" size="$6">
-            Dark and light themes.
+            Dark, light, [insert yours].
             <br />
-            For each, <span className="rainbow">color alts</span> that match.
+            Maybe a few <span className="rainbow">color alts</span> for each.
             <br />
-            For each alt, a <Text o={0.66}>few</Text> <Text o={0.5}>different</Text>{' '}
+            Below that, add a <Text o={0.66}>few</Text> <Text o={0.5}>different</Text>{' '}
             <Text o={0.33}>shades</Text>.
             <br />
-            Finally, a custom <CodeInline size="$6">&lt;Button /&gt;</CodeInline> or{' '}
-            <CodeInline size="$6">&lt;Input /&gt;</CodeInline>.
+            At any level, custom <CodeInline size="$4">&lt;Button /&gt;</CodeInline> or{' '}
+            <CodeInline size="$4">&lt;Input /&gt;</CodeInline>.
           </Paragraph>
 
           <Link href="/docs/intro/themes" passHref>
             <Button theme="blue" tag="a">
-              Themes that work &raquo;
+              Theme Docs &raquo;
             </Button>
           </Link>
         </YStack>
