@@ -97,9 +97,9 @@ export const colorSchemes = [
   { name: 'yellow', colors: Colors.yellow, darkColors: Colors.yellowDark },
 ] as const
 
-type ColorNames = typeof colorSchemes[number]['name']
+export type ColorNames = typeof colorSchemes[number]['name']
 
-const lightGradient = [
+export const lightGradient = [
   '#fff',
   '#f2f2f2',
   tokens.color.gray1,
@@ -116,7 +116,7 @@ const lightGradient = [
   tokens.color.gray12,
 ]
 
-const darkGradient = [
+export const darkGradient = [
   '#151515',
   '#222',
   '#272727',

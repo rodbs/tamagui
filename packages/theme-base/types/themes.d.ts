@@ -300,6 +300,9 @@ export declare const colorSchemes: readonly [{
         yellow12: string;
     };
 }];
+export declare type ColorNames = typeof colorSchemes[number]['name'];
+export declare const lightGradient: (string | Variable)[];
+export declare const darkGradient: (string | Variable)[];
 declare const baseThemes: {
     dark_active: any;
     dark: {

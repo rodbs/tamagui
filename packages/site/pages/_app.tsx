@@ -1,4 +1,3 @@
-// debug
 import '../app.css'
 
 import { DocsPage } from '@components/DocsPage'

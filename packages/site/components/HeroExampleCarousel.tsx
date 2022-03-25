@@ -1,7 +1,7 @@
+import { colorSchemes } from '@tamagui/theme-base'
 import Link from 'next/link'
 import { Button, H2, H3, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
 
-import { colorSchemes } from '../constants/themes'
 import { Code, CodeInline } from './Code'
 import { ContainerLarge } from './Container'
 import { MediaPlayer } from './MediaPlayer'
