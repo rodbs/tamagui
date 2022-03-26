@@ -1,7 +1,5 @@
-import { colorSchemes } from '@tamagui/theme-base'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { ScrollView } from 'react-native'
+import { useState } from 'react'
 import {
   Button,
   H2,
@@ -12,59 +10,51 @@ import {
   Theme,
   XStack,
   YStack,
-  useTheme,
-  useThemeName,
 } from 'tamagui'
 
-import { Code, CodeInline } from './Code'
-import { useTint } from './ColorToggleButton'
+import { CodeInline } from './Code'
 import { ContainerLarge } from './Container'
 import { MediaPlayer } from './MediaPlayer'
 
-const MediaPlayerDemo = ({ offset, index, ...props }: any) => {
-  return (
-    <YStack zi={100 - index}>
-      <MediaPlayer {...props} />
-    </YStack>
-  )
-}
-
-const MediaPlayerDemoStack = ({ name }: any) => {
-  const themeName = useThemeName()
-  const themes = [name ?? themeName, 'alt1', 'alt2', 'alt3']
+const MediaPlayerDemoStack = () => {
+  const themes = ['base', 'alt1', 'alt2', 'alt3']
   const [active, setActive] = useState(0)
 
   return (
-    <Theme name={name}>
-      <YStack ai="center" jc="center" space>
-        <InteractiveContainer>
-          {themes.map((name, i) => {
-            return (
-              <Button
-                onPress={() => setActive(i)}
-                theme={active === i ? 'active' : null}
-                key={i}
-                borderRadius="$0"
-                fontWeight={active === i ? '700' : '400'}
-              >
-                {name}
-              </Button>
-            )
-          })}
-        </InteractiveContainer>
+    <YStack ai="center" jc="center" space="$5">
+      <InteractiveContainer als="center">
+        {themes.map((name, i) => {
+          return (
+            <Button
+              onPress={() => setActive(i)}
+              theme={active === i ? 'active' : null}
+              key={i}
+              borderRadius="$0"
+              fontWeight={active === i ? '700' : '400'}
+            >
+              {name}
+            </Button>
+          )
+        })}
+      </InteractiveContainer>
 
-        <Theme name={active == 0 ? null : themes[active]}>
-          <MediaPlayerDemo />
+      <XStack space="$6">
+        <MediaPlayer alt={active ? active : null} />
+        <Theme name="green">
+          <MediaPlayer alt={active ? active : null} />
         </Theme>
-      </YStack>
-    </Theme>
+        <Theme name="pink">
+          <MediaPlayer alt={active ? active : null} />
+        </Theme>
+      </XStack>
+    </YStack>
   )
 }
 
 export function HeroExampleCarousel() {
   return (
     <YStack>
-      <ContainerLarge space="$6" position="relative">
+      <ContainerLarge space="$3" position="relative">
         <YStack zi={1} space="$2">
           <H2 als="center">Truly flexible themes</H2>
           <H3 theme="alt2" als="center" fow="400">
@@ -73,11 +63,7 @@ export function HeroExampleCarousel() {
         </YStack>
 
         {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}> */}
-        <XStack space="$6">
-          {[{ name: null }, ...colorSchemes.slice(2, 5)].map(({ name }, index) => {
-            return <MediaPlayerDemoStack key={name} name={name} />
-          })}
-        </XStack>
+        <MediaPlayerDemoStack />
         {/* </ScrollView> */}
 
         <YStack mt="$3" ai="center" als="center" maxWidth={480} space="$2">

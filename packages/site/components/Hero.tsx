@@ -34,10 +34,21 @@ import { MediaPlayer } from './MediaPlayer'
 
 const OutlineThemeComponentGrid = () => {
   return (
-    <YStack fullscreen zi={1000}>
-      <Theme debug name="outline">
-        <MediaPlayer />
-      </Theme>
+    <YStack fullscreen pointerEvents="none" zi={0} opacity={0.025}>
+      <XStack>
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+        <MediaPlayer theme="outline" />
+      </XStack>
     </YStack>
   )
 }
@@ -61,7 +72,7 @@ export function Hero() {
           <Header />
 
           <ContainerLarge mb={-20}>
-            <OutlineThemeComponentGrid />
+            {/* <OutlineThemeComponentGrid /> */}
 
             <YStack space="$8" position="relative" pt="$6" $gtSm={{ pt: '$8' }}>
               <YStack

@@ -8,15 +8,15 @@ import { Button, H2, H3, Image, Paragraph, Theme, YStack } from 'tamagui'
 import { BenchmarkChart } from '../components/BenchmarkChart'
 import { ContainerLarge } from '../components/Container'
 import { HeroExampleAnimations } from '../components/HeroExampleAnimations'
-import { HeroExampleCarousel } from '../components/HeroExampleCarousel'
 import { HeroExampleCode } from '../components/HeroExampleCode'
+import { HeroExampleCarousel } from '../components/HeroExampleThemes'
 
 export default function Home() {
-  return (
-    <Theme debug name="blue">
-      <Button>hello</Button>
-    </Theme>
-  )
+  // return (
+  //   <Theme debug name="blue">
+  //     <Button>hello</Button>
+  //   </Theme>
+  // )
 
   return (
     <>

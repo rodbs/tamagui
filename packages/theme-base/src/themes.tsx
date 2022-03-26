@@ -7,7 +7,7 @@ import { tokens } from './tokens'
 
 // helpers
 
-const alternates = [1, 2, 3] as const
+const alternates = [1, 2, 3, 4] as const
 type AltKeys = typeof alternates[number]
 type AltThemeGetter<A = any> = (str: number) => A
 type AltName<Name extends string, Keys extends string | number> = `${Name}_alt${Keys}`
@@ -232,12 +232,14 @@ const transparent = {
 // @ts-ignore
 const dark_outline: MyTheme = {
   ...baseThemes.dark,
+  borderColor: '#fff',
   ...transparent,
 }
 
 // @ts-ignore
 const light_outline: MyTheme = {
   ...baseThemes.light,
+  borderColor: '#000',
   ...transparent,
 }
 

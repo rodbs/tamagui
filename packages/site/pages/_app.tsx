@@ -25,7 +25,6 @@ if (isChrome) {
   console.groupCollapsed('CSS')
   for (const block of blocks) {
     const title = block.slice(0, block.indexOf('{')).split(', ').join('\n')
-    console.log(title)
     console.groupCollapsed(title)
     console.log(block)
     console.groupEnd()
@@ -61,7 +60,7 @@ export default function App(props: AppProps) {
         dark: 'tui_dark',
         light: 'tui_light',
       }}
-      onChangeTheme={(x) => setTheme(x)}
+      onChangeTheme={(x) => setTheme(x.replace('tui_', ''))}
     >
       <Tamagui.Provider disableRootThemeClass defaultTheme={theme}>
         {contents}

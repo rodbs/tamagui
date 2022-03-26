@@ -6,7 +6,7 @@ import { useIsomorphicLayoutEffect } from '../constants/platform'
 import { isVariable } from '../createVariable'
 import { areEqualSets } from '../helpers/areEqualSets'
 import { ThemeContext } from '../ThemeContext'
-import { ThemeManager, ThemeManagerContext } from '../ThemeManager'
+import { ThemeManager, ThemeManagerContext, emptyManager } from '../ThemeManager'
 import { ThemeObject, Themes } from '../types'
 import { useConstant } from './useConstant'
 
@@ -67,7 +67,8 @@ export const useTheme = (themeName?: string | null, componentName?: string): The
             if (!didChangeTheme) {
               return null
             }
-            console.log('DID CHANGE THEME')
+            // TODO
+            // console.log('DID CHANGE THEME')
             return themeManager
           }
           if (key === 'name') {
@@ -119,9 +120,10 @@ export const getThemeManager = (theme: any) => {
 
 export const useThemeName = (opts?: { parent?: true }) => {
   const parent = useContext(ThemeManagerContext)
-  const [name, setName] = useState(parent.name || '')
+  const [name, setName] = useState(parent?.name || '')
 
   useIsomorphicLayoutEffect(() => {
+    if (!parent) return
     return parent.onChangeTheme((next, manager) => {
       const name = opts?.parent ? manager.parentName || next : next
       if (!name) return
@@ -136,54 +138,10 @@ export const useDefaultThemeName = () => {
   return useContext(ThemeContext)?.defaultTheme
 }
 
-function getNextTheme({
-  parentManager,
-  themes,
-  shortName,
-  componentName,
-}: {
-  parentManager?: ThemeManager | null
-  themes: Themes
-  shortName?: string | null
-  componentName?: string | null
-}) {
-  const parentName = parentManager?.fullName
-  const parts = [
-    ...new Set([...(parentName?.split('_') || []), ...(shortName || '').split('_'), componentName]),
-  ].filter(Boolean)
-  let nextName: string | null = null
-
-  while (parts.length) {
-    const name = parts.join('_')
-    if (name in themes) {
-      nextName = name
-      break
-    }
-    parts.pop()
-  }
-
-  if (!nextName) {
-    return null
-  }
-
-  // className explicitly wants to avoid parent name
-  let className = nextName
-  if (parentName) {
-    className = className.replace(parentName, '')
-  }
-  className = `${THEME_CLASSNAME_PREFIX}${className}`
-
-  return {
-    name: nextName,
-    theme: themes[nextName],
-    className,
-  }
-}
-
-export const useChangeThemeEffect = (shortName?: string | null, componentName?: string) => {
-  const parentManager = useContext(ThemeManagerContext)
+export const useChangeThemeEffect = (name?: string | null, componentName?: string) => {
+  const parentManager = useContext(ThemeManagerContext) || emptyManager
   const { themes } = useContext(ThemeContext)!
-  const next = getNextTheme({ parentManager, shortName, componentName, themes })
+  const next = parentManager.getNextTheme({ name, componentName, themes })
   const forceUpdate = useForceUpdate()
   const themeManager = useConstant<ThemeManager | null>(() => {
     if (!next) {
@@ -204,7 +162,7 @@ export const useChangeThemeEffect = (shortName?: string | null, componentName?: 
   //     }
   //     const dispose = parentManager.onChangeTheme((nextParent) => {
   //       if (!nextParent) return
-  //       const next = getNextTheme({ parentManager, shortName, componentName, themes })
+  //       const next = getNextTheme({ parentManager, name, componentName, themes })
   //       if (!next) return
   //       themeManager.update({ ...next, parentManager })
   //       // forceUpdate()
