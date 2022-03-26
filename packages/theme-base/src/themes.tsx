@@ -1,7 +1,8 @@
 import * as Colors from '@tamagui/colors'
-import { Variable } from 'tamagui'
+import { Variable, getVariableValue } from '@tamagui/core'
 
 import { allDarkColors, allLightColors } from './colors'
+import { setColorAlpha } from './colorUtils'
 import { tokens } from './tokens'
 
 // helpers
@@ -62,20 +63,25 @@ const themeCreator =
     const get = (arr: any[], index: number, name = 'background') => {
       return arr[Math.max(0, Math.min(index + (offsets[name][str] || 0), arr.length - 1))]
     }
+
+    const colorTranslucent = setColorAlpha(getVariableValue(get(colors, 0 + str, 'color')), 0.5)
+
     return {
       background: get(backgrounds, str),
+      backgroundSoft: get(backgrounds, str + 3),
       backgroundHover: backgrounds[str + lighterDir * 1] ?? get(backgrounds, str + darkerDir * 1),
       backgroundPress: get(backgrounds, str + darkerDir * 1),
       backgroundFocus: get(backgrounds, str + darkerDir * 2),
       backgroundTransparent: tokens.color.grayA1,
       borderColor: isLight ? colors[8 - str] : backgrounds[2 + str],
-      borderColorHover: isLight ? colors[7 - str] : backgrounds[1 + str],
-      borderColorPress: isLight ? colors[6 - str] : backgrounds[3 + str],
-      borderColorFocus: isLight ? colors[6 - str] : backgrounds[4 + str],
+      borderColorHover: isLight ? colors[7 - str] : backgrounds[3 + str],
+      borderColorPress: isLight ? colors[6 - str] : backgrounds[1 + str],
+      borderColorFocus: isLight ? colors[6 - str] : backgrounds[3 + str],
       color: get(colors, 0 + str, 'color'),
       colorHover: get(colors, 1 + str, 'color'),
       colorPress: get(colors, 2 + str, 'color'),
       colorFocus: get(colors, 3 + str, 'color'),
+      colorTranslucent,
       shadowColor: isLight ? tokens.color.grayA4 : tokens.color.grayA8,
       shadowColorHover: darkColors[!isLight ? 1 : 8],
       shadowColorPress: darkColors[!isLight ? 1 : 8],

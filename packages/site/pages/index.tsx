@@ -45,7 +45,16 @@ function Performance() {
             3-10x speed, even with inline styling.
           </H3>
         </YStack>
-        <YStack width="100%" ai="stretch">
+
+        <YStack
+          // borderStyle="dashed"
+          // borderWidth={1}
+          // borderColor="$colorTranslucent"
+          p="$2"
+          br="$8"
+          width="100%"
+          ai="stretch"
+        >
           <BenchmarkChart
             large
             data={[

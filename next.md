@@ -1,3 +1,5 @@
+- fix types on color, not showing all
+- fix type autocomplete not showing in menu on some
 - fix image w/h shorthand not translating to width/height runtime
 - extracted theme="" components will change how ThemeReset/Theme work with finding parent context, we'll need to have the equivalent web versions for all of them. something like MutationObserver(querySelector.closest('.theme--parent'))
 
