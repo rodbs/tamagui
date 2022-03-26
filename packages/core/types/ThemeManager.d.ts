@@ -13,6 +13,7 @@ export declare class ThemeManager {
     parentManager: ThemeManager | null;
     theme: null;
     get parentName(): string | null;
+    get fullName(): string;
     update({ name, theme, parentManager }: SetActiveThemeProps): void;
     track(uuid: any, keys: Set<string>): void;
     notifyListeners(): void;

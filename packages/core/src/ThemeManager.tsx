@@ -20,6 +20,13 @@ export class ThemeManager {
     return this.parentManager?.name ?? null
   }
 
+  get fullName(): string {
+    const parts = [
+      ...new Set([...(this.parentManager?.fullName?.split('_') ?? []), this.name]),
+    ].filter(Boolean)
+    return parts.join('_')
+  }
+
   update({ name, theme, parentManager = null }: SetActiveThemeProps) {
     if (name === this.name && parentManager == this.parentManager) {
       return

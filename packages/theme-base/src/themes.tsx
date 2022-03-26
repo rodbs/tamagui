@@ -216,6 +216,31 @@ const colorThemeEntries = colorSchemes.flatMap(({ name, colors, darkColors }) =>
   ]
 })
 
+const transparent = {
+  background: 'transparent',
+  backgroundSoft: 'transparent',
+  backgroundHover: 'transparent',
+  backgroundPress: 'transparent',
+  backgroundFocus: 'transparent',
+  backgroundTransparent: 'transparent',
+  shadowColor: 'transparent',
+  shadowColorHover: 'transparent',
+  shadowColorPress: 'transparent',
+  shadowColorFocus: 'transparent',
+}
+
+// @ts-ignore
+const dark_outline: MyTheme = {
+  ...baseThemes.dark,
+  ...transparent,
+}
+
+// @ts-ignore
+const light_outline: MyTheme = {
+  ...baseThemes.light,
+  ...transparent,
+}
+
 const colorThemes: {
   [key in ColorThemeNames]: MyTheme
 } = Object.fromEntries(colorThemeEntries) as any
@@ -223,6 +248,8 @@ const colorThemes: {
 export const themes = {
   ...baseThemes,
   ...colorThemes,
+  dark_outline,
+  light_outline,
 } as const
 
 export type MyThemes = typeof themes

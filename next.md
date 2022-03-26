@@ -1,4 +1,4 @@
-- document onHoverIn onHoverOut onPress etc
+- document fullscreen elevation onHoverIn onHoverOut onPress etc
 - fix types on color, not showing all
 - fix type autocomplete not showing in menu on some
 - fix image w/h shorthand not translating to width/height runtime

@@ -23,6 +23,8 @@ export const Theme = (props: ThemeProps) => {
     return props.children
   }
 
+  console.log('got', name, theme)
+
   if (!name || !theme) {
     if (process.env.NODE_ENV === 'development' && name && !theme) {
       console.warn(`No theme found by name ${name}`)
@@ -38,7 +40,9 @@ export const Theme = (props: ThemeProps) => {
     }
     return (
       <div
-        className={`${className || ''} ${props.className || ''}`}
+        className={
+          props.className ? `${className || ''} ${props.className || ''}` : className || ''
+        }
         style={{
           display: 'contents',
           // in order to provide currentColor, set color by default

@@ -25,7 +25,6 @@ export function loadTamagui(props: { components: string[]; config: string }): {
       return {}
     }
     if (path === '@gorhom/bottom-sheet' || path.startsWith('react-native-reanimated')) {
-      console.log('returning proxy worm')
       return proxyWorm
     }
     if (
