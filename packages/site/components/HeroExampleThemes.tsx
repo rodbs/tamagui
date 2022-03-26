@@ -20,77 +20,6 @@ import { CodeInline } from './Code'
 import { ContainerLarge } from './Container'
 import { MediaPlayer } from './MediaPlayer'
 
-const MediaPlayerDemoStack = () => {
-  const themeName = useThemeName()
-  const activeBase = themeName === 'dark' ? 1 : 0
-  const themes = ['alt1', 'alt2', 'alt3']
-  const [active, setActive] = useState(0)
-
-  return (
-    <YStack ai="center" jc="center" space="$6">
-      <XStack space="$6">
-        <InteractiveContainer br="$10" als="center">
-          {['light', 'dark'].map((name, i) => {
-            return (
-              <Button
-                // onPress={() => setActive(i)}
-                theme={activeBase === i ? 'active' : null}
-                key={i}
-                borderRadius="$0"
-                fontWeight={activeBase === i ? '700' : '400'}
-              >
-                {name}
-              </Button>
-            )
-          })}
-        </InteractiveContainer>
-
-        <XStack ai="center" space="$1">
-          {['green', 'pink', 'red', 'orange', 'blue'].map((color) => {
-            return (
-              <Theme key={color} name={color}>
-                <Circle size={20} backgroundColor="$colorMid" />
-              </Theme>
-            )
-          })}
-        </XStack>
-
-        <InteractiveContainer br="$10" als="center">
-          {themes.map((name, i) => {
-            return (
-              <Button
-                onPress={() => setActive(i)}
-                theme={active === i ? 'active' : null}
-                key={i}
-                borderRadius="$0"
-                fontWeight={active === i ? '700' : '400'}
-              >
-                {name}
-              </Button>
-            )
-          })}
-        </InteractiveContainer>
-      </XStack>
-
-      <XStack space="$6">
-        <MediaPlayer alt={active ? active : null} />
-        <Theme name="green">
-          <MediaPlayer alt={active ? active : null} />
-        </Theme>
-        <Theme name="pink">
-          <MediaPlayer alt={active ? active : null} />
-        </Theme>
-      </XStack>
-
-      <Theme name="green">
-        <CodeInline my="$2" br="$3" size="$6">
-          dark_green_alt1_button
-        </CodeInline>
-      </Theme>
-    </YStack>
-  )
-}
-
 export function HeroExampleCarousel() {
   return (
     <YStack>
@@ -127,6 +56,108 @@ export function HeroExampleCarousel() {
           </Link>
         </YStack>
       </ContainerLarge>
+    </YStack>
+  )
+}
+
+const themes = [
+  ['light', 'dark'],
+  ['green', 'pink', 'red', 'orange', 'blue'],
+  ['base', 'alt1', 'alt2', 'alt3'],
+] as const
+
+const themeCombos: string[] = []
+for (let i = 0; i < themes[0].length; i++) {
+  for (let j = 0; j < themes[1].length; j++) {
+    for (let k = 0; k < themes[2].length; k++) {
+      themeCombos.push(`${themes[0][i]}_${themes[1][j]}_${themes[2][k]}`)
+    }
+  }
+}
+
+const MediaPlayerDemoStack = () => {
+  const themeName = useThemeName()
+  const activeBase = themeName === 'dark' ? 1 : 0
+  const [activeI, setActiveI] = useState([1, 1, 0])
+  const activeThemeComboI =
+    activeI[0] * themes[0].length + activeI[1] * themes[1].length + activeI[2] * themes[2].length
+
+  return (
+    <YStack ai="center" jc="center" space="$6">
+      <XStack space="$6">
+        <InteractiveContainer br="$10" als="center">
+          {themes[0].map((name, i) => {
+            return (
+              <Button
+                // onPress={() => setActive(i)}
+                theme={activeBase === i ? 'active' : null}
+                key={i}
+                borderRadius="$0"
+                fontWeight={activeBase === i ? '700' : '400'}
+              >
+                {name}
+              </Button>
+            )
+          })}
+        </InteractiveContainer>
+
+        <XStack ai="center" space="$1">
+          {themes[1].map((color) => {
+            return (
+              <Theme key={color} name={color}>
+                <Circle size={20} backgroundColor="$colorMid" />
+              </Theme>
+            )
+          })}
+        </XStack>
+
+        <InteractiveContainer br="$10" als="center">
+          {themes[2].map((name, i) => {
+            const isActive = activeI[2] === i
+            return (
+              <Button
+                onPress={() => setActiveI((x) => [x[0], x[1], i])}
+                theme={isActive ? 'active' : null}
+                key={i}
+                borderRadius="$0"
+                fontWeight={isActive ? '700' : '400'}
+              >
+                {name}
+              </Button>
+            )
+          })}
+        </InteractiveContainer>
+      </XStack>
+
+      <XStack space="$6">
+        {themeCombos.map((name, i) => {
+          const isActive = activeThemeComboI === i
+          const isBeforeActive = i < activeThemeComboI
+          const [base, color, alt] = name.split('_')
+          return (
+            <XStack key={name} zi={isActive ? 1000 : isBeforeActive ? i : 1000 - i} mx={-175}>
+              <Theme name={base}>
+                <Theme name={color}>
+                  <MediaPlayer alt={+alt.replace('alt', '')} />
+                </Theme>
+              </Theme>
+            </XStack>
+          )
+        })}
+        {/* <MediaPlayer alt={activeI ? activeI : null} />
+        <Theme name="green">
+          <MediaPlayer alt={activeI ? activeI : null} />
+        </Theme>
+        <Theme name="pink">
+          <MediaPlayer alt={activeI ? activeI : null} />
+        </Theme> */}
+      </XStack>
+
+      <Theme name="green">
+        <CodeInline my="$2" br="$3" size="$6">
+          dark_green_alt1_button
+        </CodeInline>
+      </Theme>
     </YStack>
   )
 }
