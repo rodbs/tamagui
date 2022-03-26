@@ -37,7 +37,7 @@ const themeCreator =
   ({
     backgrounds,
     isLight = true,
-    isBase = false,
+    // isBase = false,
     colors = [...backgrounds].reverse(),
     offsets: offsetsProp,
   }: {
@@ -87,7 +87,6 @@ const themeCreator =
       shadowColorHover: darkColors[!isLight ? 1 : 8],
       shadowColorPress: darkColors[!isLight ? 1 : 8],
       shadowColorFocus: darkColors[!isLight ? 1 : 8],
-      ...(isBase && (isLight ? allLightColors : allDarkColors)),
     }
   }
 
@@ -150,14 +149,12 @@ export const darkGradient = [
 const makeLightTheme = themeCreator({
   backgrounds: lightGradient,
   isLight: true,
-  isBase: true,
 })
 
 const makeDarkTheme = themeCreator({
   backgrounds: darkGradient,
   colors: lightGradient,
   isLight: false,
-  isBase: true,
   offsets: {
     color: [0, 7, 8, 9, 10],
   },
@@ -173,6 +170,16 @@ const baseThemes = {
   ...darkThemes,
   dark_active: makeActiveTheme(lightThemes.light),
   dark_card: darkThemes.dark_alt1,
+
+  light: {
+    ...lightThemes.light,
+    ...allLightColors,
+  },
+
+  dark: {
+    ...darkThemes.dark,
+    ...allDarkColors,
+  },
 }
 
 function makeActiveTheme(theme: any) {
@@ -183,8 +190,6 @@ function makeActiveTheme(theme: any) {
   res.colorPress = res.color
   return res
 }
-
-export type MyTheme = typeof baseThemes['light']
 
 type ColorThemeNames =
   | ColorNames
@@ -230,22 +235,24 @@ const transparent = {
   shadowColorFocus: 'transparent',
 }
 
+type MyThemeBase = typeof baseThemes['light_alt1']
+
 // @ts-ignore
-const dark_outline: MyTheme = {
+const dark_outline: MyThemeBase = {
   ...baseThemes.dark,
   borderColor: '#fff',
   ...transparent,
 }
 
 // @ts-ignore
-const light_outline: MyTheme = {
+const light_outline: MyThemeBase = {
   ...baseThemes.light,
   borderColor: '#000',
   ...transparent,
 }
 
 const colorThemes: {
-  [key in ColorThemeNames]: MyTheme
+  [key in ColorThemeNames]: MyThemeBase
 } = Object.fromEntries(colorThemeEntries) as any
 
 export const themes = {
