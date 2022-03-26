@@ -1,6 +1,6 @@
 import { useTheme } from '@components/NextTheme'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Button,
   Circle,
@@ -94,12 +94,18 @@ const ActiveCircle = ({ isActive, ...props }) => {
 }
 
 const MediaPlayerDemoStack = () => {
-  const { theme, setTheme } = useTheme()
+  const { setTheme, theme: userTheme } = useTheme()
   const [activeI, setActiveI] = useState([0, 0])
   const activeThemeComboI = activeI[0] * (themes[0].length - 2) + activeI[1]
   const colorName = themes[0][activeI[0]]
   const altName = themes[1][activeI[1]]
   const [hoverSectionName, setHoverSectionName] = useState('')
+
+  const [theme, setSelTheme] = useState('')
+
+  useEffect(() => {
+    setSelTheme(userTheme as any)
+  }, [userTheme])
 
   return (
     <YStack ai="center" jc="center" space="$6">
@@ -171,8 +177,8 @@ const MediaPlayerDemoStack = () => {
 
       <Theme name="green">
         <CodeInline my="$2" br="$3" size="$6">
-          {theme}_{colorName}_{altName}
-          {hoverSectionName ? `_${hoverSectionName}` : ''}
+          {/* {theme}_{colorName}_{altName}
+          {hoverSectionName ? `_${hoverSectionName}` : ''} */}
         </CodeInline>
       </Theme>
     </YStack>

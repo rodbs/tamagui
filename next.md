@@ -1,3 +1,5 @@
+- dev mode global Tamagui to see things
+  - all classnames: Tamagui.classes['_borderBottomColor-1go1dts'] => style
 - // TODO fix variant merge type
 - OmitShorthands<> helper (see ActiveCirlce in site)
 - toggle/switch, tabs, label, togglegroup
