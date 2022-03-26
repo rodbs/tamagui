@@ -21,9 +21,9 @@ export class ThemeManager {
   }
 
   get fullName(): string {
-    const parts = [
-      ...new Set([...(this.parentManager?.fullName?.split('_') ?? []), this.name]),
-    ].filter(Boolean)
+    const parentName = this.parentManager?.fullName || ''
+    const name = this.name || ''
+    const parts = [...new Set([...`${parentName}_${name}`.split('_')])].filter(Boolean)
     return parts.join('_')
   }
 
@@ -31,6 +31,7 @@ export class ThemeManager {
     if (name === this.name && parentManager == this.parentManager) {
       return
     }
+    console.log('setting name to', name)
     this.name = name
     this.theme = theme
     this.parentManager = parentManager

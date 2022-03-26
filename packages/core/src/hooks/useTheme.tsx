@@ -20,7 +20,7 @@ type UseThemeState = {
 
 export const useTheme = (themeName?: string | null, componentName?: string): ThemeObject => {
   const forceUpdate = useForceUpdate()
-  const { name, theme, themes, themeManager, className } = useChangeThemeEffect(
+  const { name, theme, themes, themeManager, className, didChangeTheme } = useChangeThemeEffect(
     themeName,
     componentName
   )
@@ -62,7 +62,12 @@ export const useTheme = (themeName?: string | null, componentName?: string): The
           if (!name) {
             return Reflect.get(_, key)
           }
+          // TODO make this pattern better
           if (key === GetThemeManager) {
+            if (!didChangeTheme) {
+              return null
+            }
+            console.log('DID CHANGE THEME')
             return themeManager
           }
           if (key === 'name') {
@@ -183,31 +188,38 @@ export const useChangeThemeEffect = (shortName?: string | null, componentName?: 
     return manager
   })
 
-  if (typeof document !== 'undefined') {
-    useLayoutEffect(() => {
-      if (!themeManager) {
-        return
-      }
-      if (next?.name) {
-        themeManager.update({ ...next, parentManager })
-      }
-      const dispose = parentManager.onChangeTheme((nextParent) => {
-        if (!nextParent) return
-        const next = getNextTheme({ parentManager, shortName, componentName, themes })
-        if (!next) return
-        themeManager.update({ ...next, parentManager })
-        // forceUpdate()
-      })
-      return () => {
-        dispose()
-      }
-    }, [themes, next?.name])
+  // if (typeof document !== 'undefined') {
+  //   useLayoutEffect(() => {
+  //     if (!themeManager) {
+  //       return
+  //     }
+  //     if (next?.name) {
+  //       themeManager.update({ ...next, parentManager })
+  //     }
+  //     const dispose = parentManager.onChangeTheme((nextParent) => {
+  //       if (!nextParent) return
+  //       const next = getNextTheme({ parentManager, shortName, componentName, themes })
+  //       if (!next) return
+  //       themeManager.update({ ...next, parentManager })
+  //       // forceUpdate()
+  //     })
+  //     return () => {
+  //       dispose()
+  //     }
+  //   }, [themes, next?.name])
+  // }
+
+  const didChangeTheme = next?.name && next.name !== parentManager.fullName
+
+  if (didChangeTheme) {
+    console.log('is changing', parentManager.fullName, next)
   }
 
   return {
     theme: parentManager.theme || themes['light'],
     name: parentManager.name,
     ...next,
+    didChangeTheme,
     themes,
     themeManager,
   }

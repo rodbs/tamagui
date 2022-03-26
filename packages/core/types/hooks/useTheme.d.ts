@@ -7,6 +7,7 @@ export declare const useThemeName: (opts?: {
 } | undefined) => string;
 export declare const useDefaultThemeName: () => import("../types").ThemeName | undefined;
 export declare const useChangeThemeEffect: (shortName?: string | null | undefined, componentName?: string | undefined) => {
+    didChangeTheme: boolean | "" | undefined;
     themes: {
         [key: string]: Partial<import("../types").TamaguiBaseTheme> & {
             [key: string]: import("../types").VariableVal;
