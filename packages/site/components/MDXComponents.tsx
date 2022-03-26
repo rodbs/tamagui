@@ -21,7 +21,7 @@ import {
   YStack,
 } from 'tamagui'
 
-import { Frontmatter } from '../types/frontmatter'
+import { Frontmatter } from '../frontmatter'
 import { BenchmarkChart } from './BenchmarkChart'
 import { Code, CodeInline } from './Code'
 import { DemoButton } from './DemoButton'

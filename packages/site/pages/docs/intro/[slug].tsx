@@ -7,7 +7,7 @@ import React from 'react'
 import { H1, Spacer } from 'tamagui'
 
 import { Description } from '../../../components/Description'
-import type { Frontmatter } from '../../../types/frontmatter'
+import type { Frontmatter } from '../../../frontmatter'
 
 type Doc = {
   frontmatter: Frontmatter
