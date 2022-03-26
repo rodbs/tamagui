@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { ThemeObject } from './types';
 declare type ThemeListener = (name: string | null, themeManager: ThemeManager) => void;
 export declare type SetActiveThemeProps = {
     parentManager?: ThemeManager | null;
@@ -11,7 +12,7 @@ export declare class ThemeManager {
     listeners: Map<any, Function>;
     themeListeners: Set<ThemeListener>;
     parentManager: ThemeManager | null;
-    theme: null;
+    theme: ThemeObject | null;
     get parentName(): string | null;
     get fullName(): string;
     update({ name, theme, parentManager }: SetActiveThemeProps): void;
@@ -20,6 +21,6 @@ export declare class ThemeManager {
     onChangeTheme(cb: ThemeListener): () => void;
     onUpdate(uuid: any, cb: Function): () => void;
 }
-export declare const ThemeManagerContext: import("react").Context<ThemeManager>;
+export declare const ThemeManagerContext: import("react").Context<ThemeManager | null>;
 export {};
 //# sourceMappingURL=ThemeManager.d.ts.map

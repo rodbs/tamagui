@@ -446,15 +446,17 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
       }
     }
 
-    const childEls = wrapThemeManagerContext(
-      spacedChildren({
-        children,
-        space,
-        flexDirection: props.flexDirection || defaultProps?.flexDirection,
-        isZStack: isZStack,
-      }),
-      getThemeManager(theme)
-    )
+    const childEls = !children
+      ? children
+      : wrapThemeManagerContext(
+          spacedChildren({
+            children,
+            space,
+            flexDirection: props.flexDirection || defaultProps?.flexDirection,
+            isZStack: isZStack,
+          }),
+          getThemeManager(theme)
+        )
 
     let content: any
 

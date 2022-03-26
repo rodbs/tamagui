@@ -3,7 +3,7 @@ import { FeaturesGrid } from '@components/FeaturesGrid'
 import { Hero } from '@components/Hero'
 import { TitleAndMetaTags } from '@components/TitleAndMetaTags'
 import Link from 'next/link'
-import { Button, H2, H3, Image, Paragraph, YStack } from 'tamagui'
+import { Button, H2, H3, Image, Paragraph, Theme, YStack } from 'tamagui'
 
 import { BenchmarkChart } from '../components/BenchmarkChart'
 import { ContainerLarge } from '../components/Container'
@@ -12,6 +12,12 @@ import { HeroExampleCarousel } from '../components/HeroExampleCarousel'
 import { HeroExampleCode } from '../components/HeroExampleCode'
 
 export default function Home() {
+  return (
+    <Theme debug name="blue">
+      <Button>hello</Button>
+    </Theme>
+  )
+
   return (
     <>
       <TitleAndMetaTags title="Tamagui — React Native + Web UI kit" />

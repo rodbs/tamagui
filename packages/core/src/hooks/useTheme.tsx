@@ -119,15 +119,17 @@ export const getThemeManager = (theme: any) => {
 
 export const useThemeName = (opts?: { parent?: true }) => {
   const parent = useContext(ThemeManagerContext)
-  const [name, setName] = useState(parent.name)
+  const [name, setName] = useState(parent.name || '')
 
   useIsomorphicLayoutEffect(() => {
     return parent.onChangeTheme((next, manager) => {
-      setName(opts?.parent ? manager.parentName : next)
+      const name = opts?.parent ? manager.parentName || next : next
+      if (!name) return
+      setName(name)
     })
   }, [parent])
 
-  return name || 'light'
+  return name
 }
 
 export const useDefaultThemeName = () => {
@@ -140,17 +142,14 @@ function getNextTheme({
   shortName,
   componentName,
 }: {
-  parentManager: ThemeManager
+  parentManager?: ThemeManager | null
   themes: Themes
   shortName?: string | null
   componentName?: string | null
 }) {
+  const parentName = parentManager?.fullName
   const parts = [
-    ...new Set([
-      ...parentManager.fullName.split('_'),
-      ...(shortName || '').split('_'),
-      componentName,
-    ]),
+    ...new Set([...(parentName?.split('_') || []), ...(shortName || '').split('_'), componentName]),
   ].filter(Boolean)
   let nextName: string | null = null
 
@@ -167,10 +166,17 @@ function getNextTheme({
     return null
   }
 
+  // className explicitly wants to avoid parent name
+  let className = nextName
+  if (parentName) {
+    className = className.replace(parentName, '')
+  }
+  className = `${THEME_CLASSNAME_PREFIX}${className}`
+
   return {
     name: nextName,
     theme: themes[nextName],
-    className: `${THEME_CLASSNAME_PREFIX}${nextName}`,
+    className,
   }
 }
 
@@ -209,15 +215,13 @@ export const useChangeThemeEffect = (shortName?: string | null, componentName?: 
   //   }, [themes, next?.name])
   // }
 
-  const didChangeTheme = next?.name && next.name !== parentManager.fullName
-
-  if (didChangeTheme) {
-    console.log('is changing', parentManager.fullName, next)
-  }
+  const didChangeTheme = next && parentManager && next.name !== parentManager.fullName
 
   return {
-    theme: parentManager.theme || themes['light'],
-    name: parentManager.name,
+    ...(parentManager && {
+      name: parentManager.name,
+      theme: parentManager.theme,
+    }),
     ...next,
     didChangeTheme,
     themes,

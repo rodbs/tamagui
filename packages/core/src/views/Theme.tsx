@@ -23,8 +23,6 @@ export const Theme = (props: ThemeProps) => {
     return props.children
   }
 
-  console.log('got', name, theme)
-
   if (!name || !theme) {
     if (process.env.NODE_ENV === 'development' && name && !theme) {
       console.warn(`No theme found by name ${name}`)

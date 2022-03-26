@@ -1,5 +1,7 @@
 import { createContext } from 'react'
 
+import { ThemeObject } from './types'
+
 type ThemeListener = (name: string | null, themeManager: ThemeManager) => void
 
 export type SetActiveThemeProps = {
@@ -14,7 +16,7 @@ export class ThemeManager {
   listeners = new Map<any, Function>()
   themeListeners = new Set<ThemeListener>()
   parentManager: ThemeManager | null = null
-  theme = null
+  theme: ThemeObject | null = null
 
   get parentName() {
     return this.parentManager?.name ?? null
@@ -31,7 +33,6 @@ export class ThemeManager {
     if (name === this.name && parentManager == this.parentManager) {
       return
     }
-    console.log('setting name to', name)
     this.name = name
     this.theme = theme
     this.parentManager = parentManager
@@ -71,4 +72,4 @@ export class ThemeManager {
   }
 }
 
-export const ThemeManagerContext = createContext<ThemeManager>(new ThemeManager())
+export const ThemeManagerContext = createContext<ThemeManager | null>(null)

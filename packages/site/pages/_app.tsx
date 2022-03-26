@@ -38,6 +38,8 @@ export default function App(props: AppProps) {
   const isDark = classes.includes('tui_dark')
   const [theme, setTheme] = useState(isDark ? 'dark' : 'light')
 
+  console.log('THEME', theme)
+
   const contents = useMemo(() => {
     return (
       <SafeAreaProvider>
