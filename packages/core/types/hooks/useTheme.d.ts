@@ -7,16 +7,16 @@ export declare const useThemeName: (opts?: {
 } | undefined) => string;
 export declare const useDefaultThemeName: () => import("../types").ThemeName | undefined;
 export declare const useChangeThemeEffect: (shortName?: string | null | undefined, componentName?: string | undefined) => {
-    name: string;
     themes: {
         [key: string]: Partial<import("../types").TamaguiBaseTheme> & {
             [key: string]: import("../types").VariableVal;
         };
     };
     themeManager: ThemeManager | null;
+    name: string | null;
     theme: Partial<import("../types").TamaguiBaseTheme> & {
         [key: string]: import("../types").VariableVal;
     };
-    className: string | null;
+    className?: string | undefined;
 };
 //# sourceMappingURL=useTheme.d.ts.map

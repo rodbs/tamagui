@@ -7,7 +7,7 @@ import { isVariable } from '../createVariable'
 import { areEqualSets } from '../helpers/areEqualSets'
 import { ThemeContext } from '../ThemeContext'
 import { ThemeManager, ThemeManagerContext } from '../ThemeManager'
-import { ThemeObject } from '../types'
+import { ThemeObject, Themes } from '../types'
 import { useConstant } from './useConstant'
 
 const SEP = THEME_NAME_SEPARATOR
@@ -129,28 +129,57 @@ export const useDefaultThemeName = () => {
   return useContext(ThemeContext)?.defaultTheme
 }
 
+function getNextTheme({
+  parentManager,
+  themes,
+  shortName,
+  componentName,
+}: {
+  parentManager: ThemeManager
+  themes: Themes
+  shortName?: string | null
+  componentName?: string | null
+}) {
+  const parts = [
+    ...new Set([
+      ...parentManager.fullName.split('_'),
+      ...(shortName || '').split('_'),
+      componentName,
+    ]),
+  ].filter(Boolean)
+  let nextName: string | null = null
+
+  while (parts.length) {
+    const name = parts.join('_')
+    if (name in themes) {
+      nextName = name
+      break
+    }
+    parts.pop()
+  }
+
+  if (!nextName) {
+    return null
+  }
+
+  return {
+    name: nextName,
+    theme: themes[nextName],
+    className: `${THEME_CLASSNAME_PREFIX}${nextName}`,
+  }
+}
+
 export const useChangeThemeEffect = (shortName?: string | null, componentName?: string) => {
   const parentManager = useContext(ThemeManagerContext)
   const { themes } = useContext(ThemeContext)!
-  const [parentName, setParentName] = useState(parentManager.name || 'light')
-  const nextNameParent = shortName ? `${parentName}${SEP}${shortName}` : ''
-  const nextNameParentParent = shortName ? `${parentManager.parentName}${SEP}${shortName}` : ''
-  const nextParentName =
-    nextNameParent in themes
-      ? nextNameParent
-      : nextNameParentParent in themes
-      ? nextNameParentParent
-      : null
-  const nextName = !shortName ? null : shortName in themes ? shortName : nextParentName
-  const nextTheme = nextName ? themes[nextName] : null
+  const next = getNextTheme({ parentManager, shortName, componentName, themes })
+  const forceUpdate = useForceUpdate()
   const themeManager = useConstant<ThemeManager | null>(() => {
-    if (!nextTheme) {
+    if (!next) {
       return null
     }
     const manager = new ThemeManager()
-    if (nextName) {
-      manager.update({ name: nextName, theme: themes[nextName], parentManager })
-    }
+    manager.update({ ...next, parentManager })
     return manager
   })
 
@@ -159,33 +188,27 @@ export const useChangeThemeEffect = (shortName?: string | null, componentName?: 
       if (!themeManager) {
         return
       }
-      if (nextName) {
-        themeManager.update({ name: nextName, theme: nextTheme, parentManager })
+      if (next?.name) {
+        themeManager.update({ ...next, parentManager })
       }
-      const dispose = parentManager.onChangeTheme((next) => {
-        if (next) {
-          themeManager.update({ name: next, theme: themes[next], parentManager })
-          setParentName(next)
-        }
+      const dispose = parentManager.onChangeTheme((nextParent) => {
+        if (!nextParent) return
+        const next = getNextTheme({ parentManager, shortName, componentName, themes })
+        if (!next) return
+        themeManager.update({ ...next, parentManager })
+        // forceUpdate()
       })
       return () => {
-        // TODO should we undo setActiveTheme on dispose?
         dispose()
       }
-    }, [themes, nextName, parentName])
-  }
-
-  let className: string | null = null
-  const classNamePost = shortName ?? componentName
-  if (classNamePost) {
-    className = `${THEME_CLASSNAME_PREFIX}${classNamePost}`
+    }, [themes, next?.name])
   }
 
   return {
-    name: nextName || parentName,
+    theme: parentManager.theme || themes['light'],
+    name: parentManager.name,
+    ...next,
     themes,
     themeManager,
-    theme: nextTheme || themeManager?.theme || parentManager.theme || themes['light'],
-    className,
   }
 }
