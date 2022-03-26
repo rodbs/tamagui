@@ -6,9 +6,8 @@ import * as NextThemes from '@components/NextTheme'
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import React, { useMemo, useState } from 'react'
-import { Button, PopoverProvider, SafeAreaProvider, YStack } from 'tamagui'
+import { PopoverProvider, SafeAreaProvider, YStack } from 'tamagui'
 
-import { MediaPlayer } from '../components/MediaPlayer'
 import Tamagui from '../tamagui.config'
 
 globalThis['React'] = React
@@ -36,8 +35,6 @@ export default function App(props: AppProps) {
   const classes = typeof document !== 'undefined' ? [...document.documentElement.classList] : []
   const isDark = classes.includes('tui_dark')
   const [theme, setTheme] = useState(isDark ? 'dark' : 'light')
-
-  console.log('THEME', theme)
 
   const contents = useMemo(() => {
     return (
