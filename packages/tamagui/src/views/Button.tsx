@@ -2,6 +2,7 @@ import {
   StaticComponent,
   ThemeableProps,
   getTokens,
+  getVariableValue,
   styled,
   themeable,
   useTheme,
@@ -35,6 +36,26 @@ const ButtonFrame = styled(SizableFrame, {
   borderWidth: 0,
   hoverable: true,
   pressable: true,
+
+  variants: {
+    circular: {
+      true: (_, { props, tokens }) => {
+        const sizeVal = props['size'] ?? '$4'
+        const size = tokens.size[sizeVal] ?? 44
+        const sizePx = +getVariableValue(size)
+        return {
+          width: sizePx * 2,
+          maxWidth: sizePx * 2,
+          height: sizePx * 2,
+          maxHeight: sizePx * 2,
+          overflow: 'hidden',
+          borderRadius: 100_000,
+          paddingVertical: 0,
+          paddingHorizontal: 0,
+        }
+      },
+    },
+  },
 })
 
 export const Button: React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<View>> =

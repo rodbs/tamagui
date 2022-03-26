@@ -82,6 +82,7 @@ const themeCreator =
       colorPress: get(colors, 2 + str, 'color'),
       colorFocus: get(colors, 3 + str, 'color'),
       colorTranslucent,
+      colorMid: colors[Math.floor(colors.length / 2)],
       shadowColor: isLight ? tokens.color.grayA4 : tokens.color.grayA8,
       shadowColorHover: darkColors[!isLight ? 1 : 8],
       shadowColorPress: darkColors[!isLight ? 1 : 8],

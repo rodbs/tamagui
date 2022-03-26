@@ -453,6 +453,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -606,6 +607,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -759,6 +761,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -912,6 +915,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -1065,6 +1069,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -1218,6 +1223,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -1372,6 +1378,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -1525,6 +1532,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -1678,6 +1686,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -1831,6 +1840,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -1984,6 +1994,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -2137,6 +2148,7 @@ declare const baseThemes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -2293,6 +2305,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -2446,6 +2459,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -2599,6 +2613,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -2752,6 +2767,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -2905,6 +2921,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -3058,6 +3075,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -3211,6 +3229,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -3364,6 +3383,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -3517,6 +3537,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -3670,6 +3691,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -3823,6 +3845,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -3976,6 +3999,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -4129,6 +4153,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -4282,6 +4307,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -4435,6 +4461,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -4588,6 +4615,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -4741,6 +4769,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -4894,6 +4923,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -5047,6 +5077,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -5200,6 +5231,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -5353,6 +5385,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -5506,6 +5539,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -5659,6 +5693,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -5812,6 +5847,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -5965,6 +6001,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -6118,6 +6155,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -6271,6 +6309,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -6424,6 +6463,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -6577,6 +6617,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -6730,6 +6771,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -6883,6 +6925,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -7036,6 +7079,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -7189,6 +7233,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -7342,6 +7387,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -7495,6 +7541,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -7648,6 +7695,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -7801,6 +7849,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -7954,6 +8003,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -8107,6 +8157,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -8260,6 +8311,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -8413,6 +8465,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -8566,6 +8619,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -8719,6 +8773,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -8872,6 +8927,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -9025,6 +9081,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -9178,6 +9235,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -9331,6 +9389,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -9484,6 +9543,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -9637,6 +9697,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -9790,6 +9851,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -9943,6 +10005,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -10096,6 +10159,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -10249,6 +10313,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -10402,6 +10467,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -10555,6 +10621,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -10708,6 +10775,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -10861,6 +10929,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -11014,6 +11083,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -11167,6 +11237,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -11320,6 +11391,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -11473,6 +11545,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -11626,6 +11699,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -11779,6 +11853,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -11932,6 +12007,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -12085,6 +12161,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -12238,6 +12315,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -12391,6 +12469,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -12544,6 +12623,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -12697,6 +12777,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -12850,6 +12931,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -13003,6 +13085,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -13156,6 +13239,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -13309,6 +13393,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -13462,6 +13547,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -13615,6 +13701,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -13768,6 +13855,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -13921,6 +14009,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -14074,6 +14163,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -14227,6 +14317,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -14380,6 +14471,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -14533,6 +14625,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -14686,6 +14779,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -14839,6 +14933,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -14992,6 +15087,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -15145,6 +15241,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -15298,6 +15395,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -15451,6 +15549,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -15604,6 +15703,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -15757,6 +15857,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -15910,6 +16011,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -16063,6 +16165,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -16216,6 +16319,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -16370,6 +16474,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -16523,6 +16628,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -16676,6 +16782,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -16829,6 +16936,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -16982,6 +17090,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -17135,6 +17244,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -17289,6 +17399,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -17442,6 +17553,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -17595,6 +17707,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -17748,6 +17861,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -17901,6 +18015,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;
@@ -18054,6 +18169,7 @@ export declare const themes: {
         colorPress: any;
         colorFocus: any;
         colorTranslucent: string;
+        colorMid: string | Variable;
         shadowColor: Variable;
         shadowColorHover: string | Variable;
         shadowColorPress: string | Variable;

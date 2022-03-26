@@ -80,7 +80,8 @@ export const useTheme = (themeName?: string | null, componentName?: string): The
           let activeTheme = themes[name]
           if (!activeTheme) {
             if (process.env.NODE_ENV !== 'test') {
-              console.error('No theme by name', name, 'only:', themes, 'keeping current theme')
+              // prettier-ignore
+              console.error('No theme by name', name, 'keeping current theme')
             }
             activeTheme = theme
           }
