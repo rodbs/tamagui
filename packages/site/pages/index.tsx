@@ -7,8 +7,9 @@ import { Button, H2, H3, Paragraph, YStack } from 'tamagui'
 
 import { BenchmarkChart } from '../components/BenchmarkChart'
 import { ContainerLarge } from '../components/Container'
-import { HeroExample } from '../components/HeroExample'
+import { HeroExampleAnimations } from '../components/HeroExampleAnimations'
 import { HeroExampleCarousel } from '../components/HeroExampleCarousel'
+import { HeroExampleCode } from '../components/HeroExampleCode'
 
 export default function Home() {
   return (
@@ -19,9 +20,11 @@ export default function Home() {
           <Hero />
           <Divider />
           <HeroExampleCarousel />
+          <Divider />
+          <HeroExampleAnimations />
           <YStack space="$8" $sm={{ display: 'none' }}>
             <Divider />
-            <HeroExample />
+            <HeroExampleCode />
           </YStack>
           <Divider />
           <Performance />

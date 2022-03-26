@@ -168,8 +168,10 @@ const darkThemes = createThemeWithAlts('dark', makeDarkTheme)
 const baseThemes = {
   ...lightThemes,
   light_active: makeActiveTheme(darkThemes.dark),
+  light_card: lightThemes.light_alt1,
   ...darkThemes,
   dark_active: makeActiveTheme(lightThemes.light),
+  dark_card: darkThemes.dark_alt1,
 }
 
 function makeActiveTheme(theme: any) {

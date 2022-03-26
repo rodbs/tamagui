@@ -1,10 +1,58 @@
 import { colorSchemes } from '@tamagui/theme-base'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { Button, H2, H3, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
 
 import { Code, CodeInline } from './Code'
 import { ContainerLarge } from './Container'
 import { MediaPlayer } from './MediaPlayer'
+
+const MediaPlayerDemo = ({ offset, index, ...props }: any) => {
+  return (
+    <YStack
+      pos="absolute"
+      top={0}
+      left={0}
+      zi={100 - index}
+      px="$6"
+      mb={-220}
+      mr={-50}
+      py="$4"
+      className="faded-container"
+      x={index * 40}
+      y={index * 30}
+      // opacity={(4 - index) / 3}
+    >
+      <MediaPlayer {...props} />
+    </YStack>
+  )
+}
+
+const MediaPlayerDemoStack = () => {
+  const [isHovering, setIsHovering] = useState(false)
+  const [i, setI] = useState(0)
+
+  return (
+    <YStack
+      pos="relative"
+      width={400}
+      height={80}
+      onHoverIn={() => setIsHovering(true)}
+      onHoverOut={() => setIsHovering(false)}
+    >
+      {[0, 1, 2, 3].map((demoIndex) => {
+        return (
+          <MediaPlayerDemo
+            key={demoIndex}
+            offset={i}
+            index={demoIndex + i}
+            {...(demoIndex && { alt: demoIndex })}
+          />
+        )
+      })}
+    </YStack>
+  )
+}
 
 export function HeroExampleCarousel() {
   return (
@@ -18,29 +66,15 @@ export function HeroExampleCarousel() {
         </YStack>
 
         {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}> */}
-        <YStack mb={250}>
+        <XStack mb={220}>
           {[{ name: null }, ...colorSchemes.slice(2, 5)].map(({ name }, index) => {
             return (
               <Theme key={name} name={name}>
-                <XStack
-                  pos="relative"
-                  zi={100 - index}
-                  px="$6"
-                  mb={-250}
-                  py="$4"
-                  className="faded-container"
-                  x={index * 50}
-                  // opacity={(4 - index) / 3}
-                >
-                  <MediaPlayer />
-                  <MediaPlayer alt={1} />
-                  <MediaPlayer alt={2} />
-                  <MediaPlayer alt={3} />
-                </XStack>
+                <MediaPlayerDemoStack />
               </Theme>
             )
           })}
-        </YStack>
+        </XStack>
 
         {/* </ScrollView> */}
 

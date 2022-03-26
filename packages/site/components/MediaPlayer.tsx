@@ -10,7 +10,7 @@ export const MediaPlayer = ({ alt = 0 }: { alt?: number }) => {
   return (
     <YStack>
       <Theme name={themeName}>
-        <YStack pb="$6" pt="$4" px="$2">
+        <YStack>
           <Card flex={1} overflow="visible" bordered size="$6" pl={0} pr={0} pb={0} pt={0}>
             <YStack w="100%">
               <XStack ai="center" p="$3" space="$5">
