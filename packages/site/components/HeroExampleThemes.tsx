@@ -66,7 +66,8 @@ const themes: (ThemeName | null)[][] = [
 const themeCombos: string[] = []
 for (let i = 0; i < themes[0].length; i++) {
   for (let j = 0; j < themes[1].length; j++) {
-    themeCombos.push(`${themes[0][i]}_${themes[1][j]}`)
+    const parts = [themes[0][i], themes[1][j]].filter(Boolean)
+    themeCombos.push(parts.join('_'))
   }
 }
 
@@ -149,7 +150,7 @@ const MediaPlayerDemoStack = () => {
         {themeCombos.map((name, i) => {
           const isActive = activeThemeComboI === i
           const isBeforeActive = i < activeThemeComboI
-          const [color, alt] = name === null ? [null, ''] : name.split('_')
+          const [color, alt] = name.split('_')
           return (
             <XStack
               key={name}
@@ -158,7 +159,10 @@ const MediaPlayerDemoStack = () => {
               x={i * 30}
             >
               <Theme name={color as any}>
-                <MediaPlayer onHoverSection={setHoverSectionName} alt={+alt.replace('alt', '')} />
+                <MediaPlayer
+                  onHoverSection={setHoverSectionName}
+                  alt={alt ? +alt.replace('alt', '') : 0}
+                />
               </Theme>
             </XStack>
           )
