@@ -1,4 +1,5 @@
 import {
+  GetProps,
   StaticComponent,
   ThemeableProps,
   getTokens,
@@ -18,17 +19,6 @@ import { SizableText, SizableTextProps } from './SizableText'
 React['createElement']
 
 type IconProp = JSX.Element | ((props: { color?: string; size?: number }) => JSX.Element) | null
-
-export type ButtonProps = SizableFrameProps &
-  ThemeableProps & {
-    scaleIcon?: number
-    color?: SizableTextProps['color']
-    fontWeight?: SizableTextProps['fontWeight']
-    letterSpacing?: SizableTextProps['letterSpacing']
-    noTextWrap?: boolean
-    icon?: IconProp
-    iconAfter?: IconProp
-  }
 
 const ButtonFrame = styled(SizableFrame, {
   name: 'button',
@@ -57,6 +47,17 @@ const ButtonFrame = styled(SizableFrame, {
     },
   },
 })
+
+export type ButtonProps = GetProps<typeof ButtonFrame> &
+  ThemeableProps & {
+    scaleIcon?: number
+    color?: SizableTextProps['color']
+    fontWeight?: SizableTextProps['fontWeight']
+    letterSpacing?: SizableTextProps['letterSpacing']
+    noTextWrap?: boolean
+    icon?: IconProp
+    iconAfter?: IconProp
+  }
 
 export const Button: React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<View>> =
   ButtonFrame.extractable(

@@ -8,6 +8,7 @@ import {
   H3,
   InteractiveContainer,
   Theme,
+  ThemeName,
   XStack,
   YStack,
   useThemeName,
@@ -57,10 +58,10 @@ export function HeroExampleCarousel() {
   )
 }
 
-const themes = [
-  ['green', 'pink', 'red', 'orange', 'blue'],
-  ['base', 'alt1', 'alt2', 'alt3'],
-] as const
+const themes: (ThemeName | null)[][] = [
+  [null, 'green', 'pink', 'red', 'orange', 'blue'],
+  [null, 'alt1', 'alt2', 'alt3'],
+]
 
 const themeCombos: string[] = []
 for (let i = 0; i < themes[0].length; i++) {
@@ -85,6 +86,7 @@ const ActiveCircle = ({ isActive, ...props }) => {
         },
       })}
     >
+      {/* @ts-ignore */}
       <Circle size={20} backgroundColor="$background" {...props} />
     </YStack>
   )
@@ -93,20 +95,20 @@ const ActiveCircle = ({ isActive, ...props }) => {
 const MediaPlayerDemoStack = () => {
   const { theme, setTheme } = useTheme()
   const [activeI, setActiveI] = useState([0, 0])
-  const activeThemeComboI = activeI[0] * themes[0].length + activeI[1] * themes[1].length
-  const themeName = useThemeName()
-  const colorName = themes[activeI[0]]
-  const altName = themes[activeI[1]]
+  const activeThemeComboI = activeI[0] * (themes[0].length - 2) + activeI[1]
+  const colorName = themes[0][activeI[0]]
+  const altName = themes[1][activeI[1]]
+  const [hoverSectionName, setHoverSectionName] = useState('')
 
   return (
     <YStack ai="center" jc="center" space="$6">
-      <XStack space="$6">
+      <XStack space="$4">
         <InteractiveContainer p="$1" br="$10" als="center" space="$1">
           {['light', 'dark'].map((name, i) => {
             const selected = i === 0 ? 'light' : 'dark'
             const isActive = theme === selected
             return (
-              <Theme name={selected}>
+              <Theme key={name} name={selected}>
                 <ActiveCircle onPress={() => setTheme(selected)} isActive={isActive} />
               </Theme>
             )
@@ -136,7 +138,7 @@ const MediaPlayerDemoStack = () => {
                 onPress={() => setActiveI((x) => [x[0], i])}
                 key={i}
                 isActive={isActive}
-                backgroundColor={i == 0 ? 'transparent' : `rgba(150,150,150,${(4 - i) / 4})`}
+                backgroundColor={i == 0 ? 'transparent' : `rgba(150,150,150,${1 - (4 - i) / 4})`}
               />
             )
           })}
@@ -147,7 +149,7 @@ const MediaPlayerDemoStack = () => {
         {themeCombos.map((name, i) => {
           const isActive = activeThemeComboI === i
           const isBeforeActive = i < activeThemeComboI
-          const [color, alt] = name.split('_')
+          const [color, alt] = name === null ? [null, ''] : name.split('_')
           return (
             <XStack
               key={name}
@@ -155,8 +157,8 @@ const MediaPlayerDemoStack = () => {
               pos="absolute"
               x={i * 30}
             >
-              <Theme name={color}>
-                <MediaPlayer alt={+alt.replace('alt', '')} />
+              <Theme name={color as any}>
+                <MediaPlayer onHoverSection={setHoverSectionName} alt={+alt.replace('alt', '')} />
               </Theme>
             </XStack>
           )
@@ -165,7 +167,8 @@ const MediaPlayerDemoStack = () => {
 
       <Theme name="green">
         <CodeInline my="$2" br="$3" size="$6">
-          {themeName}_{colorName}_{altName}_button
+          {theme}_{colorName}_{altName}
+          {hoverSectionName ? `_${hoverSectionName}` : ''}
         </CodeInline>
       </Theme>
     </YStack>

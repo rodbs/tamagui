@@ -16,9 +16,11 @@ import {
 export const MediaPlayer = ({
   theme,
   alt: altProp,
+  onHoverSection,
 }: {
   theme?: ThemeName
   alt?: number | null
+  onHoverSection?: (name: string) => void
 }) => {
   const alt = altProp ?? 0
   const themeName = theme ?? (alt ? (`alt${alt}` as any) : null)
@@ -28,7 +30,13 @@ export const MediaPlayer = ({
   return (
     <YStack>
       <Theme name={themeName}>
-        <YStack>
+        <YStack
+          // @ts-ignore
+          onMouseMove={(e) => {
+            const theme = e.target.closest('.tamagui-theme')
+            console.log('hovering', theme)
+          }}
+        >
           <Card flex={1} overflow="visible" bordered size="$6" pl={0} pr={0} pb={0} pt={0}>
             <YStack w="100%">
               <XStack ai="center" p="$3" space="$5">

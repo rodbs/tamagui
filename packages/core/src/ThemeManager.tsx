@@ -49,24 +49,28 @@ export class ThemeManager {
       }
     }
 
-    let nextName: string | null = null
+    let nextName = props.name || this.name || ''
     let parentName = this.fullName
 
-    if (name === 'outline') {
-      console.log('no')
+    if (name === 'orange') {
+      console.warn('ok', props, parentName)
     }
 
     while (true) {
+      if (nextName in themes) {
+        break
+      }
       nextName = `${parentName}_${name}`
       if (nextName in themes) {
         break
-      } else {
-        parentName = parentName.slice(0, parentName.lastIndexOf(THEME_NAME_SEPARATOR))
       }
       if (!parentName.includes(THEME_NAME_SEPARATOR)) {
-        nextName = name
+        // not found!
+        console.warn('not found??', props, this)
         break
       }
+      // go up one
+      parentName = parentName.slice(0, parentName.lastIndexOf(THEME_NAME_SEPARATOR))
     }
 
     const componentThemeName = `${nextName}_${componentName}`
@@ -80,13 +84,17 @@ export class ThemeManager {
     }
 
     if (!theme) {
-      console.log('why no theme', nextName, parentName, props)
+      console.log('why no theme', nextName, parentName)
     }
+
+    const className = `tamagui-theme ${THEME_CLASSNAME_PREFIX}${nextName}`
+      .replace('light_', '')
+      .replace('dark_', '')
 
     return {
       name: nextName,
       theme,
-      className: `${THEME_CLASSNAME_PREFIX}${nextName}`.replace('light_', '').replace('dark_', ''),
+      className,
     }
   }
 
