@@ -75,6 +75,27 @@ for (let i = 0; i < themes[0].length; i++) {
   }
 }
 
+const ActiveCircle = ({ isActive, ...props }) => {
+  return (
+    <YStack
+      br="$10"
+      borderWidth={2}
+      borderColor="transparent"
+      my={-1}
+      {...(!!isActive && {
+        borderColor: '$color',
+      })}
+      {...(!isActive && {
+        hoverStyle: {
+          borderColor: '$borderColor',
+        },
+      })}
+    >
+      <Circle size={20} {...props} />
+    </YStack>
+  )
+}
+
 const MediaPlayerDemoStack = () => {
   const themeName = useThemeName()
   const activeBase = themeName === 'dark' ? 1 : 0
@@ -85,38 +106,47 @@ const MediaPlayerDemoStack = () => {
   return (
     <YStack ai="center" jc="center" space="$6">
       <XStack space="$6">
-        <InteractiveContainer br="$10" als="center">
+        <InteractiveContainer p="$1" br="$10" als="center" space="$1">
           {themes[0].map((name, i) => {
+            const isActive = activeI[0] === i
+            return <ActiveCircle isActive={isActive} key={i} bc={i == 0 ? '#fff' : '#000'} />
+            // return (
+            //   <Button
+            //     // onPress={() => setActive(i)}
+            //     theme={activeBase === i ? 'active' : null}
+            //     key={i}
+            //     borderRadius="$0"
+            //     fontWeight={activeBase === i ? '700' : '400'}
+            //   >
+            //     {name}
+            //   </Button>
+            // )
+          })}
+        </InteractiveContainer>
+
+        <InteractiveContainer p="$1" br="$10" als="center" space="$1">
+          {themes[1].map((color, i) => {
+            const isActive = activeI[1] === i
             return (
-              <Button
-                // onPress={() => setActive(i)}
-                theme={activeBase === i ? 'active' : null}
-                key={i}
-                borderRadius="$0"
-                fontWeight={activeBase === i ? '700' : '400'}
-              >
-                {name}
-              </Button>
+              <Theme key={color} name={color}>
+                <ActiveCircle isActive={isActive} backgroundColor="$colorMid" />
+              </Theme>
             )
           })}
         </InteractiveContainer>
 
-        <XStack ai="center" space="$1">
-          {themes[1].map((color) => {
-            return (
-              <Theme key={color} name={color}>
-                <Circle size={20} backgroundColor="$colorMid" />
-              </Theme>
-            )
-          })}
-        </XStack>
-
-        <InteractiveContainer br="$10" als="center">
+        <InteractiveContainer p="$1" br="$10" als="center" space="$1">
           {themes[2].map((name, i) => {
             const isActive = activeI[2] === i
             return (
-              <Button
+              <ActiveCircle
                 onPress={() => setActiveI((x) => [x[0], x[1], i])}
+                key={i}
+                bc={i == 0 ? 'transparent' : `rgba(150,150,150,${(4 - i) / 4})`}
+              />
+            )
+            return (
+              <Button
                 theme={isActive ? 'active' : null}
                 key={i}
                 borderRadius="$0"
@@ -129,13 +159,18 @@ const MediaPlayerDemoStack = () => {
         </InteractiveContainer>
       </XStack>
 
-      <XStack space="$6">
+      <XStack space="$6" pos="relative" height={220}>
         {themeCombos.map((name, i) => {
           const isActive = activeThemeComboI === i
           const isBeforeActive = i < activeThemeComboI
           const [base, color, alt] = name.split('_')
           return (
-            <XStack key={name} zi={isActive ? 1000 : isBeforeActive ? i : 1000 - i} mx={-175}>
+            <XStack
+              key={name}
+              zi={isActive ? 1000 : isBeforeActive ? i : 1000 - i}
+              pos="absolute"
+              x={i * 30}
+            >
               <Theme name={base}>
                 <Theme name={color}>
                   <MediaPlayer alt={+alt.replace('alt', '')} />
@@ -144,13 +179,6 @@ const MediaPlayerDemoStack = () => {
             </XStack>
           )
         })}
-        {/* <MediaPlayer alt={activeI ? activeI : null} />
-        <Theme name="green">
-          <MediaPlayer alt={activeI ? activeI : null} />
-        </Theme>
-        <Theme name="pink">
-          <MediaPlayer alt={activeI ? activeI : null} />
-        </Theme> */}
       </XStack>
 
       <Theme name="green">
