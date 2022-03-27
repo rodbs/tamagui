@@ -14,11 +14,11 @@ export declare const useChangeThemeEffect: (name?: string | null | undefined, co
         };
     };
     themeManager: ThemeManager | null;
-    name: string | null;
-    theme: (Partial<import("../types").TamaguiBaseTheme> & {
+    name: string;
+    theme: Partial<import("../types").TamaguiBaseTheme> & {
         [key: string]: import("../types").VariableVal;
-    }) | null;
-    className?: undefined;
+    };
+    className: string;
 } | {
     didChangeTheme: boolean;
     themes: {
@@ -27,10 +27,10 @@ export declare const useChangeThemeEffect: (name?: string | null | undefined, co
         };
     };
     themeManager: ThemeManager | null;
-    name: string;
-    theme: Partial<import("../types").TamaguiBaseTheme> & {
+    name: string | null;
+    theme: (Partial<import("../types").TamaguiBaseTheme> & {
         [key: string]: import("../types").VariableVal;
-    };
-    className: string;
+    }) | null;
+    className?: undefined;
 };
 //# sourceMappingURL=useTheme.d.ts.map

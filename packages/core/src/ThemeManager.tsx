@@ -43,6 +43,13 @@ export class ThemeManager {
   getNextTheme(props: { themes: Themes; name?: string | null; componentName?: string | null }) {
     const { themes, name, componentName } = props
     if (!name) {
+      if (componentName) {
+        const name = `${this.name}_${componentName}`
+        const theme = themes[name]
+        if (theme) {
+          return { name, theme, className: this.#getClassName(name) }
+        }
+      }
       return {
         name: this.name,
         theme: this.theme,
@@ -51,10 +58,6 @@ export class ThemeManager {
 
     let nextName = props.name || this.name || ''
     let parentName = this.fullName
-
-    if (name === 'orange') {
-      console.warn('ok', props, parentName)
-    }
 
     while (true) {
       if (nextName in themes) {
@@ -73,9 +76,12 @@ export class ThemeManager {
       parentName = parentName.slice(0, parentName.lastIndexOf(THEME_NAME_SEPARATOR))
     }
 
-    const componentThemeName = `${nextName}_${componentName}`
-    if (componentThemeName in themes) {
-      nextName = componentThemeName
+    if (componentName) {
+      const componentThemeName = `${nextName}_${componentName}`
+      console.log('check component name', componentThemeName)
+      if (componentThemeName in themes) {
+        nextName = componentThemeName
+      }
     }
 
     let theme = themes[nextName]
@@ -87,15 +93,17 @@ export class ThemeManager {
       console.log('why no theme', nextName, parentName)
     }
 
-    const className = `tamagui-theme ${THEME_CLASSNAME_PREFIX}${nextName}`
-      .replace('light_', '')
-      .replace('dark_', '')
-
     return {
       name: nextName,
       theme,
-      className,
+      className: this.#getClassName(nextName),
     }
+  }
+
+  #getClassName(name: string) {
+    return `tamagui-theme ${THEME_CLASSNAME_PREFIX}${name}`
+      .replace('light_', '')
+      .replace('dark_', '')
   }
 
   track(uuid: any, keys: Set<string>) {

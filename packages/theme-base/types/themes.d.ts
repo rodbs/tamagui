@@ -3017,7 +3017,7 @@ export declare const themes: {
         shadowColorFocus: string | Variable;
     };
     readonly dark_active: any;
-    readonly dark_card: {
+    readonly dark_Card: {
         background: any;
         backgroundSoft: any;
         backgroundHover: string | Variable;
@@ -3436,7 +3436,7 @@ export declare const themes: {
         shadowColorFocus: string | Variable;
     };
     readonly light_active: any;
-    readonly light_card: {
+    readonly light_Card: {
         background: any;
         backgroundSoft: any;
         backgroundHover: string | Variable;

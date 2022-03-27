@@ -7,6 +7,7 @@ export declare type SetActiveThemeProps = {
     theme?: any;
 };
 export declare class ThemeManager {
+    #private;
     name: string | null;
     keys: Map<any, Set<string>>;
     listeners: Map<any, Function>;
@@ -21,17 +22,17 @@ export declare class ThemeManager {
         name?: string | null;
         componentName?: string | null;
     }): {
-        name: string | null;
-        theme: (Partial<import("./types").TamaguiBaseTheme> & {
-            [key: string]: import("./types").VariableVal;
-        }) | null;
-        className?: undefined;
-    } | {
         name: string;
         theme: Partial<import("./types").TamaguiBaseTheme> & {
             [key: string]: import("./types").VariableVal;
         };
         className: string;
+    } | {
+        name: string | null;
+        theme: (Partial<import("./types").TamaguiBaseTheme> & {
+            [key: string]: import("./types").VariableVal;
+        }) | null;
+        className?: undefined;
     };
     track(uuid: any, keys: Set<string>): void;
     notifyListeners(): void;

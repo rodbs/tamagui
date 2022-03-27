@@ -22,7 +22,7 @@ const positions = [
     x: 100,
     y: 100,
     scale: 1,
-    rotate: '45deg',
+    rotate: '90deg',
   },
 ]
 
@@ -51,6 +51,9 @@ export function HeroExampleAnimations() {
                 size={110}
                 bc="$color"
                 br="$8"
+                onPress={() => {
+                  setPositionI((x) => (x + 1) % positions.length)
+                }}
                 {...position}
               />
             </YStack>

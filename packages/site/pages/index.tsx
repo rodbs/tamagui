@@ -70,7 +70,7 @@ const FeaturesItems = () => {
             items={[
               <FeatureItem label="Press & hover events">
                 Tamagui provides onHoverIn, onHoverOut, onPressIn, and onPressOut on all views,
-                bringing a huge convenience of web to native.
+                bringing the convenience of web to native.
               </FeatureItem>,
               <FeatureItem label="Pseudo styles">
                 Style hover, press, and focus for all views, another typical big pain point in
@@ -96,7 +96,7 @@ const FeaturesItems = () => {
               </FeatureItem>,
               <FeatureItem label="DOM escape hatches">
                 Pass className and any other HTML property directly to views. On native they are
-                ignored. Saves time over react-native-web.
+                ignored.
               </FeatureItem>,
             ]}
           />

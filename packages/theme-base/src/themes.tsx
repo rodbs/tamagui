@@ -61,7 +61,7 @@ function createThemeWithAlts<Name extends string, GetTheme extends AltThemeGette
   })
   // add button theme
   const [btnThemeName, btnTheme] = themeEntries[themeEntries.length - alternates.length + 1]
-  themeEntries.push([`${btnThemeName}_button` as any, btnTheme])
+  themeEntries.push([`${btnThemeName}_Button` as any, btnTheme])
   const themes = Object.fromEntries(themeEntries)
   return themes as any
 }
@@ -203,10 +203,10 @@ const darkThemes = createThemeWithAlts('dark', makeDarkTheme)
 const baseThemes = {
   ...lightThemes,
   light_active: makeActiveTheme(darkThemes.dark),
-  light_card: lightThemes.light_alt1,
+  light_Card: lightThemes.light_alt1,
   ...darkThemes,
   dark_active: makeActiveTheme(lightThemes.light),
-  dark_card: darkThemes.dark_alt1,
+  dark_Card: darkThemes.dark_alt1,
 
   light: {
     ...lightThemes.light,
@@ -253,9 +253,9 @@ const colorThemeEntries = colorSchemes.flatMap(({ name, colors, darkColors }) =>
   const darkButtonTheme = altDarkThemes[0]
   return [
     ...altLightThemes,
-    [`${lightButtonTheme[0]}_button`, altLightThemes[2][1]],
+    [`${lightButtonTheme[0]}_Button`, altLightThemes[2][1]],
     ...altDarkThemes,
-    [`${darkButtonTheme[0]}_button`, altDarkThemes[2][1]],
+    [`${darkButtonTheme[0]}_Button`, altDarkThemes[2][1]],
   ]
 })
 
