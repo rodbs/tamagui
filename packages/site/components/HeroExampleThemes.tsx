@@ -11,7 +11,7 @@ import {
   ThemeName,
   XStack,
   YStack,
-  useThemeName,
+  useDebounceValue,
 } from 'tamagui'
 
 import { CodeInline } from './Code'
@@ -96,12 +96,15 @@ const ActiveCircle = ({ isActive, ...props }) => {
 const MediaPlayerDemoStack = () => {
   const { setTheme, theme: userTheme } = useTheme()
   const [activeI, setActiveI] = useState([0, 0])
-  const activeThemeComboI = activeI[0] * (themes[0].length - 2) + activeI[1]
-  const colorName = themes[0][activeI[0]]
-  const altName = themes[1][activeI[1]]
-  const [hoverSectionName, setHoverSectionName] = useState('')
-
   const [theme, setSelTheme] = useState('')
+  const nextIndex = activeI[0] * (themes[0].length - 2) + activeI[1]
+  const curIndex = useDebounceValue(nextIndex, 400)
+  const isTransitioning = curIndex !== nextIndex
+  const isMidTransition = useDebounceValue(isTransitioning, 150)
+
+  const offset = 80
+  const offsetTransition = 340
+  const offsetX = -nextIndex * ((isTransitioning ? offsetTransition : offset) - 10)
 
   useEffect(() => {
     setSelTheme(userTheme as any)
@@ -152,23 +155,24 @@ const MediaPlayerDemoStack = () => {
         </InteractiveContainer>
       </XStack>
 
-      <XStack space="$6" pos="relative" height={220}>
+      <XStack x={offsetX} className="transition-test" space="$6" pos="relative" height={220}>
         {themeCombos.map((name, i) => {
-          const isActive = activeThemeComboI === i
-          const isBeforeActive = i < activeThemeComboI
+          const isCurActive = curIndex === i
+          const isNextActive = nextIndex === i
+          const isActive = isMidTransition ? isNextActive : isCurActive
+          const isBeforeActive = i < curIndex
           const [color, alt] = name.split('_')
           return (
             <XStack
               key={name}
-              zi={isActive ? 1000 : isBeforeActive ? i : 1000 - i}
+              className="transition-test"
+              zi={isCurActive ? 1000 : isBeforeActive ? i : 1000 - i}
               pos="absolute"
-              x={i * 30}
+              x={isTransitioning ? i * offsetTransition : i * offset}
+              scale={isTransitioning ? 0.9 : 1}
             >
               <Theme name={color as any}>
-                <MediaPlayer
-                  onHoverSection={setHoverSectionName}
-                  alt={alt ? +alt.replace('alt', '') : 0}
-                />
+                <MediaPlayer alt={alt ? +alt.replace('alt', '') : 0} />
               </Theme>
             </XStack>
           )
