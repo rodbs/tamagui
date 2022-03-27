@@ -1,9 +1,10 @@
-import { Check, ExternalLink } from '@tamagui/feather-icons'
+import { ExternalLink } from '@tamagui/feather-icons'
 import { useRouter } from 'next/router'
 import React from 'react'
 // import { Select } from '@components/Select'
 import { H2, Paragraph, Separator, Text, VisuallyHidden, XStack, YStack } from 'tamagui'
 
+import { Features } from './Features'
 import { Link } from './Link'
 import { FrontmatterContext } from './MDXComponents'
 
@@ -36,16 +37,7 @@ export function Highlights({ features }) {
         </H2>
 
         <YStack tag="ul" p={0} m={0} space>
-          {features.map((feature, i) => (
-            <XStack tag="li" key={i}>
-              <Text color="$green9">
-                <YStack w={25} h={25} ai="center" jc="center" bc="$green3" br={100} mr="$3">
-                  <Check size={12} color="var(--color)" />
-                </YStack>
-              </Text>
-              <Paragraph color="$gray11">{feature}</Paragraph>
-            </XStack>
-          ))}
+          <Features items={features} />
         </YStack>
       </YStack>
 

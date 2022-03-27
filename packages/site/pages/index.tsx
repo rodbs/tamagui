@@ -3,10 +3,11 @@ import { FeaturesGrid } from '@components/FeaturesGrid'
 import { Hero } from '@components/Hero'
 import { TitleAndMetaTags } from '@components/TitleAndMetaTags'
 import Link from 'next/link'
-import { Button, H2, H3, Image, Paragraph, Theme, YStack } from 'tamagui'
+import { Button, H2, H3, Image, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
 
 import { BenchmarkChart } from '../components/BenchmarkChart'
 import { ContainerLarge } from '../components/Container'
+import { Features } from '../components/Features'
 import { HeroExampleAnimations } from '../components/HeroExampleAnimations'
 import { HeroExampleCode } from '../components/HeroExampleCode'
 import { HeroExampleCarousel } from '../components/HeroExampleThemes'
@@ -33,12 +34,75 @@ export default function Home() {
           <Divider />
           <Performance />
           <Divider />
+          <FeaturesItems />
+          <Divider />
           <FeaturesGrid />
           <Divider />
           <Community />
         </YStack>
       </YStack>
     </>
+  )
+}
+
+const FeatureItem = ({ label, children }) => {
+  return (
+    <Paragraph>
+      <Text fow="800">{label}</Text>&nbsp;&nbsp;—&nbsp;&nbsp;
+      <Paragraph theme="alt3">{children}</Paragraph>
+    </Paragraph>
+  )
+}
+
+const FeaturesItems = () => {
+  return (
+    <ContainerLarge position="relative">
+      <YStack ai="center" space="$2">
+        <H2>Fully-loaded views</H2>
+        <Paragraph maxWidth={400} ta="center" size="$6" theme="alt3">
+          Features built into the lowest level views that lead to huge savings in code.
+        </Paragraph>
+      </YStack>
+
+      <XStack p="$6" space="$4" $sm={{ flexDirection: 'column' }}>
+        <YStack w="50%" $sm={{ w: '100%' }}>
+          <Features
+            items={[
+              <FeatureItem label="Press & hover events">
+                Tamagui provides onHoverIn, onHoverOut, onPressIn, and onPressOut on all views,
+                bringing a huge convenience of web to native.
+              </FeatureItem>,
+              <FeatureItem label="Pseudo styles">
+                Style hover, press, and focus for all views, another typical big pain point in
+                styling native. Works in combination with media queries.
+              </FeatureItem>,
+              <FeatureItem label="Media queries">
+                Every style can be adjusted based on screen sizes, written inline without losing
+                performance.
+              </FeatureItem>,
+            ]}
+          />
+        </YStack>
+        <YStack w="50%" $sm={{ w: `100%` }}>
+          <Features
+            items={[
+              <FeatureItem label="Themes">
+                The theme prop lets you change the theme directly on each view, instead of adding
+                nesting all over.
+              </FeatureItem>,
+              <FeatureItem label="Animations">
+                Custom animations at the view level solve another big pain point in native and code
+                sharing between native and web.
+              </FeatureItem>,
+              <FeatureItem label="DOM escape hatches">
+                Pass className and any other HTML property directly to views. On native they are
+                ignored. Saves time over react-native-web.
+              </FeatureItem>,
+            ]}
+          />
+        </YStack>
+      </XStack>
+    </ContainerLarge>
   )
 }
 
