@@ -25,7 +25,7 @@ export function HeroExampleCarousel() {
         <YStack zi={1} space="$2">
           <H2 als="center">Truly flexible themes</H2>
           <H3 theme="alt2" als="center" fow="400">
-            Unlimited sub-themes, down to the component.
+            Unlimited sub-themes, down to the component
           </H3>
         </YStack>
 
