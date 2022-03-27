@@ -96,13 +96,15 @@ const ActiveCircle = ({ isActive, ...props }) => {
 const MediaPlayerDemoStack = () => {
   const { setTheme, theme: userTheme } = useTheme()
   const [activeI, setActiveI] = useState([0, 0])
+  const [curColorI, curShadeI] = activeI
   const [theme, setSelTheme] = useState('')
   const nextIndex = activeI[0] * (themes[0].length - 2) + activeI[1]
   const curIndex = useDebounceValue(nextIndex, 400)
   const isTransitioning = curIndex !== nextIndex
   const isMidTransition = useDebounceValue(isTransitioning, 150)
 
-  const offset = 80
+  const offset = 40
+  const offsetActive = 120
   const offsetTransition = 340
   const offsetX = -nextIndex * (isTransitioning ? offsetTransition : offset)
 
@@ -127,7 +129,7 @@ const MediaPlayerDemoStack = () => {
 
         <InteractiveContainer p="$1" br="$10" als="center" space="$1">
           {themes[0].map((color, i) => {
-            const isActive = activeI[0] === i
+            const isActive = curColorI === i
             return (
               <Theme key={color} name={color}>
                 <ActiveCircle
@@ -142,7 +144,7 @@ const MediaPlayerDemoStack = () => {
 
         <InteractiveContainer p="$1" br="$10" als="center" space="$1">
           {themes[1].map((name, i) => {
-            const isActive = activeI[1] === i
+            const isActive = curShadeI === i
             return (
               <ActiveCircle
                 onPress={() => setActiveI((x) => [x[0], i])}
@@ -169,19 +171,26 @@ const MediaPlayerDemoStack = () => {
           const isNextActive = nextIndex === i
           const isActive = isMidTransition ? isNextActive : isCurActive
           const isBeforeActive = i < curIndex
+          const colorI = Math.floor(i / 4)
+          const shadeI = i % 4
+          const isActiveGroup = colorI === curColorI
           const [color, alt] = name.split('_')
           return (
             <XStack
-              key={name}
+              key={i}
               className="transition-test"
-              zi={isActive ? 1000 : isBeforeActive ? i : 1000 - i}
+              zi={(isActive ? 1000 : isBeforeActive ? i : 1000 - i) + (isActiveGroup ? 1000 : 0)}
               pos="absolute"
-              x={isTransitioning ? i * offsetTransition : i * offset}
-              scale={isTransitioning ? 0.9 : 1}
+              x={
+                (isTransitioning ? i * offsetTransition : i * offset) +
+                0 + // (isActiveGroup ? (isBeforeActive ? -1 : 0) * 20 * i : 0)
+                (isActiveGroup ? offsetActive * shadeI : 0)
+              }
+              scale={
+                isTransitioning ? 0.9 : 1 + (isActiveGroup ? -0.1 : -0.4) + (isActive ? 0.1 : 0)
+              }
               onPress={() => {
-                const shadeI = i % 4
-                const groupI = Math.floor(i / 4)
-                setActiveI([groupI, shadeI])
+                setActiveI([colorI, shadeI])
               }}
             >
               <Theme name={color as any}>
