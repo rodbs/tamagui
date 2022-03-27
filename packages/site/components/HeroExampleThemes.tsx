@@ -59,7 +59,7 @@ export function HeroExampleCarousel() {
 }
 
 const themes: (ThemeName | null)[][] = [
-  [null, 'red', 'orange', 'pink', 'green', 'blue'],
+  ['orange', 'red', 'pink', null, 'green', 'teal', 'blue'],
   [null, 'alt1', 'alt2', 'alt3'],
 ]
 
@@ -103,11 +103,6 @@ const MediaPlayerDemoStack = () => {
   const isTransitioning = curIndex !== nextIndex
   const isMidTransition = useDebounceValue(isTransitioning, 150)
 
-  const offset = 30
-  const offsetActive = 310
-  const offsetTransition = 200
-  const offsetX = -nextIndex * (isTransitioning ? offsetTransition : offset)
-
   // arrow keys
   useEffect(() => {
     //
@@ -116,6 +111,55 @@ const MediaPlayerDemoStack = () => {
   useEffect(() => {
     setSelTheme(userTheme as any)
   }, [userTheme])
+
+  const offset = 30
+  const offsetActive = 20
+  const offsetTransition = 200
+  const offsetX = -nextIndex * (isTransitioning ? offsetTransition : offset)
+
+  const mediaPlayersRow = (
+    <XStack
+      ai="center"
+      jc="center"
+      // x={offsetX}
+      className="transition-test"
+      space="$6"
+      pos="relative"
+      height={220}
+    >
+      {themeCombos.map((name, i) => {
+        const isCurActive = curIndex === i
+        const isNextActive = nextIndex === i
+        const isActive = isMidTransition ? isNextActive : isCurActive
+        const isBeforeActive = i < curIndex
+        const colorI = Math.floor(i / 4)
+        const shadeI = i % 4
+        const isActiveGroup = colorI === curColorI
+        const [color, alt] = name.split('_')
+        return (
+          <XStack
+            key={i}
+            className="transition-test"
+            zi={(isActive ? 1000 : isBeforeActive ? i : 1000 - i) + (isActiveGroup ? 1000 : 0)}
+            pos="absolute"
+            x={
+              i * offset +
+              0 + // (isActiveGroup ? (isBeforeActive ? -1 : 0) * 20 * i : 0)
+              (!isTransitioning && isActiveGroup ? offsetActive * shadeI : 0)
+            }
+            scale={isTransitioning ? 0.6 : 1 + (isActiveGroup ? -0.4 : -0.5) + (isActive ? 0.1 : 0)}
+            onPress={() => {
+              setActiveI([colorI, shadeI])
+            }}
+          >
+            <Theme name={color as any}>
+              <MediaPlayer alt={alt ? +alt.replace('alt', '') : 0} />
+            </Theme>
+          </XStack>
+        )
+      })}
+    </XStack>
+  )
 
   return (
     <YStack ai="center" jc="center" space="$6">
@@ -162,49 +206,7 @@ const MediaPlayerDemoStack = () => {
         </InteractiveContainer>
       </XStack>
 
-      <XStack
-        ai="center"
-        jc="center"
-        // x={offsetX}
-        className="transition-test"
-        space="$6"
-        pos="relative"
-        height={220}
-      >
-        {themeCombos.map((name, i) => {
-          const isCurActive = curIndex === i
-          const isNextActive = nextIndex === i
-          const isActive = isMidTransition ? isNextActive : isCurActive
-          const isBeforeActive = i < curIndex
-          const colorI = Math.floor(i / 4)
-          const shadeI = i % 4
-          const isActiveGroup = colorI === curColorI
-          const [color, alt] = name.split('_')
-          return (
-            <XStack
-              key={i}
-              className="transition-test"
-              zi={(isActive ? 1000 : isBeforeActive ? i : 1000 - i) + (isActiveGroup ? 1000 : 0)}
-              pos="absolute"
-              x={
-                i * offset +
-                0 + // (isActiveGroup ? (isBeforeActive ? -1 : 0) * 20 * i : 0)
-                (!isTransitioning && isActiveGroup ? offsetActive * shadeI : 0)
-              }
-              scale={
-                isTransitioning ? 0.6 : 1 + (isActiveGroup ? -0.3 : -0.5) + (isActive ? 0.1 : 0)
-              }
-              onPress={() => {
-                setActiveI([colorI, shadeI])
-              }}
-            >
-              <Theme name={color as any}>
-                <MediaPlayer alt={alt ? +alt.replace('alt', '') : 0} />
-              </Theme>
-            </XStack>
-          )
-        })}
-      </XStack>
+      {mediaPlayersRow}
 
       <Theme name="green">
         <CodeInline my="$2" br="$3" size="$6">

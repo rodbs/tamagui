@@ -5,6 +5,40 @@ import { allDarkColors, allLightColors } from './colors'
 import { setColorAlpha } from './colorUtils'
 import { tokens } from './tokens'
 
+// TODO
+export function createThemes(props: {
+  colors?:
+    | 'amber'
+    | 'blue'
+    | 'bronze'
+    | 'brown'
+    | 'crimson'
+    | 'cyan'
+    | 'gold'
+    | 'grass'
+    | 'gray'
+    | 'green'
+    | 'indigo'
+    | 'lime'
+    | 'mint'
+    | 'olive'
+    | 'orange'
+    | 'pink'
+    | 'plum'
+    | 'purple'
+    | 'mauve'
+    | 'red'
+    | 'sage'
+    | 'sand'
+    | 'sky'
+    | 'slate'
+    | 'teal'
+    | 'tomato'
+    | 'violet'
+    | 'yellow'
+  alternates?: number
+}) {}
+
 // helpers
 
 const alternates = [1, 2, 3, 4] as const
@@ -101,6 +135,9 @@ export const colorSchemes = [
   { name: 'red', colors: Colors.red, darkColors: Colors.redDark },
   { name: 'violet', colors: Colors.violet, darkColors: Colors.violetDark },
   { name: 'yellow', colors: Colors.yellow, darkColors: Colors.yellowDark },
+  { name: 'teal', colors: Colors.teal, darkColors: Colors.tealDark },
+  { name: 'lime', colors: Colors.lime, darkColors: Colors.limeDark },
+  { name: 'brown', colors: Colors.brown, darkColors: Colors.brownDark },
 ] as const
 
 export type ColorNames = typeof colorSchemes[number]['name']
@@ -261,5 +298,3 @@ export const themes = {
   dark_outline,
   light_outline,
 } as const
-
-export type MyThemes = typeof themes

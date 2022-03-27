@@ -6,8 +6,30 @@ import { Button, H2, H3, Paragraph, Separator, Square, Theme, XStack, YStack } f
 
 import { ContainerLarge } from './Container'
 
+const positions = [
+  {
+    x: 0,
+    y: 0,
+    scale: 1,
+  },
+  {
+    x: -100,
+    y: -100,
+    scale: 0.5,
+    rotate: '-45deg',
+  },
+  {
+    x: 100,
+    y: 100,
+    scale: 1,
+    rotate: '45deg',
+  },
+]
+
 export function HeroExampleAnimations() {
-  const [active, setActive] = useState(0)
+  const [animation, setAnimation] = useState(0)
+  const [positionI, setPositionI] = useState(0)
+  const position = positions[positionI]
 
   return (
     <YStack>
@@ -22,8 +44,15 @@ export function HeroExampleAnimations() {
         <XStack w="100%" theme="alt1" br="$6" overflow="hidden" bc="$background" h={400}>
           <Theme name="blue">
             <YStack className="hero-gradient" ai="center" jc="center" f={2}>
-              {/* @ts-ignore */}
-              <Square elevation="$4" size={110} bc="$color" br="$8" />
+              <Square
+                className="all ease-in ms300"
+                elevation="$4"
+                // @ts-expect-error TODO
+                size={110}
+                bc="$color"
+                br="$8"
+                {...position}
+              />
             </YStack>
           </Theme>
           <Separator vertical />
@@ -38,7 +67,7 @@ export function HeroExampleAnimations() {
                   animation: 'quick',
                 },
               ].map((item, i) => {
-                const isActive = i === active
+                const isActive = i === animation
                 return (
                   <Theme name={isActive ? null : 'alt2'}>
                     <YStack
@@ -53,7 +82,7 @@ export function HeroExampleAnimations() {
                         bc: '$backgroundHover',
                       }}
                       onPress={() => {
-                        setActive(i)
+                        setAnimation(i)
                       }}
                     >
                       <Paragraph cursor="inherit" size="$4" fontWeight="800">
@@ -71,8 +100,15 @@ export function HeroExampleAnimations() {
             <Separator />
 
             <YStack p="$4" ai="center" jc="$center">
-              <Button iconAfter={Play} theme="blue" size="$6">
-                Run
+              <Button
+                iconAfter={Play}
+                theme="blue"
+                size="$6"
+                onPress={() => {
+                  setPositionI((x) => (x + 1) % positions.length)
+                }}
+              >
+                Go
               </Button>
             </YStack>
           </YStack>
