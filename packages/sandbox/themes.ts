@@ -24,7 +24,7 @@ function createThemeWithAlts<Name extends string, GetTheme extends AltThemeGette
   })
   // add button theme
   const [btnThemeName, btnTheme] = themeEntries[themeEntries.length - alternates.length + 1]
-  themeEntries.push([`${btnThemeName}_button` as any, btnTheme])
+  themeEntries.push([`${btnThemeName}_Button` as any, btnTheme])
   const themes = Object.fromEntries(themeEntries)
   return themes as any
 }
@@ -102,7 +102,11 @@ export const colorNames = [
 ] as const
 
 const colorGradients = colorNames.map((name) => {
-  return { name, gradient: Object.values(Colors[name]) }
+  return {
+    name,
+    gradient: Object.values(Colors[name]),
+    gradientDark: Object.values(Colors[`${name}Dark`]),
+  }
 })
 
 type ColorNames = typeof colorNames[number]
@@ -121,10 +125,10 @@ type ColorThemeNames =
   | AltName<`light_${ColorNames}`, AltKeys>
   | AltName<`dark_${ColorNames}`, AltKeys>
 
-const colorThemeEntries = colorGradients.flatMap(({ name, gradient }) => {
+const colorThemeEntries = colorGradients.flatMap(({ name, gradient, gradientDark }) => {
   const [altLightThemes, altDarkThemes] = ['light', 'dark'].map((scheme) => {
     const isLight = scheme === 'light'
-    const getter = themeCreator(isLight ? gradient : [...gradient].reverse(), isLight, false)
+    const getter = themeCreator(isLight ? gradient : gradientDark, isLight, false)
     const themeWithAlts = createThemeWithAlts(name, getter)
     return Object.entries(themeWithAlts).map(([k, v]) => [`${scheme}_${k}`, v])
   })
@@ -132,9 +136,9 @@ const colorThemeEntries = colorGradients.flatMap(({ name, gradient }) => {
   const darkButtonTheme = altDarkThemes[2]
   return [
     ...altLightThemes,
-    [`${lightButtonTheme[0]}_button`, darkButtonTheme[1]],
+    [`${lightButtonTheme[0]}_Button`, darkButtonTheme[1]],
     ...altDarkThemes,
-    [`${darkButtonTheme[0]}_button`, lightButtonTheme[1]],
+    [`${darkButtonTheme[0]}_Button`, lightButtonTheme[1]],
   ]
 })
 
@@ -146,5 +150,7 @@ export const themes = {
   ...baseThemes,
   ...colorThemes,
 } as const
+
+console.log('themes', Colors, themes)
 
 export type MyThemes = typeof themes

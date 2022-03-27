@@ -1,6 +1,18 @@
+// debug
 import { FastForward, Pause, Rewind } from '@tamagui/feather-icons'
-import React from 'react'
-import { Button, Card, Image, Paragraph, Separator, Square, Theme, XStack, YStack } from 'tamagui'
+import React, { useState } from 'react'
+import {
+  Button,
+  Card,
+  Image,
+  Paragraph,
+  Separator,
+  Square,
+  Theme,
+  ThemeInverse,
+  XStack,
+  YStack,
+} from 'tamagui'
 
 import Tamagui from './tamagui.config'
 import { colorNames } from './themes'
@@ -22,6 +34,38 @@ const Scale = ({ between, ...props }: any) => {
 }
 
 export const Sandbox = () => {
+  const [color, setColor] = useState('orange')
+
+  return (
+    <Tamagui.Provider injectCSS defaultTheme="dark">
+      <Theme p="$6" name={color}>
+        <YStack p="$6" bc="$background" space>
+          <Button
+            debug
+            onPress={() => {
+              setColor(color === 'orange' ? 'green' : 'orange')
+            }}
+          >
+            {color}_Button
+          </Button>
+          <Button theme="alt1">Alt1</Button>
+          <Button theme="alt2">Alt2</Button>
+
+          <Button theme="blue">Blue</Button>
+          <Theme name="alt2">
+            <Button theme="blue">Blue alt2</Button>
+          </Theme>
+
+          <YStack p="$6" theme="red" bc="$background" space>
+            red
+            <Button>red Button</Button>
+            <Button theme="alt2">alt2</Button>
+          </YStack>
+        </YStack>
+      </Theme>
+    </Tamagui.Provider>
+  )
+
   // return (
   //   <Tamagui.Provider injectCSS>
   //     <Button>Hello</Button>

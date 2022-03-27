@@ -48,10 +48,6 @@ export class ThemeManager {
   ) {
     const { themes = getThemes(), name, componentName } = props
 
-    if (debug) {
-      debugger
-    }
-
     if (!name) {
       if (componentName) {
         const name = `${this.name}_${componentName}`
@@ -97,6 +93,10 @@ export class ThemeManager {
     let theme = themes[nextName]
     if (!theme) {
       theme = themes[`light_${nextName}`]
+    }
+
+    if (process.env.NODE_ENV === 'development' && debug) {
+      console.log('getNextTheme', { props, nextName, parentName })
     }
 
     if (!theme) {
