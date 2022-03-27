@@ -104,7 +104,7 @@ const MediaPlayerDemoStack = () => {
 
   const offset = 80
   const offsetTransition = 340
-  const offsetX = -nextIndex * ((isTransitioning ? offsetTransition : offset) - 10)
+  const offsetX = -nextIndex * (isTransitioning ? offsetTransition : offset)
 
   useEffect(() => {
     setSelTheme(userTheme as any)
@@ -155,7 +155,15 @@ const MediaPlayerDemoStack = () => {
         </InteractiveContainer>
       </XStack>
 
-      <XStack x={offsetX} className="transition-test" space="$6" pos="relative" height={220}>
+      <XStack
+        ai="center"
+        jc="center"
+        x={offsetX}
+        className="transition-test"
+        space="$6"
+        pos="relative"
+        height={220}
+      >
         {themeCombos.map((name, i) => {
           const isCurActive = curIndex === i
           const isNextActive = nextIndex === i
@@ -166,10 +174,15 @@ const MediaPlayerDemoStack = () => {
             <XStack
               key={name}
               className="transition-test"
-              zi={isCurActive ? 1000 : isBeforeActive ? i : 1000 - i}
+              zi={isActive ? 1000 : isBeforeActive ? i : 1000 - i}
               pos="absolute"
               x={isTransitioning ? i * offsetTransition : i * offset}
               scale={isTransitioning ? 0.9 : 1}
+              onPress={() => {
+                const shadeI = i % 4
+                const groupI = Math.floor(i / 4)
+                setActiveI([groupI, shadeI])
+              }}
             >
               <Theme name={color as any}>
                 <MediaPlayer alt={alt ? +alt.replace('alt', '') : 0} />

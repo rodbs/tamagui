@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import { isWeb } from '../constants/platform'
 import { wrapThemeManagerContext } from '../helpers/wrapThemeManagerContext'
@@ -15,7 +15,7 @@ export type ThemeProps = {
   children?: any
 }
 
-export const Theme = (props: ThemeProps) => {
+export const Theme = memo((props: ThemeProps) => {
   const { name, theme, themeManager, themes, className } = useChangeThemeEffect(props.name)
 
   if (!themes) {
@@ -53,4 +53,4 @@ export const Theme = (props: ThemeProps) => {
   }
 
   return contents
-}
+})
