@@ -84,7 +84,6 @@ export class ThemeManager {
 
     if (componentName) {
       const componentThemeName = `${nextName}_${componentName}`
-      console.log('check component name', componentThemeName)
       if (componentThemeName in themes) {
         nextName = componentThemeName
       }

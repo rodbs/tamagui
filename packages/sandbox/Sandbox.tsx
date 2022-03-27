@@ -1,5 +1,5 @@
-// debug
 import { FastForward, Pause, Rewind } from '@tamagui/feather-icons'
+import { colorNames } from '@tamagui/theme-base'
 import React, { useState } from 'react'
 import {
   Button,
@@ -15,7 +15,6 @@ import {
 } from 'tamagui'
 
 import Tamagui from './tamagui.config'
-import { colorNames } from './themes'
 
 const blocks = Tamagui.getCSS().split('}\n')
 console.groupCollapsed('CSS')
