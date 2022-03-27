@@ -10,6 +10,17 @@ Beyond style properties, Tamagui adds `className` and `tag`:
 <PropsTable
   data={[
     {
+      name: 'theme',
+      required: false,
+      type: 'string',
+      description: (
+        <span>
+          Apply a [theme or sub-theme](/docs/intro/themes) to this component and the components
+          below it.
+        </span>
+      ),
+    },
+    {
       name: 'className',
       required: false,
       type: 'string',

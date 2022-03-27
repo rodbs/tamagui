@@ -200,15 +200,20 @@ Finally, each component in Tamagui can be set up to accept a component specific 
 
 ```tsx
 const ButtonFrame = styled(SizableFrame, {
-  name: 'button',
+  name: 'Button',
   tag: 'button',
 })
 ```
 
-The `name` attribute will be removed from the defaultProps as it's special, and instructs Tamagui to look for any `_button` theme. So you can add the following themes to customize buttons at any level:
+<Notice>
+  We've decided to enforce the first letter being capitalized. This makes it easier to users to
+  distinguish component themes, and allows Tamagui internally to avoid extra work and nesting.
+</Notice>
 
-- `dark_button`
-- `dark_green_button`
-- `dark_green_subtle_button`
+The `name` attribute will be removed from the defaultProps and used internally by Tamagui to check for the sub-theme that matches. This means any theme named with an ending of `_Button` will apply. So you can add the following themes to customize buttons at any level:
+
+- `dark_Button`
+- `dark_green_Button`
+- `dark_green_subtle_Button`
 
 For more on this, see the [Theme docs](/docs/core/Theme).
