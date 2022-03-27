@@ -270,7 +270,7 @@ ul, ol, li, pre { margin: 0; }
 }
 
 .transition-test {
-  transition: all ease-in 400ms;
+  transition: all ease-in 300ms;
 }
 
 .typewriter {

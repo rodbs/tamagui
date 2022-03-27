@@ -99,13 +99,13 @@ const MediaPlayerDemoStack = () => {
   const [curColorI, curShadeI] = activeI
   const [theme, setSelTheme] = useState('')
   const nextIndex = activeI[0] * (themes[0].length - 2) + activeI[1]
-  const curIndex = useDebounceValue(nextIndex, 400)
+  const curIndex = useDebounceValue(nextIndex, 300)
   const isTransitioning = curIndex !== nextIndex
   const isMidTransition = useDebounceValue(isTransitioning, 150)
 
   const offset = 40
-  const offsetActive = 120
-  const offsetTransition = 340
+  const offsetActive = 110
+  const offsetTransition = 200
   const offsetX = -nextIndex * (isTransitioning ? offsetTransition : offset)
 
   useEffect(() => {
@@ -184,10 +184,10 @@ const MediaPlayerDemoStack = () => {
               x={
                 (isTransitioning ? i * offsetTransition : i * offset) +
                 0 + // (isActiveGroup ? (isBeforeActive ? -1 : 0) * 20 * i : 0)
-                (isActiveGroup ? offsetActive * shadeI : 0)
+                (!isTransitioning && isActiveGroup ? offsetActive * shadeI : 0)
               }
               scale={
-                isTransitioning ? 0.9 : 1 + (isActiveGroup ? -0.1 : -0.4) + (isActive ? 0.1 : 0)
+                isTransitioning ? 0.5 : 1 + (isActiveGroup ? -0.3 : -0.5) + (isActive ? 0.1 : 0)
               }
               onPress={() => {
                 setActiveI([colorI, shadeI])
