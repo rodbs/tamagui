@@ -3,7 +3,7 @@ import { ThemeObject, Themes } from './types';
 declare type ThemeListener = (name: string | null, themeManager: ThemeManager) => void;
 export declare type SetActiveThemeProps = {
     parentManager?: ThemeManager | null;
-    name: string | null;
+    name?: string | null;
     theme?: any;
 };
 export declare class ThemeManager {
@@ -16,12 +16,12 @@ export declare class ThemeManager {
     theme: ThemeObject | null;
     get parentName(): string | null;
     get fullName(): string;
-    update({ name, theme, parentManager }: SetActiveThemeProps): void;
-    getNextTheme(props: {
-        themes: Themes;
+    update({ name, theme, parentManager }?: SetActiveThemeProps): void;
+    getNextTheme(props?: {
+        themes?: Themes;
         name?: string | null;
         componentName?: string | null;
-    }): {
+    }, debug?: boolean): {
         name: string;
         theme: Partial<import("./types").TamaguiBaseTheme> & {
             [key: string]: import("./types").VariableVal;

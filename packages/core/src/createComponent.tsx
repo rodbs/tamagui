@@ -98,7 +98,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
   const component = forwardRef<Ref, ComponentPropTypes>((props: any, forwardedRef) => {
     const forceUpdate = useForceUpdate()
     const features = useFeatures(props, { forceUpdate })
-    const theme = useTheme(props.theme, componentName)
+    const theme = useTheme(props.theme, componentName, props['debug'])
     const [state, set_] = useState<ComponentState>(defaultComponentState)
     const set = createShallowUpdate(set_)
 

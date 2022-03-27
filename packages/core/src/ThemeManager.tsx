@@ -1,5 +1,6 @@
 import { createContext } from 'react'
 
+import { getThemes } from './conf'
 import { THEME_CLASSNAME_PREFIX, THEME_NAME_SEPARATOR } from './static'
 import { ThemeObject, Themes } from './types'
 
@@ -7,7 +8,7 @@ type ThemeListener = (name: string | null, themeManager: ThemeManager) => void
 
 export type SetActiveThemeProps = {
   parentManager?: ThemeManager | null
-  name: string | null
+  name?: string | null
   theme?: any
 }
 
@@ -24,24 +25,33 @@ export class ThemeManager {
   }
 
   get fullName(): string {
-    const parentName = this.parentManager?.fullName || ''
-    const name = this.name || ''
-    const parts = [...new Set([...`${parentName}_${name}`.split('_')])].filter(Boolean)
-    return parts.join('_')
+    return this.getNextTheme().name || this.name || ''
+    // const parentName = this.parentManager?.fullName || ''
+    // const name = this.name || ''
+    // const parts = [...new Set([...`${parentName}_${name}`.split('_')])].filter(Boolean)
+    // return parts.join('_')
   }
 
-  update({ name, theme, parentManager = null }: SetActiveThemeProps) {
+  update({ name, theme, parentManager = null }: SetActiveThemeProps = {}) {
     if (name === this.name && parentManager == this.parentManager) {
       return
     }
-    this.name = name
+    this.name = name || null
     this.theme = theme
     this.parentManager = parentManager
     this.notifyListeners()
   }
 
-  getNextTheme(props: { themes: Themes; name?: string | null; componentName?: string | null }) {
-    const { themes, name, componentName } = props
+  getNextTheme(
+    props: { themes?: Themes; name?: string | null; componentName?: string | null } = {},
+    debug = false
+  ) {
+    const { themes = getThemes(), name, componentName } = props
+
+    if (debug) {
+      debugger
+    }
+
     if (!name) {
       if (componentName) {
         const name = `${this.name}_${componentName}`
