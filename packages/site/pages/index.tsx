@@ -156,12 +156,12 @@ function Performance() {
 
 const Divider = () => (
   <YStack
-    mt="$5"
-    mb="$3"
+    mt="$4"
+    mb="$2"
     mx="auto"
     als="center"
     borderBottomColor="$borderColor"
-    borderBottomWidth={3}
+    borderBottomWidth={1}
     width={100}
     height={0}
   />

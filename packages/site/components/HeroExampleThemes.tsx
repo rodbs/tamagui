@@ -59,7 +59,7 @@ export function HeroExampleCarousel() {
 }
 
 const themes: (ThemeName | null)[][] = [
-  [null, 'green', 'pink', 'red', 'orange', 'blue'],
+  [null, 'red', 'orange', 'pink', 'green', 'blue'],
   [null, 'alt1', 'alt2', 'alt3'],
 ]
 
@@ -103,10 +103,15 @@ const MediaPlayerDemoStack = () => {
   const isTransitioning = curIndex !== nextIndex
   const isMidTransition = useDebounceValue(isTransitioning, 150)
 
-  const offset = 40
-  const offsetActive = 110
+  const offset = 30
+  const offsetActive = 310
   const offsetTransition = 200
   const offsetX = -nextIndex * (isTransitioning ? offsetTransition : offset)
+
+  // arrow keys
+  useEffect(() => {
+    //
+  }, [])
 
   useEffect(() => {
     setSelTheme(userTheme as any)
@@ -160,7 +165,7 @@ const MediaPlayerDemoStack = () => {
       <XStack
         ai="center"
         jc="center"
-        x={offsetX}
+        // x={offsetX}
         className="transition-test"
         space="$6"
         pos="relative"
@@ -182,12 +187,12 @@ const MediaPlayerDemoStack = () => {
               zi={(isActive ? 1000 : isBeforeActive ? i : 1000 - i) + (isActiveGroup ? 1000 : 0)}
               pos="absolute"
               x={
-                (isTransitioning ? i * offsetTransition : i * offset) +
+                i * offset +
                 0 + // (isActiveGroup ? (isBeforeActive ? -1 : 0) * 20 * i : 0)
                 (!isTransitioning && isActiveGroup ? offsetActive * shadeI : 0)
               }
               scale={
-                isTransitioning ? 0.5 : 1 + (isActiveGroup ? -0.3 : -0.5) + (isActive ? 0.1 : 0)
+                isTransitioning ? 0.6 : 1 + (isActiveGroup ? -0.3 : -0.5) + (isActive ? 0.1 : 0)
               }
               onPress={() => {
                 setActiveI([colorI, shadeI])

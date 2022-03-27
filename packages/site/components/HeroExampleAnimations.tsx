@@ -1,4 +1,5 @@
 import { Play } from '@tamagui/feather-icons'
+import Link from 'next/link'
 import { useState } from 'react'
 import { ScrollView } from 'react-native'
 import { Button, H2, H3, Paragraph, Separator, Square, Theme, XStack, YStack } from 'tamagui'
@@ -39,9 +40,12 @@ export function HeroExampleAnimations() {
               ].map((item, i) => {
                 const isActive = i === active
                 return (
-                  <Theme key={item.name} name={isActive ? 'alt2' : null}>
+                  <Theme name={isActive ? null : 'alt2'}>
                     <YStack
-                      bc="$background"
+                      key={item.name}
+                      {...(isActive && {
+                        bc: '$backgroundHover',
+                      })}
                       px="$4"
                       py="$2"
                       cursor="pointer"
@@ -73,6 +77,12 @@ export function HeroExampleAnimations() {
             </YStack>
           </YStack>
         </XStack>
+
+        <Link href="/docs/core/animations" passHref>
+          <Button als="center" theme="blue" tag="a">
+            Animations docs &raquo;
+          </Button>
+        </Link>
       </ContainerLarge>
     </YStack>
   )

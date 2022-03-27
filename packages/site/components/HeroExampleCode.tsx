@@ -89,7 +89,7 @@ const CodeExamples = ({ examples }) => {
   const example = examples[activeIndex]
 
   return (
-    <YStack overflow="hidden" flex={1}>
+    <YStack theme="blue" overflow="hidden" flex={1}>
       <InteractiveContainer zi={10} mb={-30} als="center">
         {examples.map((example, i) => (
           <Button
@@ -105,7 +105,7 @@ const CodeExamples = ({ examples }) => {
         ))}
       </InteractiveContainer>
       <XStack maxWidth="100%" flex={1}>
-        <HoverableStack>
+        <YStack flex={1} maxWidth="100%" opacity={0.9} hoverStyle={{ opacity: 1 }}>
           <CodeDemo
             language={example.language as any}
             mode="interactive"
@@ -115,15 +115,11 @@ const CodeExamples = ({ examples }) => {
             flex={1}
             value={example.code}
           />
-        </HoverableStack>
+        </YStack>
       </XStack>
     </YStack>
   )
 }
-
-const HoverableStack = (props) => (
-  <YStack flex={1} maxWidth="100%" opacity={0.9} hoverStyle={{ opacity: 1 }} {...props} />
-)
 
 const examples = [
   {
