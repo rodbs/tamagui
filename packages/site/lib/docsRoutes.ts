@@ -34,6 +34,7 @@ export const docsRoutes = [
       { title: 'Headings', route: '/docs/components/headings' },
       { title: 'Image', route: '/docs/components/image' },
       { title: 'Forms', route: '/docs/components/forms' },
+      { title: 'Shapes', route: '/docs/components/shapes' },
       { title: 'Separator', route: '/docs/components/separator' },
       { title: 'Popover', route: '/docs/components/popover' },
       { title: 'HoverablePopover', route: '/docs/components/hoverable-popover' },
