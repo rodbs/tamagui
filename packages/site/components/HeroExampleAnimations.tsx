@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native'
 import { Button, H2, H3, Paragraph, Separator, Square, Theme, XStack, YStack } from 'tamagui'
 
 import { ContainerLarge } from './Container'
+import { LogoIcon, TamaguiLogo } from './TamaguiLogo'
 
 const positions = [
   {
@@ -14,14 +15,14 @@ const positions = [
     scale: 1,
   },
   {
-    x: -100,
-    y: -100,
+    x: -50,
+    y: -50,
     scale: 0.5,
     rotate: '-45deg',
   },
   {
-    x: 100,
-    y: 100,
+    x: 50,
+    y: 50,
     scale: 1,
     rotate: '180deg',
   },
@@ -70,7 +71,7 @@ export function HeroExampleAnimations() {
     <YStack>
       <ContainerLarge position="relative" space="$6">
         <YStack zi={1} space="$2">
-          <H2 als="center">First class animations</H2>
+          <H2 als="center">First-class animations</H2>
           <H3 theme="alt2" als="center" fow="400">
             Swappable animation drivers for every platform
           </H3>
@@ -84,7 +85,7 @@ export function HeroExampleAnimations() {
           br="$6"
           ov="hidden"
           bc="$background"
-          h={400}
+          h={320}
           x={0}
         >
           <Theme name="blue">
@@ -95,12 +96,14 @@ export function HeroExampleAnimations() {
                 // @ts-expect-error TODO
                 size={110}
                 bc="$color"
-                br="$8"
+                br="$9"
                 onPress={() => {
                   setPositionI((x) => (x + 1) % positions.length)
                 }}
                 {...position}
-              />
+              >
+                <LogoIcon downscale={1} color="var(--background)" />
+              </Square>
 
               <Button
                 pos="absolute"
