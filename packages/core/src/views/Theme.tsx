@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 
 import { isWeb } from '../constants/platform'
 import { wrapThemeManagerContext } from '../helpers/wrapThemeManagerContext'
@@ -35,7 +35,11 @@ export const Theme = memo(function Theme(props: ThemeProps) {
     return props.children
   }
 
-  const contents = wrapThemeManagerContext(props.children, themeManager)
+  // memo here, changing theme without re-rendering all children is a critical optimization
+  // may require some effort of end user to memoize but without this memo they'd have no option
+  const contents = useMemo(() => {
+    return wrapThemeManagerContext(props.children, themeManager)
+  }, [props.children, themeManager])
 
   if (isWeb) {
     if (props.disableThemeClass) {

@@ -164,8 +164,10 @@ export const useChangeThemeEffect = (
           console.log('changing theme', name, componentName, next)
         }
         if (!next) return
-        themeManager.update({ ...next, parentManager })
-        forceUpdate()
+        if (themeManager.update({ ...next, parentManager })) {
+          console.log('force updating')
+          forceUpdate()
+        }
       })
     }, [themes, name, componentName, debug, next?.name])
   }

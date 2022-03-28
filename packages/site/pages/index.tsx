@@ -19,6 +19,8 @@ export default function Home() {
   //   </Theme>
   // )
 
+  console.warn('render home')
+
   return (
     <>
       <TitleAndMetaTags title="Tamagui — React Native + Web UI kit" />

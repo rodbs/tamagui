@@ -2,6 +2,7 @@
 import { ThemeObject, Themes } from './types';
 declare type ThemeListener = (name: string | null, themeManager: ThemeManager) => void;
 export declare type SetActiveThemeProps = {
+    className?: string;
     parentManager?: ThemeManager | null;
     name?: string | null;
     theme?: any;
@@ -14,9 +15,10 @@ export declare class ThemeManager {
     themeListeners: Set<ThemeListener>;
     parentManager: ThemeManager | null;
     theme: ThemeObject | null;
+    className: string | null;
     get parentName(): string | null;
     get fullName(): string;
-    update({ name, theme, parentManager }?: SetActiveThemeProps): void;
+    update({ name, theme, className, parentManager }?: SetActiveThemeProps): boolean;
     getNextTheme(props?: {
         themes?: Themes;
         name?: string | null;

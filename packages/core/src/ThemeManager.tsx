@@ -7,6 +7,7 @@ import { ThemeObject, Themes } from './types'
 type ThemeListener = (name: string | null, themeManager: ThemeManager) => void
 
 export type SetActiveThemeProps = {
+  className?: string
   parentManager?: ThemeManager | null
   name?: string | null
   theme?: any
@@ -19,6 +20,7 @@ export class ThemeManager {
   themeListeners = new Set<ThemeListener>()
   parentManager: ThemeManager | null = null
   theme: ThemeObject | null = null
+  className: string | null = null
 
   get parentName() {
     return this.parentManager?.name ?? null
@@ -32,14 +34,21 @@ export class ThemeManager {
     // return parts.join('_')
   }
 
-  update({ name, theme, parentManager = null }: SetActiveThemeProps = {}) {
-    if (name === this.name && parentManager == this.parentManager) {
-      return
+  update({ name, theme, className, parentManager = null }: SetActiveThemeProps = {}) {
+    if (
+      // optimization for web, avoid dark/light re-renders
+      (className ? className === this.className : name === this.name) &&
+      parentManager == this.parentManager
+    ) {
+      return false
     }
+    console.log('changing', this.name, name, this.className, className)
+    this.className = className || null
     this.name = name || null
     this.theme = theme
     this.parentManager = parentManager
     this.notifyListeners()
+    return true
   }
 
   getNextTheme(
@@ -96,10 +105,6 @@ export class ThemeManager {
 
     if (process.env.NODE_ENV === 'development' && debug) {
       console.log('getNextTheme', { props, nextName, parentName }, this)
-    }
-
-    if (!theme) {
-      console.log('why no theme', nextName, parentName)
     }
 
     return {
