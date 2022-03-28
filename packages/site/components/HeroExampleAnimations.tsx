@@ -1,5 +1,6 @@
 import { Play } from '@tamagui/feather-icons'
 import Link from 'next/link'
+import React from 'react'
 import { useState } from 'react'
 import { ScrollView } from 'react-native'
 import { Button, H2, H3, Paragraph, Separator, Square, Theme, XStack, YStack } from 'tamagui'
@@ -26,10 +27,44 @@ const positions = [
   },
 ]
 
+const animations = [
+  {
+    name: 'Bouncy',
+    description: 'A bouncy spring',
+    animation: 'bouncy',
+    settings: {
+      type: 'spring',
+      damping: 20,
+      stiffness: 90,
+    },
+  },
+  {
+    name: 'Lazy',
+    description: 'A lazy, straightforward spring',
+    animation: 'lazy',
+    settings: {
+      type: 'spring',
+      damping: 25,
+      stiffness: 70,
+    },
+  },
+  {
+    name: 'Quick',
+    description: 'A quick, straightforward spring',
+    animation: 'quick',
+    settings: {
+      type: 'spring',
+      damping: 28,
+      stiffness: 120,
+    },
+  },
+]
+
 export function HeroExampleAnimations() {
-  const [animation, setAnimation] = useState(0)
+  const [animationI, setAnimationI] = useState(0)
   const [positionI, setPositionI] = useState(0)
   const position = positions[positionI]
+  const animation = animations[animationI]
 
   return (
     <YStack>
@@ -53,7 +88,7 @@ export function HeroExampleAnimations() {
           x={0}
         >
           <Theme name="blue">
-            <YStack className="hero-gradient" ai="center" jc="center" f={2}>
+            <YStack pos="relative" className="hero-gradient" ai="center" jc="center" f={10}>
               <Square
                 className="all ease-in ms300"
                 elevation="$4"
@@ -66,25 +101,31 @@ export function HeroExampleAnimations() {
                 }}
                 {...position}
               />
+
+              <Button
+                pos="absolute"
+                bottom={20}
+                right={20}
+                iconAfter={Play}
+                theme="blue"
+                size="$6"
+                onPress={() => {
+                  setPositionI((x) => (x + 1) % positions.length)
+                }}
+              >
+                Go
+              </Button>
             </YStack>
           </Theme>
           <Separator vertical />
+
           <YStack f={1}>
             <ScrollView>
-              {[
-                { name: 'Bouncy', description: 'A bouncy spring', animation: 'bouncy' },
-                { name: 'Lazy', description: 'A lazy, straightforward spring', animation: 'lazy' },
-                {
-                  name: 'Quick',
-                  description: 'A quick, straightforward spring',
-                  animation: 'quick',
-                },
-              ].map((item, i) => {
-                const isActive = i === animation
+              {animations.map((item, i) => {
+                const isActive = item === animation
                 return (
-                  <Theme name={isActive ? null : 'alt2'}>
+                  <Theme key={item.name} name={isActive ? null : 'alt2'}>
                     <YStack
-                      key={item.name}
                       {...(isActive && {
                         bc: '$backgroundHover',
                       })}
@@ -95,7 +136,7 @@ export function HeroExampleAnimations() {
                         bc: '$backgroundHover',
                       }}
                       onPress={() => {
-                        setAnimation(i)
+                        setAnimationI(i)
                       }}
                     >
                       <Paragraph cursor="inherit" size="$4" fontWeight="800">
@@ -112,18 +153,21 @@ export function HeroExampleAnimations() {
 
             <Separator />
 
-            <YStack p="$4" ai="center" jc="$center">
-              <Button
-                iconAfter={Play}
-                theme="blue"
-                size="$6"
-                onPress={() => {
-                  setPositionI((x) => (x + 1) % positions.length)
-                }}
-              >
-                Go
-              </Button>
-            </YStack>
+            <XStack p="$4" ai="center" jc="$center">
+              {Object.entries(animation.settings).map(([key, value]) => {
+                return (
+                  <React.Fragment key={key}>
+                    <YStack>
+                      <Paragraph size="$2" fow="800">
+                        {key}
+                      </Paragraph>
+                      <Paragraph>{value}</Paragraph>
+                    </YStack>
+                    <Separator vertical mx={20} />
+                  </React.Fragment>
+                )
+              })}
+            </XStack>
           </YStack>
         </XStack>
 
