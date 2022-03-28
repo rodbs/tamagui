@@ -3,7 +3,20 @@ import Link from 'next/link'
 import React from 'react'
 import { useState } from 'react'
 import { ScrollView } from 'react-native'
-import { Button, H2, H3, Paragraph, Separator, Square, Theme, XStack, YStack } from 'tamagui'
+import {
+  AnimationKeys,
+  Button,
+  GetAnimationKeys,
+  H2,
+  H3,
+  Paragraph,
+  Separator,
+  Square,
+  TamaguiConfig,
+  Theme,
+  XStack,
+  YStack,
+} from 'tamagui'
 
 import { ContainerLarge } from './Container'
 import { LogoIcon, TamaguiLogo } from './TamaguiLogo'
@@ -92,6 +105,7 @@ export function HeroExampleAnimations() {
             <YStack pos="relative" className="hero-gradient" ai="center" jc="center" f={10}>
               <Square
                 className="all ease-in ms300"
+                // animation="bounce1"
                 elevation="$4"
                 // @ts-expect-error TODO
                 size={110}
@@ -102,7 +116,7 @@ export function HeroExampleAnimations() {
                 }}
                 {...position}
               >
-                <LogoIcon downscale={1} color="var(--background)" />
+                <LogoIcon downscale={0.75} color="var(--background)" />
               </Square>
 
               <Button
