@@ -95,7 +95,7 @@ export class ThemeManager {
     }
 
     if (process.env.NODE_ENV === 'development' && debug) {
-      console.log('getNextTheme', { props, nextName, parentName })
+      console.log('getNextTheme', { props, nextName, parentName }, this)
     }
 
     if (!theme) {

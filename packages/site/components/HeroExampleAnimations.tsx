@@ -22,7 +22,7 @@ const positions = [
     x: 100,
     y: 100,
     scale: 1,
-    rotate: '90deg',
+    rotate: '180deg',
   },
 ]
 
@@ -41,7 +41,17 @@ export function HeroExampleAnimations() {
           </H3>
         </YStack>
 
-        <XStack w="100%" theme="alt1" br="$6" overflow="hidden" bc="$background" h={400}>
+        <XStack
+          bow={1}
+          boc="$borderColor"
+          w="100%"
+          theme="alt1"
+          br="$6"
+          ov="hidden"
+          bc="$background"
+          h={400}
+          x={0}
+        >
           <Theme name="blue">
             <YStack className="hero-gradient" ai="center" jc="center" f={2}>
               <Square

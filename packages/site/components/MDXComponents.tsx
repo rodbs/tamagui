@@ -26,7 +26,6 @@ import { BenchmarkChart } from './BenchmarkChart'
 import { Code, CodeInline } from './Code'
 import { DemoButton } from './DemoButton'
 import * as Demos from './demos'
-import { Description } from './Description'
 import { DocCodeBlock } from './DocsCodeBlock'
 import { ExternalIcon } from './ExternalIcon'
 import { HeroContainer } from './HeroContainer'
@@ -35,6 +34,7 @@ import { MediaPlayer } from './MediaPlayer'
 import { OffsetBox } from './OffsetBox'
 import { Preview } from './Preview'
 import { PropsTable } from './PropsTable'
+import { SubTitle } from './SubTitle'
 
 export const components = {
   ScrollView,
@@ -52,7 +52,7 @@ export const components = {
 
   Highlights,
   PropsTable,
-  Description,
+  Description: SubTitle,
 
   Note: (props) => (
     <YStack

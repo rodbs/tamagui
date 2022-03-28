@@ -13,10 +13,15 @@ export type ThemeProps = {
   disableThemeClass?: boolean
   name: Exclude<ThemeName, number> | null
   children?: any
+  debug?: boolean
 }
 
-export const Theme = memo((props: ThemeProps) => {
-  const { name, theme, themeManager, themes, className } = useChangeThemeEffect(props.name)
+export const Theme = memo(function Theme(props: ThemeProps) {
+  const { name, theme, themeManager, themes, className } = useChangeThemeEffect(
+    props.name,
+    undefined,
+    props.debug
+  )
 
   if (!themes) {
     console.warn('Error, no themes in context', props)
