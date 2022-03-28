@@ -58,7 +58,18 @@ export const Sandbox = () => {
           <YStack p="$6" theme="red" bc="$background" space>
             red
             <Button>red Button</Button>
-            <Button theme="alt2">alt2</Button>
+            <XStack p="$6" theme="alt1" bc="$background" space>
+              alt1
+              <Button>Button</Button>
+            </XStack>
+            <XStack p="$6" theme="alt2" bc="$background" space>
+              alt2
+              <Button>Button</Button>
+            </XStack>
+            <XStack p="$6" theme="alt3" bc="$background" space>
+              alt3
+              <Button>Button</Button>
+            </XStack>
           </YStack>
         </YStack>
       </Theme>

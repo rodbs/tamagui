@@ -59,10 +59,15 @@ function createThemeWithAlts<Name extends string, GetTheme extends AltThemeGette
   const themeEntries = names.map((name, str) => {
     return [name, getTheme(str)] as const
   })
-  // add button theme
-  const [btnThemeName, btnTheme] = themeEntries[themeEntries.length - alternates.length + 1]
-  themeEntries.push([`${btnThemeName}_Button` as any, btnTheme])
+  // add button themes
+  for (const alt of alternates) {
+    const [btnThemeName] = themeEntries[alt]
+    const [_, btnTheme] = themeEntries[alt + 1]
+    console.log('wut', btnThemeName, btnTheme)
+    themeEntries.push([`${btnThemeName}_Button` as any, btnTheme])
+  }
   const themes = Object.fromEntries(themeEntries)
+  console.log('themes', themes)
   return themes as any
 }
 
