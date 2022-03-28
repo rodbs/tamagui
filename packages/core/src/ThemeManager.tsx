@@ -75,7 +75,7 @@ export class ThemeManager {
       }
       if (!parentName.includes(THEME_NAME_SEPARATOR)) {
         // not found!
-        console.warn('not found??', props, this)
+        console.warn('theme not found', props.name)
         break
       }
       // go up one

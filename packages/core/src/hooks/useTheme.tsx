@@ -152,21 +152,23 @@ export const useChangeThemeEffect = (
     return manager
   })
 
-  useLayoutEffect(() => {
-    if (!themeManager) return
-    if (next?.name) {
-      themeManager.update({ ...next, parentManager })
-    }
-    return parentManager.onChangeTheme(() => {
-      const next = parentManager.getNextTheme({ name, componentName, themes }, debug)
-      if (process.env.NODE_ENV === 'development' && debug) {
-        console.log('changing theme', name, componentName, next)
+  if (typeof document !== 'undefined') {
+    useLayoutEffect(() => {
+      if (!themeManager) return
+      if (next?.name) {
+        themeManager.update({ ...next, parentManager })
       }
-      if (!next) return
-      themeManager.update({ ...next, parentManager })
-      forceUpdate()
-    })
-  }, [themes, name, componentName, debug, next?.name])
+      return parentManager.onChangeTheme(() => {
+        const next = parentManager.getNextTheme({ name, componentName, themes }, debug)
+        if (process.env.NODE_ENV === 'development' && debug) {
+          console.log('changing theme', name, componentName, next)
+        }
+        if (!next) return
+        themeManager.update({ ...next, parentManager })
+        forceUpdate()
+      })
+    }, [themes, name, componentName, debug, next?.name])
+  }
 
   const didChangeTheme = next && parentManager && next.name !== parentManager.fullName
 

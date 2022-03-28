@@ -106,7 +106,7 @@ const themeCreator =
     return {
       background: get(backgrounds, str),
       backgroundSoft: get(backgrounds, str + 3),
-      backgroundHover: backgrounds[str + lighterDir * 1] ?? get(backgrounds, str + darkerDir * 1),
+      backgroundHover: get(backgrounds, str + lighterDir),
       backgroundPress: get(backgrounds, str + darkerDir * 1),
       backgroundFocus: get(backgrounds, str + darkerDir * 2),
       backgroundTransparent: tokens.color.grayA1,

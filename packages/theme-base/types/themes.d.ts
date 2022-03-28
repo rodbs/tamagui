@@ -401,7 +401,7 @@ export declare const themes: {
     readonly dark_outline: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -423,7 +423,7 @@ export declare const themes: {
     readonly light_outline: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -445,7 +445,7 @@ export declare const themes: {
     readonly blue: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -467,7 +467,7 @@ export declare const themes: {
     readonly gray: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -489,7 +489,7 @@ export declare const themes: {
     readonly green: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -511,7 +511,7 @@ export declare const themes: {
     readonly indigo: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -533,7 +533,7 @@ export declare const themes: {
     readonly orange: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -555,7 +555,7 @@ export declare const themes: {
     readonly pink: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -577,7 +577,7 @@ export declare const themes: {
     readonly purple: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -599,7 +599,7 @@ export declare const themes: {
     readonly red: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -621,7 +621,7 @@ export declare const themes: {
     readonly violet: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -643,7 +643,7 @@ export declare const themes: {
     readonly yellow: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -665,7 +665,7 @@ export declare const themes: {
     readonly brown: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -687,7 +687,7 @@ export declare const themes: {
     readonly lime: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -709,7 +709,7 @@ export declare const themes: {
     readonly teal: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -731,7 +731,7 @@ export declare const themes: {
     readonly light_blue_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -753,7 +753,7 @@ export declare const themes: {
     readonly light_blue_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -775,7 +775,7 @@ export declare const themes: {
     readonly light_blue_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -797,7 +797,7 @@ export declare const themes: {
     readonly light_blue_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -819,7 +819,7 @@ export declare const themes: {
     readonly light_gray_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -841,7 +841,7 @@ export declare const themes: {
     readonly light_gray_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -863,7 +863,7 @@ export declare const themes: {
     readonly light_gray_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -885,7 +885,7 @@ export declare const themes: {
     readonly light_gray_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -907,7 +907,7 @@ export declare const themes: {
     readonly light_green_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -929,7 +929,7 @@ export declare const themes: {
     readonly light_green_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -951,7 +951,7 @@ export declare const themes: {
     readonly light_green_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -973,7 +973,7 @@ export declare const themes: {
     readonly light_green_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -995,7 +995,7 @@ export declare const themes: {
     readonly light_indigo_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1017,7 +1017,7 @@ export declare const themes: {
     readonly light_indigo_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1039,7 +1039,7 @@ export declare const themes: {
     readonly light_indigo_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1061,7 +1061,7 @@ export declare const themes: {
     readonly light_indigo_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1083,7 +1083,7 @@ export declare const themes: {
     readonly light_orange_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1105,7 +1105,7 @@ export declare const themes: {
     readonly light_orange_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1127,7 +1127,7 @@ export declare const themes: {
     readonly light_orange_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1149,7 +1149,7 @@ export declare const themes: {
     readonly light_orange_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1171,7 +1171,7 @@ export declare const themes: {
     readonly light_pink_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1193,7 +1193,7 @@ export declare const themes: {
     readonly light_pink_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1215,7 +1215,7 @@ export declare const themes: {
     readonly light_pink_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1237,7 +1237,7 @@ export declare const themes: {
     readonly light_pink_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1259,7 +1259,7 @@ export declare const themes: {
     readonly light_purple_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1281,7 +1281,7 @@ export declare const themes: {
     readonly light_purple_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1303,7 +1303,7 @@ export declare const themes: {
     readonly light_purple_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1325,7 +1325,7 @@ export declare const themes: {
     readonly light_purple_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1347,7 +1347,7 @@ export declare const themes: {
     readonly light_red_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1369,7 +1369,7 @@ export declare const themes: {
     readonly light_red_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1391,7 +1391,7 @@ export declare const themes: {
     readonly light_red_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1413,7 +1413,7 @@ export declare const themes: {
     readonly light_red_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1435,7 +1435,7 @@ export declare const themes: {
     readonly light_violet_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1457,7 +1457,7 @@ export declare const themes: {
     readonly light_violet_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1479,7 +1479,7 @@ export declare const themes: {
     readonly light_violet_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1501,7 +1501,7 @@ export declare const themes: {
     readonly light_violet_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1523,7 +1523,7 @@ export declare const themes: {
     readonly light_yellow_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1545,7 +1545,7 @@ export declare const themes: {
     readonly light_yellow_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1567,7 +1567,7 @@ export declare const themes: {
     readonly light_yellow_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1589,7 +1589,7 @@ export declare const themes: {
     readonly light_yellow_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1611,7 +1611,7 @@ export declare const themes: {
     readonly light_brown_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1633,7 +1633,7 @@ export declare const themes: {
     readonly light_brown_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1655,7 +1655,7 @@ export declare const themes: {
     readonly light_brown_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1677,7 +1677,7 @@ export declare const themes: {
     readonly light_brown_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1699,7 +1699,7 @@ export declare const themes: {
     readonly light_lime_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1721,7 +1721,7 @@ export declare const themes: {
     readonly light_lime_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1743,7 +1743,7 @@ export declare const themes: {
     readonly light_lime_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1765,7 +1765,7 @@ export declare const themes: {
     readonly light_lime_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1787,7 +1787,7 @@ export declare const themes: {
     readonly light_teal_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1809,7 +1809,7 @@ export declare const themes: {
     readonly light_teal_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1831,7 +1831,7 @@ export declare const themes: {
     readonly light_teal_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1853,7 +1853,7 @@ export declare const themes: {
     readonly light_teal_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1875,7 +1875,7 @@ export declare const themes: {
     readonly dark_blue_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1897,7 +1897,7 @@ export declare const themes: {
     readonly dark_blue_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1919,7 +1919,7 @@ export declare const themes: {
     readonly dark_blue_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1941,7 +1941,7 @@ export declare const themes: {
     readonly dark_blue_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1963,7 +1963,7 @@ export declare const themes: {
     readonly dark_gray_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -1985,7 +1985,7 @@ export declare const themes: {
     readonly dark_gray_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2007,7 +2007,7 @@ export declare const themes: {
     readonly dark_gray_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2029,7 +2029,7 @@ export declare const themes: {
     readonly dark_gray_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2051,7 +2051,7 @@ export declare const themes: {
     readonly dark_green_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2073,7 +2073,7 @@ export declare const themes: {
     readonly dark_green_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2095,7 +2095,7 @@ export declare const themes: {
     readonly dark_green_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2117,7 +2117,7 @@ export declare const themes: {
     readonly dark_green_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2139,7 +2139,7 @@ export declare const themes: {
     readonly dark_indigo_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2161,7 +2161,7 @@ export declare const themes: {
     readonly dark_indigo_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2183,7 +2183,7 @@ export declare const themes: {
     readonly dark_indigo_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2205,7 +2205,7 @@ export declare const themes: {
     readonly dark_indigo_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2227,7 +2227,7 @@ export declare const themes: {
     readonly dark_orange_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2249,7 +2249,7 @@ export declare const themes: {
     readonly dark_orange_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2271,7 +2271,7 @@ export declare const themes: {
     readonly dark_orange_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2293,7 +2293,7 @@ export declare const themes: {
     readonly dark_orange_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2315,7 +2315,7 @@ export declare const themes: {
     readonly dark_pink_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2337,7 +2337,7 @@ export declare const themes: {
     readonly dark_pink_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2359,7 +2359,7 @@ export declare const themes: {
     readonly dark_pink_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2381,7 +2381,7 @@ export declare const themes: {
     readonly dark_pink_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2403,7 +2403,7 @@ export declare const themes: {
     readonly dark_purple_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2425,7 +2425,7 @@ export declare const themes: {
     readonly dark_purple_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2447,7 +2447,7 @@ export declare const themes: {
     readonly dark_purple_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2469,7 +2469,7 @@ export declare const themes: {
     readonly dark_purple_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2491,7 +2491,7 @@ export declare const themes: {
     readonly dark_red_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2513,7 +2513,7 @@ export declare const themes: {
     readonly dark_red_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2535,7 +2535,7 @@ export declare const themes: {
     readonly dark_red_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2557,7 +2557,7 @@ export declare const themes: {
     readonly dark_red_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2579,7 +2579,7 @@ export declare const themes: {
     readonly dark_violet_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2601,7 +2601,7 @@ export declare const themes: {
     readonly dark_violet_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2623,7 +2623,7 @@ export declare const themes: {
     readonly dark_violet_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2645,7 +2645,7 @@ export declare const themes: {
     readonly dark_violet_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2667,7 +2667,7 @@ export declare const themes: {
     readonly dark_yellow_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2689,7 +2689,7 @@ export declare const themes: {
     readonly dark_yellow_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2711,7 +2711,7 @@ export declare const themes: {
     readonly dark_yellow_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2733,7 +2733,7 @@ export declare const themes: {
     readonly dark_yellow_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2755,7 +2755,7 @@ export declare const themes: {
     readonly dark_brown_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2777,7 +2777,7 @@ export declare const themes: {
     readonly dark_brown_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2799,7 +2799,7 @@ export declare const themes: {
     readonly dark_brown_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2821,7 +2821,7 @@ export declare const themes: {
     readonly dark_brown_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2843,7 +2843,7 @@ export declare const themes: {
     readonly dark_lime_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2865,7 +2865,7 @@ export declare const themes: {
     readonly dark_lime_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2887,7 +2887,7 @@ export declare const themes: {
     readonly dark_lime_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2909,7 +2909,7 @@ export declare const themes: {
     readonly dark_lime_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2931,7 +2931,7 @@ export declare const themes: {
     readonly dark_teal_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2953,7 +2953,7 @@ export declare const themes: {
     readonly dark_teal_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2975,7 +2975,7 @@ export declare const themes: {
     readonly dark_teal_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -2997,7 +2997,7 @@ export declare const themes: {
     readonly dark_teal_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3020,7 +3020,7 @@ export declare const themes: {
     readonly dark_Card: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3174,7 +3174,7 @@ export declare const themes: {
         blue12: string;
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3328,7 +3328,7 @@ export declare const themes: {
         blue12: string;
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3350,7 +3350,7 @@ export declare const themes: {
     readonly dark_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3372,7 +3372,7 @@ export declare const themes: {
     readonly dark_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3394,7 +3394,7 @@ export declare const themes: {
     readonly dark_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3416,7 +3416,7 @@ export declare const themes: {
     readonly dark_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3439,7 +3439,7 @@ export declare const themes: {
     readonly light_Card: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3461,7 +3461,7 @@ export declare const themes: {
     readonly light_alt1: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3483,7 +3483,7 @@ export declare const themes: {
     readonly light_alt4: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3505,7 +3505,7 @@ export declare const themes: {
     readonly light_alt2: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;
@@ -3527,7 +3527,7 @@ export declare const themes: {
     readonly light_alt3: {
         background: any;
         backgroundSoft: any;
-        backgroundHover: string | Variable;
+        backgroundHover: any;
         backgroundPress: any;
         backgroundFocus: any;
         backgroundTransparent: Variable;

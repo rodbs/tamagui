@@ -2,7 +2,16 @@ import { ExternalLink } from '@tamagui/feather-icons'
 import { useRouter } from 'next/router'
 import React from 'react'
 // import { Select } from '@components/Select'
-import { H2, Paragraph, Separator, Text, VisuallyHidden, XStack, YStack } from 'tamagui'
+import {
+  H2,
+  Paragraph,
+  Separator,
+  SizableText,
+  Text,
+  VisuallyHidden,
+  XStack,
+  YStack,
+} from 'tamagui'
 
 import { Features } from './Features'
 import { Link } from './Link'
@@ -26,13 +35,13 @@ export function Highlights({ features }) {
       }}
     >
       <YStack
-        mb="$5"
+        mb="$4"
         $gtSm={{
           flex: 1,
           mr: '$5',
         }}
       >
-        <H2 fontFamily="$body" size="$6" mb="$4">
+        <H2 fontFamily="$body" size="$6" mb="$2" fow="800">
           Features
         </H2>
 
@@ -76,10 +85,8 @@ export function Highlights({ features }) {
               target="_blank"
             >
               <XStack ai="center" space="$1">
-                <Paragraph size="$2" color="inherit">
-                  View source
-                </Paragraph>
-                <YStack opacity={0.5} ml="$1">
+                <SizableText size="$2">View source</SizableText>
+                <YStack opacity={0.5} ml="$0.5">
                   <ExternalLink size={12} color="var(--colorHover)" />
                 </YStack>
               </XStack>
@@ -93,10 +100,8 @@ export function Highlights({ features }) {
               target="_blank"
             >
               <XStack ai="center" space="$1">
-                <Paragraph size="$2" color="inherit">
-                  View on npm
-                </Paragraph>
-                <YStack opacity={0.5} ml="$1">
+                <SizableText size="$2">View on npm</SizableText>
+                <YStack opacity={0.5} ml="$0.5">
                   <ExternalLink size={12} color="var(--colorHover)" />
                 </YStack>
               </XStack>
@@ -105,10 +110,8 @@ export function Highlights({ features }) {
           <YStack>
             <Link href="https://github.com/tamagui/tamagui/issues/new/choose" target="_blank">
               <XStack ai="center" space="$1">
-                <Paragraph size="$2" color="inherit">
-                  Report an issue
-                </Paragraph>
-                <YStack opacity={0.5} ml="$1">
+                <SizableText size="$2">Report an issue</SizableText>
+                <YStack opacity={0.5} ml="$0.5">
                   <ExternalLink size={12} color="var(--colorHover)" />
                 </YStack>
               </XStack>
