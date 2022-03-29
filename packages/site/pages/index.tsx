@@ -13,7 +13,7 @@ import { HeroExampleCode } from '../components/HeroExampleCode'
 import { HeroExampleCarousel } from '../components/HeroExampleThemes'
 
 export default function Home() {
-  return <HeroExampleAnimations />
+  // return <HeroExampleAnimations />
 
   return (
     <>
@@ -109,7 +109,7 @@ function Performance() {
         <YStack ai="center" space="$2">
           <H2>Speed that makes you 🥵</H2>
           <H3 theme="alt2" fow="400">
-            Incredible performance, even with inline styles
+            Performance, even with inline styles
           </H3>
         </YStack>
 

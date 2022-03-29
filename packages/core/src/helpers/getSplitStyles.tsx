@@ -24,6 +24,9 @@ type PseudoStyles = {
 }
 
 const skipKeys = {
+  // could put events in here
+  animation: true,
+  animated: true,
   children: true,
   key: true,
   ref: true,

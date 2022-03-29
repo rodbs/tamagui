@@ -97,9 +97,6 @@ export declare type AnimationHook = (props: any, extra: {
 export declare type TamaguiInternalConfig<A extends GenericTokens = GenericTokens, B extends GenericThemes = GenericThemes, C extends GenericShorthands = GenericShorthands, D extends GenericMedia = GenericMedia, E extends GenericAnimations = GenericAnimations> = Omit<CreateTamaguiConfig<A, B, C, D, E>, 'animations'> & {
     animations: E;
     Provider: (props: TamaguiProviderProps) => any;
-    themeParsed: {
-        [key: string]: Variable;
-    };
     tokensParsed: CreateTokens<Variable>;
     themeConfig: any;
     getCSS: () => string;

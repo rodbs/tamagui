@@ -1,14 +1,12 @@
 import { useForceUpdate } from '@tamagui/use-force-update'
-import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import React, { useContext, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
-import { getHasConfigured, getTamagui } from '../conf'
-import { THEME_CLASSNAME_PREFIX, THEME_NAME_SEPARATOR } from '../constants/constants'
+import { getTamagui } from '../conf'
 import { useIsomorphicLayoutEffect } from '../constants/platform'
-import { isVariable } from '../createVariable'
 import { areEqualSets } from '../helpers/areEqualSets'
 import { ThemeContext } from '../ThemeContext'
 import { ThemeManager, ThemeManagerContext, emptyManager } from '../ThemeManager'
-import { ThemeObject, Themes } from '../types'
+import { ThemeObject } from '../types'
 import { useConstant } from './useConstant'
 
 type UseThemeState = {
@@ -17,15 +15,22 @@ type UseThemeState = {
   isRendering: boolean
 }
 
+const getKeyWithout$ = <Key extends string | symbol>(key: Key): Key => {
+  if (key[0] === '$') {
+    return (key as string).slice(1) as any
+  }
+  return key
+}
+
 export const useTheme = (
   themeName?: string | null,
   componentName?: string,
-  debug = false
+  props?: any
 ): ThemeObject => {
   const { name, theme, themes, themeManager, className, didChangeTheme } = useChangeThemeEffect(
     themeName,
     componentName,
-    debug
+    props
   )
 
   const state = useRef() as React.MutableRefObject<UseThemeState>
@@ -56,6 +61,9 @@ export const useTheme = (
       return themes[getTamagui().defaultTheme || 'light' || Object.keys(themes)[0]]
     }
     return new Proxy(theme, {
+      has(_, key) {
+        return getKeyWithout$(key) in theme
+      },
       get(_, key) {
         if (!name) {
           return Reflect.get(_, key)
@@ -84,22 +92,26 @@ export const useTheme = (
           activeTheme = theme
         }
         if (typeof key === 'string') {
-          const val = activeTheme[key]
-          if (process.env.NODE_ENV === 'development') {
-            if (typeof val === 'undefined') {
-              console.warn(`No theme value "${String(key)}" in`, activeTheme)
-              return null
+          // remove the $ prefix for token lookups
+          key = getKeyWithout$(key)
+          if (key in activeTheme) {
+            if (state.current.isRendering) {
+              state.current.keys.add(key)
             }
-            if (!isVariable(val)) {
-              console.warn('Non variable!', val)
-            } else if (val.name !== key) {
-              console.warn('Non-matching name for variable to key', key, val.name)
-            }
+            return activeTheme[key]
+          } else {
+            // if (process.env.NODE_ENV === 'development') {
+            //   if (typeof val === 'undefined') {
+            //     console.warn(`No theme value "${String(key)}" in`, activeTheme)
+            //     return null
+            //   }
+            //   if (!isVariable(val)) {
+            //     console.warn('Non variable!', val)
+            //   } else if (val.name !== key) {
+            //     console.warn('Non-matching name for variable to key', key, val.name)
+            //   }
+            // }
           }
-          if (state.current.isRendering) {
-            state.current.keys.add(key)
-          }
-          return val
         }
         return Reflect.get(_, key)
       },
@@ -133,14 +145,11 @@ export const useDefaultThemeName = () => {
   return useContext(ThemeContext)?.defaultTheme
 }
 
-export const useChangeThemeEffect = (
-  name?: string | null,
-  componentName?: string,
-  debug = false
-) => {
+export const useChangeThemeEffect = (name?: string | null, componentName?: string, props?: any) => {
+  const debug = props && props['debug']
   const parentManager = useContext(ThemeManagerContext) || emptyManager
   const { themes } = useContext(ThemeContext)!
-  const next = parentManager.getNextTheme({ name, componentName, themes }, debug)
+  const next = parentManager.getNextTheme({ name, componentName, themes }, props)
   const forceUpdate = useForceUpdate()
   const themeManager = useConstant<ThemeManager | null>(() => {
     if (!next) {

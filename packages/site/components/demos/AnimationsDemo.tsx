@@ -5,7 +5,7 @@ export default function AnimationsDemo() {
   const [scale, setScale] = useState(1)
 
   return (
-    <Button scale={scale} animated animation="bounce1" onPress={() => setScale(2)}>
+    <Button scale={scale} animation="bouncy" onPress={() => setScale(2)}>
       Hello World
     </Button>
   )

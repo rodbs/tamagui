@@ -155,7 +155,6 @@ export type TamaguiInternalConfig<
   animations: E
   Provider: (props: TamaguiProviderProps) => any
   // with $ prefixes for fast lookups (one time cost at startup vs every render)
-  themeParsed: { [key: string]: Variable }
   tokensParsed: CreateTokens<Variable>
   themeConfig: any
   getCSS: () => string

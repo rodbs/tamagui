@@ -1,26 +1,12 @@
 import { Play } from '@tamagui/feather-icons'
 import Link from 'next/link'
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ScrollView } from 'react-native'
-import {
-  AnimationKeys,
-  Button,
-  GetAnimationKeys,
-  H2,
-  H3,
-  Paragraph,
-  Separator,
-  Square,
-  TamaguiConfig,
-  Theme,
-  XStack,
-  YStack,
-} from 'tamagui'
+import { Button, H2, H3, Paragraph, Separator, Square, Theme, XStack, YStack } from 'tamagui'
 
 import { animations } from '../constants/animations'
 import { ContainerLarge } from './Container'
-import { LogoIcon, TamaguiLogo } from './TamaguiLogo'
+import { LogoIcon } from './TamaguiLogo'
 
 const positions = [
   {
@@ -103,8 +89,8 @@ export function HeroExampleAnimations() {
               <Square
                 // className="all ease-in ms300"
                 animation={animation.animation}
-                debug
                 elevation="$4"
+                debug
                 size={110}
                 bc="$color"
                 // bc="red"
@@ -168,7 +154,7 @@ export function HeroExampleAnimations() {
 
             <Separator />
 
-            <XStack p="$4" ai="center" jc="$center">
+            <XStack p="$4" ai="center" jc="center">
               {Object.entries(animation.settings).map(([key, value]) => {
                 return (
                   <React.Fragment key={key}>

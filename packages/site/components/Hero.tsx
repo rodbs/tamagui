@@ -131,7 +131,7 @@ export function Hero() {
                       }}
                     >
                       Consistent UI on Native & Web with a smart optimizing compiler.
-                      Move&nbsp;faster&nbsp;with better DX and no-cost performance.
+                      Less,&nbsp;simpler&nbsp;code and better DX with no-cost performance.
                     </Paragraph>
                   </YStack>
                 </YStack>

@@ -306,7 +306,7 @@ export function HeroExampleCarousel() {
             </XStack>
           </ScrollView>
 
-          <YStack pe="none" fullscreen ai="center" jc="center">
+          <YStack pe="none" fullscreen ai="center" jc="center" $sm={{ scale: 0.85 }}>
             <Theme name={colorName}>
               <MediaPlayer pointerEvents="none" pointerEventsControls="auto" alt={curShadeI} />
             </Theme>

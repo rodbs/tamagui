@@ -103,61 +103,70 @@ const resolveTokens = (
 const getToken = (
   key: string,
   value: string,
-  { tokensParsed, themeParsed }: TamaguiInternalConfig,
+  { tokensParsed }: TamaguiInternalConfig,
   theme: any,
   fontFamily: string | undefined = '$body',
   isAnimated = false
 ) => {
-  const tokenVal = themeParsed[value]
-  if (tokenVal) {
-    return !isAnimated && isWeb && tokenVal.variable ? tokenVal.variable : tokenVal.val
-  }
   let valOrVar: any
-  if (key === 'fontFamily') {
-    valOrVar = tokensParsed.font[value]?.family || value
-  }
-  if (key === 'fontSize') {
-    valOrVar = tokensParsed.font[fontFamily]?.size[value] || value
-  }
-  if (key === 'lineHeight') {
-    valOrVar = tokensParsed.font[fontFamily]?.lineHeight[value] || value
-  }
-  if (key === 'letterSpacing') {
-    valOrVar = tokensParsed.font[fontFamily]?.letterSpacing[value] || value
-  }
-  if (key === 'fontWeight') {
-    valOrVar = tokensParsed.font[fontFamily]?.weight[value] || value
-  }
-  if (typeof valOrVar !== 'undefined') {
-    if (isVariable(valOrVar)) {
-      if (!isWeb || !isAnimated) {
-        return valOrVar.val
-      }
-      return valOrVar.variable
-    } else {
-      return valOrVar
+  let hasSet = false
+  if (value in theme) {
+    valOrVar = theme[value.slice(1)]
+    hasSet = true
+  } else {
+    switch (key) {
+      case 'fontFamily':
+        valOrVar = tokensParsed.font[value]?.family || value
+        hasSet = true
+        break
+      case 'fontSize':
+        valOrVar = tokensParsed.font[fontFamily]?.size[value] || value
+        hasSet = true
+        break
+      case 'lineHeight':
+        valOrVar = tokensParsed.font[fontFamily]?.lineHeight[value] || value
+        hasSet = true
+        break
+      case 'letterSpacing':
+        valOrVar = tokensParsed.font[fontFamily]?.letterSpacing[value] || value
+        hasSet = true
+        break
+      case 'fontWeight':
+        valOrVar = tokensParsed.font[fontFamily]?.weight[value] || value
+        hasSet = true
+        break
     }
-  }
-  for (const cat in tokenCategories) {
-    if (tokenCategories[cat][key]) {
-      const res = tokensParsed[cat][value]
-      if (res) {
-        return res.variable
-      } else {
-        const themeVar = themeParsed[value]
-        if (themeVar) {
-          return themeVar.variable
+    for (const cat in tokenCategories) {
+      if (key in tokenCategories[cat]) {
+        const res = tokensParsed[cat][value] || theme[value.slice(1)]
+        if (res) {
+          valOrVar = res
+          hasSet = true
         }
       }
     }
+    if (!hasSet) {
+      const spaceVar = tokensParsed.space[value]
+      if (spaceVar) {
+        valOrVar = spaceVar
+        hasSet = true
+      }
+    }
   }
-  const spaceVar = tokensParsed.space[value]
-  if (spaceVar) {
-    return spaceVar.variable
+  if (hasSet) {
+    if (isVariable(valOrVar)) {
+      if (!isWeb || isAnimated) {
+        return valOrVar.val
+      }
+      return valOrVar.variable
+    }
+    return valOrVar
   }
-  if (value && value[0] === '$') {
-    console.warn(`⚠️ Missing token in theme ${theme.name}:`, value)
-    return null
+  if (process.env.NODE_ENV === 'development') {
+    if (value && value[0] === '$') {
+      console.warn(`⚠️ Missing token in theme:`, value, theme)
+      return null
+    }
   }
   return value
 }
