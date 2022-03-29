@@ -13,13 +13,7 @@ import { HeroExampleCode } from '../components/HeroExampleCode'
 import { HeroExampleCarousel } from '../components/HeroExampleThemes'
 
 export default function Home() {
-  // return (
-  //   <Theme debug name="blue">
-  //     <Button>hello</Button>
-  //   </Theme>
-  // )
-
-  console.warn('render home')
+  return <HeroExampleAnimations />
 
   return (
     <>

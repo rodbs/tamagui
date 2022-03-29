@@ -18,6 +18,7 @@ import {
   YStack,
 } from 'tamagui'
 
+import { animations } from '../constants/animations'
 import { ContainerLarge } from './Container'
 import { LogoIcon, TamaguiLogo } from './TamaguiLogo'
 
@@ -26,6 +27,7 @@ const positions = [
     x: 0,
     y: 0,
     scale: 1,
+    rotate: '0deg',
   },
   {
     x: -50,
@@ -41,44 +43,32 @@ const positions = [
   },
 ]
 
-const animations = [
+const animationDescriptions = [
   {
     name: 'Bouncy',
     description: 'A bouncy spring',
     animation: 'bouncy',
-    settings: {
-      type: 'spring',
-      damping: 20,
-      stiffness: 90,
-    },
+    settings: animations.animations.bouncy,
   },
   {
     name: 'Lazy',
     description: 'A lazy, straightforward spring',
     animation: 'lazy',
-    settings: {
-      type: 'spring',
-      damping: 25,
-      stiffness: 70,
-    },
+    settings: animations.animations.lazy,
   },
   {
     name: 'Quick',
     description: 'A quick, straightforward spring',
     animation: 'quick',
-    settings: {
-      type: 'spring',
-      damping: 28,
-      stiffness: 120,
-    },
+    settings: animations.animations.quick,
   },
-]
+] as const
 
 export function HeroExampleAnimations() {
   const [animationI, setAnimationI] = useState(0)
   const [positionI, setPositionI] = useState(0)
   const position = positions[positionI]
-  const animation = animations[animationI]
+  const animation = animationDescriptions[animationI]
 
   return (
     <YStack>
@@ -86,7 +76,7 @@ export function HeroExampleAnimations() {
         <YStack zi={1} space="$2">
           <H2 als="center">First-class animations</H2>
           <H3 ta="center" theme="alt2" als="center" fow="400">
-            Swappable animation drivers for every platform
+            Plug-and-play drivers for every platform
           </H3>
         </YStack>
 
@@ -102,13 +92,22 @@ export function HeroExampleAnimations() {
           x={0}
         >
           <Theme name="blue">
-            <YStack pos="relative" className="hero-gradient" ai="center" jc="center" f={5}>
+            <YStack
+              pos="relative"
+              className="hero-gradient"
+              ai="center"
+              jc="center"
+              width="60%"
+              $sm={{ width: '100%' }}
+            >
               <Square
-                className="all ease-in ms300"
-                // animation="bounce1"
+                // className="all ease-in ms300"
+                animation={animation.animation}
+                debug
                 elevation="$4"
                 size={110}
                 bc="$color"
+                // bc="red"
                 br="$9"
                 onPress={() => {
                   setPositionI((x) => (x + 1) % positions.length)
@@ -135,9 +134,9 @@ export function HeroExampleAnimations() {
           </Theme>
           <Separator vertical />
 
-          <YStack $sm={{ display: 'none' }} f={1}>
+          <YStack $sm={{ display: 'none' }} width="40%">
             <ScrollView>
-              {animations.map((item, i) => {
+              {animationDescriptions.map((item, i) => {
                 const isActive = item === animation
                 return (
                   <Theme key={item.name} name={isActive ? null : 'alt2'}>

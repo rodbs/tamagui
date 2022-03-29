@@ -15,6 +15,7 @@ export const createPropMapper = (c: StaticConfig) => {
       console.trace('no conf! err')
       return
     }
+    const isAnimated = !!props.animation
     if (variants && !variantsParsed) {
       variantsParsed = parseVariants(variants, conf)
     }
@@ -34,7 +35,7 @@ export const createPropMapper = (c: StaticConfig) => {
         res = res(value, { tokens: conf.tokensParsed, theme, props })
       }
       if (isObj(res)) {
-        res = resolveTokens(res, conf, theme, fontFamily)
+        res = resolveTokens(res, conf, theme, fontFamily, isAnimated)
       }
       return res
     }
@@ -49,7 +50,7 @@ export const createPropMapper = (c: StaticConfig) => {
 
     if (value && value[0] === '$') {
       shouldReturn = true
-      value = getToken(key, value, conf, theme, fontFamily)
+      value = getToken(key, value, conf, theme, fontFamily, isAnimated)
     }
 
     if (isVariable(value)) {
@@ -65,7 +66,13 @@ export const createPropMapper = (c: StaticConfig) => {
   }
 }
 
-const resolveTokens = (input: Object, conf: TamaguiInternalConfig, theme: any, fontFamily: any) => {
+const resolveTokens = (
+  input: Object,
+  conf: TamaguiInternalConfig,
+  theme: any,
+  fontFamily: any,
+  isAnimated = false
+) => {
   let res = {}
   for (const rKey in input) {
     const fKey = conf.shorthands[rKey] || rKey
@@ -73,12 +80,12 @@ const resolveTokens = (input: Object, conf: TamaguiInternalConfig, theme: any, f
     if (isVariable(val)) {
       res[fKey] = val.variable
     } else if (typeof val === 'string') {
-      const fVal = val[0] === '$' ? getToken(fKey, val, conf, theme, fontFamily) : val
+      const fVal = val[0] === '$' ? getToken(fKey, val, conf, theme, fontFamily, isAnimated) : val
       res[fKey] = fVal
     } else {
       if (isObj(val)) {
         // for things like shadowOffset, hoverStyle which is a sub-object
-        res[fKey] = resolveTokens(val, conf, theme, fontFamily)
+        res[fKey] = resolveTokens(val, conf, theme, fontFamily, isAnimated)
       } else {
         // nullish values cant be tokens so need no exrta parsing
         res[fKey] = input[fKey]
@@ -98,11 +105,12 @@ const getToken = (
   value: string,
   { tokensParsed, themeParsed }: TamaguiInternalConfig,
   theme: any,
-  fontFamily: string | undefined = '$body'
+  fontFamily: string | undefined = '$body',
+  isAnimated = false
 ) => {
   const tokenVal = themeParsed[value]
   if (tokenVal) {
-    return isWeb && tokenVal.variable ? tokenVal.variable : tokenVal.val
+    return !isAnimated && isWeb && tokenVal.variable ? tokenVal.variable : tokenVal.val
   }
   let valOrVar: any
   if (key === 'fontFamily') {
@@ -122,6 +130,9 @@ const getToken = (
   }
   if (typeof valOrVar !== 'undefined') {
     if (isVariable(valOrVar)) {
+      if (!isWeb || !isAnimated) {
+        return valOrVar.val
+      }
       return valOrVar.variable
     } else {
       return valOrVar
