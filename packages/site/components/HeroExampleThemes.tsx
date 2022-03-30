@@ -71,7 +71,7 @@ export function HeroExampleCarousel() {
   }
 
   const width = 180
-  const scale = 0.5
+  const scale = 0.6
 
   useEffect(() => {
     if (scrollLock !== 'shouldAnimate') return

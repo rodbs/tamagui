@@ -15,13 +15,6 @@ type UseThemeState = {
   isRendering: boolean
 }
 
-const getKeyWithout$ = <Key extends string | symbol>(key: Key): Key => {
-  if (key[0] === '$') {
-    return (key as string).slice(1) as any
-  }
-  return key
-}
-
 export const useTheme = (
   themeName?: string | null,
   componentName?: string,
@@ -61,9 +54,6 @@ export const useTheme = (
       return themes[getTamagui().defaultTheme || 'light' || Object.keys(themes)[0]]
     }
     return new Proxy(theme, {
-      has(_, key) {
-        return getKeyWithout$(key) in theme
-      },
       get(_, key) {
         if (!name) {
           return Reflect.get(_, key)
@@ -92,25 +82,15 @@ export const useTheme = (
           activeTheme = theme
         }
         if (typeof key === 'string') {
-          // remove the $ prefix for token lookups
-          key = getKeyWithout$(key)
           if (key in activeTheme) {
             if (state.current.isRendering) {
               state.current.keys.add(key)
             }
             return activeTheme[key]
-          } else {
-            // if (process.env.NODE_ENV === 'development') {
-            //   if (typeof val === 'undefined') {
-            //     console.warn(`No theme value "${String(key)}" in`, activeTheme)
-            //     return null
-            //   }
-            //   if (!isVariable(val)) {
-            //     console.warn('Non variable!', val)
-            //   } else if (val.name !== key) {
-            //     console.warn('Non-matching name for variable to key', key, val.name)
-            //   }
-            // }
+          }
+          if (process.env.NODE_ENV === 'development') {
+            console.warn(`No theme value "${String(key)}" in`, activeTheme)
+            return null
           }
         }
         return Reflect.get(_, key)

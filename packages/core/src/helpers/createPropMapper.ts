@@ -110,8 +110,9 @@ const getToken = (
 ) => {
   let valOrVar: any
   let hasSet = false
-  if (value in theme) {
-    valOrVar = theme[value.slice(1)]
+  const valueName = value[0] === '$' ? value.slice(1) : value
+  if (valueName in theme) {
+    valOrVar = theme[valueName]
     hasSet = true
   } else {
     switch (key) {
@@ -138,7 +139,7 @@ const getToken = (
     }
     for (const cat in tokenCategories) {
       if (key in tokenCategories[cat]) {
-        const res = tokensParsed[cat][value] || theme[value.slice(1)]
+        const res = tokensParsed[cat][value]
         if (res) {
           valOrVar = res
           hasSet = true
