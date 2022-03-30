@@ -55,6 +55,11 @@ export function HeroExampleAnimations() {
   const [positionI, setPositionI] = useState(0)
   const position = positions[positionI]
   const animation = animationDescriptions[animationI]
+  const next = () => {
+    setPositionI((x) => (x + 1) % positions.length)
+  }
+
+  const settings = Object.entries(animation.settings)
 
   return (
     <YStack>
@@ -87,17 +92,12 @@ export function HeroExampleAnimations() {
               $sm={{ width: '100%' }}
             >
               <Square
-                // className="all ease-in ms300"
                 animation={animation.animation}
                 elevation="$4"
-                debug
                 size={110}
                 bc="$color"
-                // bc="red"
                 br="$9"
-                onPress={() => {
-                  setPositionI((x) => (x + 1) % positions.length)
-                }}
+                onPress={next}
                 {...position}
               >
                 <LogoIcon downscale={0.75} color="var(--background)" />
@@ -110,12 +110,8 @@ export function HeroExampleAnimations() {
                 iconAfter={Play}
                 theme="blue"
                 size="$6"
-                onPress={() => {
-                  setPositionI((x) => (x + 1) % positions.length)
-                }}
-              >
-                Go
-              </Button>
+                onPress={next}
+              />
             </YStack>
           </Theme>
           <Separator vertical />
@@ -138,6 +134,7 @@ export function HeroExampleAnimations() {
                       }}
                       onPress={() => {
                         setAnimationI(i)
+                        next()
                       }}
                     >
                       <Paragraph cursor="inherit" size="$4" fontWeight="800">
@@ -155,7 +152,7 @@ export function HeroExampleAnimations() {
             <Separator />
 
             <XStack p="$4" ai="center" jc="center">
-              {Object.entries(animation.settings).map(([key, value]) => {
+              {settings.map(([key, value], i) => {
                 return (
                   <React.Fragment key={key}>
                     <YStack>
@@ -164,7 +161,7 @@ export function HeroExampleAnimations() {
                       </Paragraph>
                       <Paragraph>{value}</Paragraph>
                     </YStack>
-                    <Separator vertical mx={20} />
+                    {i < settings.length - 1 && <Separator vertical mx={20} />}
                   </React.Fragment>
                 )
               })}

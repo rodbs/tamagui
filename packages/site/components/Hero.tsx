@@ -74,7 +74,7 @@ export function Hero() {
           <ContainerLarge mb={-23}>
             {/* <OutlineThemeComponentGrid /> */}
 
-            <YStack space="$8" position="relative" pt="$6" $gtSm={{ pt: '$6' }}>
+            <YStack space="$8" position="relative" pt="$6" $gtSm={{ pt: '$7' }}>
               <YStack
                 $sm={{
                   maxWidth: 550,

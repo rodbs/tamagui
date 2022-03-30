@@ -11,6 +11,7 @@ import { Features } from '../components/Features'
 import { HeroExampleAnimations } from '../components/HeroExampleAnimations'
 import { HeroExampleCode } from '../components/HeroExampleCode'
 import { HeroExampleCarousel } from '../components/HeroExampleThemes'
+import { PageSeparator } from './PageSeparator'
 
 export default function Home() {
   // return <HeroExampleAnimations />
@@ -21,19 +22,19 @@ export default function Home() {
       <YStack>
         <YStack space="$8">
           <Hero />
-          <Divider />
+          <PageSeparator />
           <HeroExampleCarousel />
-          <Divider />
+          <PageSeparator />
           <HeroExampleAnimations />
-          <Divider />
+          <PageSeparator />
           <HeroExampleCode />
-          <Divider />
+          <PageSeparator />
           <Performance />
-          <Divider />
+          <PageSeparator />
           <FeaturesItems />
-          <Divider />
+          <PageSeparator />
           <FeaturesGrid />
-          <Divider />
+          <PageSeparator />
           <Community />
         </YStack>
       </YStack>
@@ -54,9 +55,9 @@ const FeaturesItems = () => {
   return (
     <ContainerLarge position="relative">
       <YStack ai="center" space="$2">
-        <H2>Fully-loaded views</H2>
+        <H2>More built-in props</H2>
         <Paragraph maxWidth={400} ta="center" size="$6" theme="alt3">
-          Features built into the lowest level views that lead to huge savings in code.
+          Every view comes with time-saving features.
         </Paragraph>
       </YStack>
 
@@ -65,12 +66,10 @@ const FeaturesItems = () => {
           <Features
             items={[
               <FeatureItem label="Press & hover events">
-                Tamagui provides onHoverIn, onHoverOut, onPressIn, and onPressOut on all views,
-                bringing the convenience of web to native.
+                onHoverIn, onHoverOut, onPressIn, and onPressOut.
               </FeatureItem>,
               <FeatureItem label="Pseudo styles">
-                Style hover, press, and focus for all views, another typical big pain point in
-                styling native. Works in combination with media queries.
+                hoverStyle, pressStyle, and focusStyle. Works in combination with media queries.
               </FeatureItem>,
               <FeatureItem label="Media queries">
                 Every style can be adjusted based on screen sizes, written inline without losing
@@ -83,16 +82,13 @@ const FeaturesItems = () => {
           <Features
             items={[
               <FeatureItem label="Themes">
-                The theme prop lets you change the theme directly on each view, instead of adding
-                nesting all over.
+                Change themes with a single prop on all components.
               </FeatureItem>,
               <FeatureItem label="Animations">
-                Custom animations at the view level solve another big pain point in native and code
-                sharing between native and web.
+                One line animations, easy to configure down to the property.
               </FeatureItem>,
               <FeatureItem label="DOM escape hatches">
-                Pass className and any other HTML property directly to views. On native they are
-                ignored.
+                Pass className and HTML attributes directly. On native they are ignored.
               </FeatureItem>,
             ]}
           />
@@ -107,7 +103,7 @@ function Performance() {
     <ContainerLarge position="relative">
       <YStack ai="center" zi={1} space="$4">
         <YStack ai="center" space="$2">
-          <H2>Speed that makes you 🥵</H2>
+          <H2>Build more ambitious apps</H2>
           <H3 theme="alt2" fow="400">
             Performance, even with inline styles
           </H3>
@@ -149,16 +145,3 @@ function Performance() {
     </ContainerLarge>
   )
 }
-
-const Divider = () => (
-  <YStack
-    mt="$4"
-    mb="$2"
-    mx="auto"
-    als="center"
-    borderBottomColor="$borderColor"
-    borderBottomWidth={1}
-    width={100}
-    height={0}
-  />
-)

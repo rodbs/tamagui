@@ -218,7 +218,9 @@ export type TransformStyleProps = {
 //
 // base props that are accepted by createComponent (additional to react-native-web)
 //
-type ComponentPropsBase = {
+type Something<A> = A extends symbol ? Something<{}> : A
+
+type ComponentPropsBase = Something<{
   disabled?: boolean
   className?: string
   id?: string
@@ -236,7 +238,7 @@ type ComponentPropsBase = {
   onMouseLeave?: (e: GestureResponderEvent) => any
   space?: Tokens['space'][keyof Tokens['space']] | boolean | string | number
   pointerEvents?: string
-}
+}>
 
 type GetTokenFontKeysFor<A extends 'size' | 'weight' | 'letterSpacing' | 'family' | 'lineHeight'> =
   keyof Tokens['font'][keyof Tokens['font']][A]
