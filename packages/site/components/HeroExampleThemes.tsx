@@ -15,6 +15,7 @@ import {
   useDebounceValue,
 } from 'tamagui'
 
+import { useScrollPosition } from '../hooks/useScrollPosition'
 import { ActiveCircle } from './ActiveCircle'
 import { CodeInline } from './Code'
 import { ContainerLarge } from './Container'
@@ -43,7 +44,7 @@ const splitToFlat = ([a, b]: number[]) => {
   return a * 4 + b
 }
 
-export function HeroExampleCarousel() {
+export function HeroExampleThemes() {
   const { setTheme, theme: userTheme } = useTheme()
   const [activeI, setActiveI] = useState([0, 0])
   const [curColorI, curShadeI] = activeI
@@ -83,6 +84,13 @@ export function HeroExampleCarousel() {
     // @ts-ignore
     node.scrollTo({ x, y: 0 })
   }, [nextIndex, scrollLock])
+
+  useScrollPosition({
+    ref: scrollView,
+    onScroll: (props) => {
+      console.log('props', props)
+    },
+  })
 
   // scroll lock unset
   useEffect(() => {

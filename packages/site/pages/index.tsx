@@ -10,7 +10,7 @@ import { ContainerLarge } from '../components/Container'
 import { Features } from '../components/Features'
 import { HeroExampleAnimations } from '../components/HeroExampleAnimations'
 import { HeroExampleCode } from '../components/HeroExampleCode'
-import { HeroExampleCarousel } from '../components/HeroExampleThemes'
+import { HeroExampleThemes } from '../components/HeroExampleThemes'
 import { PageSeparator } from './PageSeparator'
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
         <YStack space="$8">
           <Hero />
           <PageSeparator />
-          <HeroExampleCarousel />
+          <HeroExampleThemes />
           <PageSeparator />
           <HeroExampleAnimations />
           <PageSeparator />
@@ -55,10 +55,10 @@ const FeaturesItems = () => {
   return (
     <ContainerLarge position="relative">
       <YStack ai="center" space="$2">
-        <H2>More built-in props</H2>
-        <Paragraph maxWidth={400} ta="center" size="$6" theme="alt3">
-          Every view comes with time-saving features.
-        </Paragraph>
+        <H2>More to every component</H2>
+        <H3 ta="center" theme="alt3" fow="400">
+          Time-saving props on every view.
+        </H3>
       </YStack>
 
       <XStack p="$6" space="$4" $sm={{ flexDirection: 'column' }}>
@@ -105,7 +105,7 @@ function Performance() {
         <YStack ai="center" space="$2">
           <H2>Build more ambitious apps</H2>
           <H3 theme="alt2" fow="400">
-            Performance, even with inline styles
+            UX, meet DX. Inline styles that run fast.
           </H3>
         </YStack>
 
