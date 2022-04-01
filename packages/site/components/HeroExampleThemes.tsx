@@ -1,4 +1,5 @@
 import { useTheme } from '@components/NextTheme'
+import throttle from 'lodash.throttle'
 import Link from 'next/link'
 import { SetStateAction, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { ScrollView } from 'react-native'
@@ -12,9 +13,11 @@ import {
   XStack,
   YStack,
   debounce,
+  useDebounce,
   useDebounceValue,
 } from 'tamagui'
 
+import { useGet } from '../hooks/useGet'
 import { useScrollPosition } from '../hooks/useScrollPosition'
 import { ActiveCircle } from './ActiveCircle'
 import { CodeInline } from './Code'
@@ -51,12 +54,13 @@ export function HeroExampleThemes() {
   const [theme, setSelTheme] = useState('')
   const nextIndex = splitToFlat(activeI)
   const curIndex = useDebounceValue(nextIndex, 300)
-  const isTransitioning = curIndex !== nextIndex
+  // const isTransitioning = curIndex !== nextIndex
   // const isMidTransition = useDebounceValue(isTransitioning, 150)
   // const altName = themes[1][curShadeI]
   const colorName = themes[0][curColorI]
   const scrollView = useRef<HTMLElement | null>(null)
   const [scrollLock, setScrollLock] = useState<null | 'shouldAnimate' | 'animate' | 'scroll'>(null)
+  const getLock = useGet(scrollLock)
 
   const updateActiveI = (to: SetStateAction<number[]>) => {
     setScrollLock('shouldAnimate')
@@ -85,11 +89,23 @@ export function HeroExampleThemes() {
     node.scrollTo({ x, y: 0 })
   }, [nextIndex, scrollLock])
 
+  const onScroll = useMemo(
+    () =>
+      throttle(({ percent }) => {
+        if (getLock() !== null) return
+        const node = scrollView.current
+        if (!node) return
+        const x = 5 * percent
+        console.log('scrollin', x)
+        // @ts-ignore
+        node.scrollTo({ x, y: 0, behavior: 'instant' })
+      }, 16),
+    []
+  )
+
   useScrollPosition({
     ref: scrollView,
-    onScroll: (props) => {
-      console.log('props', props)
-    },
+    onScroll,
   })
 
   // scroll lock unset

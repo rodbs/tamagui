@@ -4356,6 +4356,7 @@ __metadata:
     hast-util-to-string: ^1.0.4
     imagemin-mozjpeg: ^9.0.0
     imagemin-optipng: ^8.0.0
+    lodash.throttle: ^4.1.1
     mdx-bundler: ^8.0.1
     mdx-prism: ^0.3.4
     mini-css-extract-plugin: ^2.4.3
@@ -14162,6 +14163,13 @@ __metadata:
   dependencies:
     lodash._reinterpolate: ^3.0.0
   checksum: 863e025478b092997e11a04e9d9e735875eeff1ffcd6c61742aa8272e3c2cddc89ce795eb9726c4e74cef5991f722897ff37df7738a125895f23fc7d12a7bb59
+  languageName: node
+  linkType: hard
+
+"lodash.throttle@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "lodash.throttle@npm:4.1.1"
+  checksum: 129c0a28cee48b348aef146f638ef8a8b197944d4e9ec26c1890c19d9bf5a5690fe11b655c77a4551268819b32d27f4206343e30c78961f60b561b8608c8c805
   languageName: node
   linkType: hard
 

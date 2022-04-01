@@ -68,7 +68,6 @@ const percentScrolled = (
 ) => {
   const scrollTop = window.scrollY
   const nodeOffsetY = scrollTop + boundingRect.top
-  console.log('nodeOffsetY', nodeOffsetY)
   // Get the relevant measurements and positions
   const viewportHeight = window.innerHeight
   const elementHeight = element.offsetHeight
