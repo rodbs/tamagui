@@ -91,15 +91,20 @@ export function HeroExampleThemes() {
 
   const onScroll = useMemo(
     () =>
-      throttle(({ percent }) => {
-        if (getLock() !== null) return
-        const node = scrollView.current
-        if (!node) return
-        const x = 5 * percent
-        console.log('scrollin', x)
-        // @ts-ignore
-        node.scrollTo({ x, y: 0, behavior: 'instant' })
-      }, 16),
+      throttle(
+        ({ percent }) => {
+          if (getLock() !== null) return
+          const node = scrollView.current
+          if (!node) return
+          const x = 20 * percent
+          // @ts-ignore
+          node.scrollTo(0, x, false)
+        },
+        10,
+        {
+          leading: true,
+        }
+      ),
     []
   )
 

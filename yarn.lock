@@ -4345,6 +4345,7 @@ __metadata:
     "@tamagui/next-plugin": ^1.0.0-alpha.68
     "@tamagui/shorthands": ^1.0.0-alpha.68
     "@tamagui/theme-base": ^1.0.0-alpha.68
+    "@types/lodash.throttle": ^4.1.6
     "@types/react-native": ^0.67.3
     compare-versions: ^4.0.1
     copy-to-clipboard: ^3.3.1
@@ -4908,6 +4909,22 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: b5f8aa592cc21c16d99e69aec0976f12b893b055e4456d90148a610a6b6088e297b2ba5f38f8c8280cef006cfd8f9ec99e069905020882619dc5fc8aa46f5f27
+  languageName: node
+  linkType: hard
+
+"@types/lodash.throttle@npm:^4.1.6":
+  version: 4.1.6
+  resolution: "@types/lodash.throttle@npm:4.1.6"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: 8bc6e253c2365a03d7e2a36ef59ca0556ca51ab1a878cd4071b54874eaf75c564ae86b62661780a5d23dd532dbad81f685d25ae5450049a32fb4c968c94dd688
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*":
+  version: 4.14.181
+  resolution: "@types/lodash@npm:4.14.181"
+  checksum: 0d1863d8383fd2f8bb42e9e3fc1d6255bb88ff034d6df848941063698944313dae944fc1270315613e3d303fae7c7a9a86085ad3235ed6204c56c4b0b3699aa9
   languageName: node
   linkType: hard
 
