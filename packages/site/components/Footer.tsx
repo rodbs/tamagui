@@ -2,10 +2,10 @@ import { TamaguiLogo } from '@components/TamaguiLogo'
 import React from 'react'
 import { H4, Paragraph, Separator, Text, XStack, YStack } from 'tamagui'
 
-import { PageSeparator } from '../pages/PageSeparator'
 import { ContainerLarge } from './Container'
 import { ExternalIcon } from './ExternalIcon'
 import { Link } from './Link'
+import { PageSeparator } from './PageSeparator'
 
 export const Footer = () => {
   return (

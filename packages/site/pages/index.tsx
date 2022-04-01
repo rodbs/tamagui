@@ -11,7 +11,7 @@ import { Features } from '../components/Features'
 import { HeroExampleAnimations } from '../components/HeroExampleAnimations'
 import { HeroExampleCode } from '../components/HeroExampleCode'
 import { HeroExampleThemes } from '../components/HeroExampleThemes'
-import { PageSeparator } from './PageSeparator'
+import { PageSeparator } from '../components/PageSeparator'
 
 export default function Home() {
   // return <HeroExampleAnimations />
