@@ -68,6 +68,7 @@ const HeaderFloating = () => {
         y={isScrolled ? 0 : -50}
         py={2}
         bbw={1}
+        bbc="$borderColor"
         zi={1000}
         pos="fixed"
         top={0}
