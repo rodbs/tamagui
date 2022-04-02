@@ -2,12 +2,15 @@ import { Community } from '@components/Community'
 import { FeaturesGrid } from '@components/FeaturesGrid'
 import { Hero } from '@components/Hero'
 import { TitleAndMetaTags } from '@components/TitleAndMetaTags'
+import throttle from 'lodash.throttle'
 import Link from 'next/link'
-import { Button, H2, H3, Image, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
+import { useEffect, useState } from 'react'
+import { Button, H2, H3, Image, Paragraph, Text, Theme, XStack, YStack, debounce } from 'tamagui'
 
 import { BenchmarkChart } from '../components/BenchmarkChart'
 import { ContainerLarge } from '../components/Container'
 import { Features } from '../components/Features'
+import { Header } from '../components/Header'
 import { HeroExampleAnimations } from '../components/HeroExampleAnimations'
 import { HeroExampleCode } from '../components/HeroExampleCode'
 import { HeroExampleThemes } from '../components/HeroExampleThemes'
@@ -19,6 +22,7 @@ export default function Home() {
   return (
     <>
       <TitleAndMetaTags title="Tamagui — React Native + Web UI kit" />
+      <HeaderFloating />
       <YStack>
         <YStack space="$8">
           <Hero />
@@ -39,6 +43,43 @@ export default function Home() {
         </YStack>
       </YStack>
     </>
+  )
+}
+
+const HeaderFloating = () => {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  if (typeof document !== 'undefined') {
+    useEffect(() => {
+      const onScroll = throttle(() => {
+        setIsScrolled(window.scrollY > 250)
+      }, 50)
+      window.addEventListener('scroll', onScroll)
+      return () => {
+        window.removeEventListener('scroll', onScroll)
+      }
+    }, [])
+  }
+
+  return (
+    <Theme name="dark">
+      <XStack
+        className="ease-out all ms200"
+        y={isScrolled ? 0 : -50}
+        py={2}
+        bbw={1}
+        zi={1000}
+        pos="fixed"
+        top={0}
+        left={0}
+        right={0}
+        bc="$background"
+      >
+        <ContainerLarge>
+          <Header floating />
+        </ContainerLarge>
+      </XStack>
+    </Theme>
   )
 }
 

@@ -8,7 +8,6 @@ export const shorthands = {
   bc: 'backgroundColor',
   blw: 'borderLeftWidth',
   boc: 'borderColor',
-  bow: 'borderWidth',
   br: 'borderRadius',
   brw: 'borderRightWidth',
   btlr: 'borderTopLeftRadius',
