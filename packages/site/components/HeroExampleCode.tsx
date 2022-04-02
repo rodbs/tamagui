@@ -20,7 +20,7 @@ export function HeroExampleCode() {
         <YStack space="$2">
           <H2 als="center">Next-generation compiler</H2>
           <H3 ta="center" theme="alt2" als="center" fow="400">
-            Faster runtime 🤝 less code 🤝 more platforms.
+            Faster runtime 🤝 less code 🤝 more platforms
           </H3>
         </YStack>
 

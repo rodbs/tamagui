@@ -1,7 +1,6 @@
 import { useTheme } from '@components/NextTheme'
-import throttle from 'lodash.throttle'
 import Link from 'next/link'
-import { SetStateAction, memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { SetStateAction, memo, useEffect, useMemo, useRef, useState } from 'react'
 import { ScrollView } from 'react-native'
 import {
   Button,
@@ -13,14 +12,11 @@ import {
   XStack,
   YStack,
   debounce,
-  useDebounce,
   useDebounceValue,
 } from 'tamagui'
 
 import { useGet } from '../hooks/useGet'
-import { useScrollPosition } from '../hooks/useScrollPosition'
 import { ActiveCircle } from './ActiveCircle'
-import { CodeInline } from './Code'
 import { useTint } from './ColorToggleButton'
 import { ContainerLarge } from './Container'
 import { MediaPlayer } from './MediaPlayer'

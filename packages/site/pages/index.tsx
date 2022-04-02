@@ -99,7 +99,7 @@ const FeaturesItems = () => {
       <YStack ai="center" space="$2">
         <H2>More to every component</H2>
         <H3 ta="center" theme="alt3" fow="400">
-          Time-saving props on every view.
+          Time-saving props on every view
         </H3>
       </YStack>
 
@@ -147,7 +147,7 @@ function Performance() {
         <YStack ai="center" space="$2">
           <H2>Build more ambitious apps</H2>
           <H3 theme="alt2" fow="400">
-            UX, meet DX. Inline styles that run fast.
+            UX, meet DX - inline styles that run fast
           </H3>
         </YStack>
 

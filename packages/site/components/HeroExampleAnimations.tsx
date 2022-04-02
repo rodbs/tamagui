@@ -2,7 +2,18 @@ import { Play } from '@tamagui/feather-icons'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native'
-import { Button, H2, H3, Paragraph, Separator, Square, Theme, XStack, YStack } from 'tamagui'
+import {
+  Button,
+  H2,
+  H3,
+  Paragraph,
+  Separator,
+  Square,
+  Theme,
+  ThemeReset,
+  XStack,
+  YStack,
+} from 'tamagui'
 
 import { animations } from '../constants/animations'
 import { useTint } from './ColorToggleButton'
@@ -102,7 +113,9 @@ export function HeroExampleAnimations() {
                 onPress={next}
                 {...position}
               >
-                <LogoIcon downscale={0.75} color="var(--background)" />
+                <ThemeReset>
+                  <LogoIcon downscale={0.75} color="var(--background)" />
+                </ThemeReset>
               </Square>
 
               <Button
