@@ -16,7 +16,7 @@ import { StyleSheet, Text, View, ViewStyle } from 'react-native'
 
 import { onConfiguredOnce } from './conf'
 import { stackDefaultStyles } from './constants/constants'
-import { isTouchDevice, isWeb } from './constants/platform'
+import { isAndroid, isTouchDevice, isWeb } from './constants/platform'
 import { rnw } from './constants/rnw'
 import { addStylesUsingClassname, useStylesAsClassname } from './helpers/addStylesUsingClassname'
 import { extendStaticConfig, parseStaticConfig } from './helpers/extendStaticConfig'
@@ -182,9 +182,14 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
       onStartShouldSetResponderCapture,
       onMouseDown,
       onClick,
+      nativeID,
 
       accessible,
       accessibilityRole,
+
+      // android
+      collapsable,
+      focusable,
 
       // ignore from here on out
       theme: _themeProp,
@@ -195,6 +200,15 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
     } = viewPropsIn
 
     let viewProps: StackProps = viewPropsRest
+
+    if (nativeID) {
+      viewProps.id = nativeID
+    }
+
+    if (isAndroid) {
+      if (collapsable) viewProps.collapsable = collapsable
+      if (focusable) viewProps.focusable = focusable
+    }
 
     if (!isWeb) {
       if (accessible) viewProps.accessible = accessible

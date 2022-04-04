@@ -57,8 +57,15 @@ export const Tooltip = ({
         return null
       }
       return (
-        // @ts-ignore
-        <YStack animated animation="tooltip" enterStyle={enterStyle} {...tooltipContainerProps}>
+        <YStack
+          key="tooltip-child"
+          animated
+          // @ts-ignore
+          animation="tooltip"
+          // @ts-ignore
+          enterStyle={enterStyle}
+          {...tooltipContainerProps}
+        >
           {!!showArrow && (
             //
             <HoverablePopover.Arrow backgroundColor="$background" />

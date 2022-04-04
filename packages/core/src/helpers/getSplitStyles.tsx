@@ -75,16 +75,12 @@ export const getSplitStyles = (
 
       // pseudo
       if (isPseudo) {
-        if (key === 'enterStyle') {
-          console.log('ok?', val, isMounted)
-        }
         if (!val) continue
         if (key === 'enterStyle') {
           if (isMounted) {
             // once mounted we can ignore enterStyle
             continue
           }
-          console.log('not mounted adding enter style')
           style.push(getSubStyle(val, staticConfig, theme, props))
           continue
         }
