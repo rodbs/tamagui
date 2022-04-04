@@ -80,6 +80,7 @@ export const Tooltip = ({
           <Theme name={alwaysDark ? 'dark' : null}>
             <TooltipFrame
               elevation={size}
+              pointerEvents="none"
               backgroundColor="$background"
               maxWidth={400}
               size={size}

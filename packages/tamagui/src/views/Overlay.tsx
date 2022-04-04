@@ -25,6 +25,11 @@ import React from 'react'
 import { Modal, Platform } from 'react-native'
 
 import { useKeyboardDismissable } from '../hooks/useKeyboardDismissable'
+import { ExitAnimationContext } from './ExitAnimationContext'
+
+// import { ExitAnimationContext } from './ExitAnimationContext';
+
+// TODO remove ExitAnimationContext
 
 interface IOverlayProps {
   isOpen?: boolean
@@ -42,23 +47,33 @@ export function Overlay({
   isKeyboardDismissable = true,
   onRequestClose,
 }: IOverlayProps) {
+  const [exited, setExited] = React.useState(!isOpen)
+
   useKeyboardDismissable({
     enabled: isOpen && isKeyboardDismissable,
     callback: onRequestClose ? onRequestClose : () => {},
   })
 
-  // if (exited && !isOpen) {
-  //   return null
-  // }
+  if (exited && !isOpen) {
+    return null
+  }
 
   // Android handles multiple Modal in RN and is better for accessibility as it shifts accessibility focus on mount, however it may not needed in case of tooltips, toast where one doesn't need to shift accessibility focus
   if (Platform.OS === 'android' && useRNModalOnAndroid) {
     return (
-      <Modal transparent visible={true} onRequestClose={onRequestClose}>
-        {children}
-      </Modal>
+      <ExitAnimationContext.Provider value={{ exited, setExited }}>
+        <Modal transparent visible={true} onRequestClose={onRequestClose}>
+          {children}
+        </Modal>
+      </ExitAnimationContext.Provider>
     )
   }
 
-  return <OverlayContainer>{children}</OverlayContainer>
+  return (
+    <OverlayContainer>
+      <ExitAnimationContext.Provider value={{ exited, setExited }}>
+        {children}
+      </ExitAnimationContext.Provider>
+    </OverlayContainer>
+  )
 }
