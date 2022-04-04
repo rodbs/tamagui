@@ -56,6 +56,8 @@ const defaultComponentState = {
   press: false,
   pressIn: false,
   focus: false,
+  // only used by enterStyle
+  mounted: false,
 }
 
 type ComponentState = typeof defaultComponentState
@@ -117,12 +119,35 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
     const hasTextAncestor = isWeb ? useContext(TextAncestorContext) : false
     const hostRef = useRef(null)
 
+    const hasEnterStyle = !!props.enterStyle
+
+    // isMounted
+    const internal = useRef<{ isMounted: boolean }>()
+    if (!internal.current) {
+      internal.current = {
+        isMounted: true,
+      }
+    }
+    useEffect(() => {
+      if (hasEnterStyle) {
+        // we need to use state to properly have mounted go from false => true
+        set({
+          mounted: true,
+        })
+      }
+      internal.current!.isMounted = true
+      return () => {
+        mouseUps.delete(unPress)
+        internal.current!.isMounted = false
+      }
+    }, [])
+
     const {
       viewProps: viewPropsIn,
       pseudos,
       style,
       classNames,
-    } = getSplitStyles(props, staticConfig, theme)
+    } = getSplitStyles(props, staticConfig, theme, state.mounted)
 
     const {
       tag,
@@ -197,25 +222,6 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
         onStartShouldSetResponderCapture,
       })
     }
-
-    const internal = useRef<{ isMounted: boolean }>()
-    if (!internal.current) {
-      internal.current = {
-        isMounted: true,
-      }
-    }
-
-    useEffect(() => {
-      internal.current!.isMounted = true
-      if (pseudos?.enterStyle) {
-        // force update when enterStyle is set to allow animation driver to handle that
-        forceUpdate()
-      }
-      return () => {
-        mouseUps.delete(unPress)
-        internal.current!.isMounted = false
-      }
-    }, [])
 
     const useAnimations = tamaguiConfig.animations?.useAnimations as UseAnimationHook | undefined
     const isAnimated = !!(useAnimations && props.animation)
