@@ -3,11 +3,10 @@ import { FeaturesGrid } from '@components/FeaturesGrid'
 import { Hero } from '@components/Hero'
 import { TitleAndMetaTags } from '@components/TitleAndMetaTags'
 import { useMemo } from 'react'
-import { Button, InteractiveContainer, Square, Theme, XStack, YStack } from 'tamagui'
+import { XStack, YStack } from 'tamagui'
 
 import { useTint } from '../components/ColorToggleButton'
 import { ContainerLarge } from '../components/Container'
-import DrawerDemo from '../components/demos/DrawerDemo'
 import { HeaderFloating } from '../components/HeaderFloating'
 import { HeroBelow } from '../components/HeroBelow'
 import { HeroExampleAnimations } from '../components/HeroExampleAnimations'
@@ -15,61 +14,13 @@ import { HeroExampleCode } from '../components/HeroExampleCode'
 import { HeroExampleProps } from '../components/HeroExampleProps'
 import { HeroExampleThemes } from '../components/HeroExampleThemes'
 import { HeroPerformance } from '../components/HeroPerformance'
-import { HeroResponsive, Safari } from '../components/HeroResponsive'
+import { HeroResponsive } from '../components/HeroResponsive'
 import { HeroTypography } from '../components/HeroTypography'
 import { InstallInput } from '../components/InstallInput'
-import { MediaPlayer } from '../components/MediaPlayer'
 import { SearchButton } from '../components/Search'
-import { Test } from '../components/Test'
 import { ThemeTint } from '../components/ThemeTint'
 
 export default function Home() {
-  // return (
-  //   <Section>
-  //     <HeroResponsive />
-  //   </Section>
-  // )
-  // return (
-  //   <InteractiveContainer theme="blue" maxWidth="100%" als="center">
-  //     {['zero', 'one'].map((example, i) => {
-  //       return (
-  //         <Button theme={i === 0 ? 'active' : null} key={i} borderRadius="$0">
-  //           {example}
-  //         </Button>
-  //       )
-  //     })}
-  //   </InteractiveContainer>
-  // )
-  // return (
-  //   <>
-  //     {/* <XStack>
-  //       <Safari />
-  //     </XStack> */}
-  //     <Theme name="green">
-  //       <XStack f={1} flexWrap="wrap" space scale={0.8} x={-140}>
-  //         <Theme name="darker">
-  //           <MediaPlayer />
-  //         </Theme>
-  //         <MediaPlayer />
-  //         <MediaPlayer theme="alt1" />
-  //         <MediaPlayer theme="alt2" />
-  //         <MediaPlayer theme="alt3" />
-  //         <MediaPlayer theme="alt4" />
-  //       </XStack>
-
-  //       <XStack>
-  //         {[1, 2, 3, 4, 5, 6, 7].map((i) => {
-  //           return <Square key={i} size={100} bc={`$green${i}`} />
-  //         })}
-  //       </XStack>
-  //     </Theme>
-  //   </>
-  // )
-  // return <HeroExampleThemes />
-  // return <HeroExampleCode />
-  // return <DrawerDemo />
-  // return <Test />
-
   return (
     <>
       <TitleAndMetaTags title="Tamagui — React Native + Web UI kit" />
