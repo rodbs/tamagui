@@ -359,7 +359,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
         if (process.env.NODE_ENV === 'development') {
           if (props['debug']) {
             // prettier-ignore
-            console.log('  » className', { isStringElement, pseudos, state, style, styles, classList, stylesClassNames, className: className.trim().split(' '), themeClassName: theme.className })
+            console.log('  » className', { isStringElement, pseudos, state, defaultsClassName, classNames, propsClassName: props.className, style, styles, classList, stylesClassNames, className: className.trim().split(' '), themeClassName: theme.className })
           }
         }
         viewProps.className = className

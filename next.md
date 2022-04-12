@@ -1,4 +1,6 @@
 - beta:
+  - move compiler to output inline classname props to fix button bugs:
+    - bc="$background" => backgroundColor="_background-sy78as67"
   - fix on native + simple native demo (maybe with starters repo)
   - compiler 100% on site
   - animations
@@ -27,7 +29,6 @@
   - <BlurView />
   - check theme change slow
   - slow types
-  - fix memory leak causing OOM eventually on site
   - test component theme + alt theme (plus with compiled)
   - docs: extractable(), deoptProps, getExpandedShorthands
 
@@ -41,6 +42,7 @@
   - floating-ui
 
 - 3
+  - fix memory leak causing OOM eventually on site
   - // this can be done with CSS entirely right?
   - useLayout feature hook
   - optional 18-only separate releases? beta.3.react18?
