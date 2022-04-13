@@ -60,6 +60,32 @@ export const getSplitStyles = (
   const classNames: Record<string, string> = {}
   const pseudos: PseudoStyles = {}
   const medias: Record<MediaKeys, ViewStyle> = {}
+  let cur: ViewStyle | null = null
+
+  function next() {
+    if (!cur) return
+    normalizeStyleObject(cur)
+    if (isWeb) {
+      const atomic = getStylesAtomic(cur)
+      if (props['debug']) console.log('gettin em', cur, atomic)
+      for (const style of atomic) {
+        classNames[style.identifier] = style.identifier
+        insertStyleRule(style.identifier, style.rules[0])
+      }
+    } else {
+      for (const key in cur) {
+        if (key in stylePropsTransform) {
+          mergeTransform(style, key, cur[key])
+        } else {
+          style[key] = cur[key]
+        }
+      }
+    }
+    // reset it for next group of styles
+    cur = null
+  }
+
+  if (props['debug']) console.log('GO', props)
 
   for (const keyInit in props) {
     // be sure to sync next few lines below to getSubStyle (*1)
@@ -91,23 +117,6 @@ export const getSplitStyles = (
         : staticConfig.propMapper(keyInit, valInit, theme, props, staticConfig, resolveVariablesAs)
 
     const expanded = out === true || !out ? [[keyInit, valInit]] : Object.entries(out)
-
-    function add(key: string, val: any) {
-      normalizeStyleObject(val)
-      if (isWeb) {
-        const atomic = getStylesAtomic({ [key]: val })
-        for (const style of atomic) {
-          classNames[style.identifier] = style.identifier
-          insertStyleRule(style.identifier, style.rules[0])
-        }
-      } else {
-        if (key in stylePropsTransform) {
-          mergeTransform(style, key, val)
-        } else {
-          Object.assign(style, val)
-        }
-      }
-    }
 
     for (const [key, val] of expanded) {
       if (val === undefined) {
@@ -180,7 +189,8 @@ export const getSplitStyles = (
 
       // TODO
       if (key === 'style' || key.startsWith('_style')) {
-        add(key, val)
+        next()
+        Object.assign(style, val)
         continue
       }
 
@@ -190,18 +200,22 @@ export const getSplitStyles = (
       }
 
       if (validStyleProps[key]) {
-        add(key, val)
+        cur = cur || {}
+        cur[key] = val
         continue
       }
 
       // pass to view props
       if (!staticConfig.variants || !(key in staticConfig.variants)) {
         if (key !== 'animation' && key !== 'debug') {
+          next()
           viewProps[key] = val
         }
       }
     }
   }
+
+  next()
 
   return {
     viewProps,

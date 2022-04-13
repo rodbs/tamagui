@@ -41,6 +41,7 @@ export const Test = () => {
 
 export const Card = styled(YStack, {
   name: 'Card',
+  debug: true,
   className: 'transition all ease-in ms100',
   borderRadius: '$2',
   backgroundColor: '$background',

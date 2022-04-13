@@ -617,6 +617,10 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
       'variable'
     )
 
+    if (shouldDebug) {
+      console.log('splitStyleResult', splitStyleResult, initialTheme)
+    }
+
     const { classNames, pseudos, style, viewProps } = splitStyleResult
 
     if (isWeb) {
