@@ -1,6 +1,6 @@
 // debug 123
-import React, { useState } from 'react'
-import { Theme, YStack, styled } from 'tamagui'
+import { useState } from 'react'
+import { Theme, Title, Tooltip, YStack, styled } from 'tamagui'
 
 import Tamagui from './tamagui.config'
 
@@ -19,7 +19,22 @@ export const Sandbox = () => {
 }
 
 export const Test = () => {
-  return <YStack bc="red" w={100} h={100} />
+  return (
+    <Title
+      size="$9"
+      $gtSm={{
+        size: '$11',
+        ta: 'center',
+      }}
+      $gtMd={{
+        size: '$12',
+        maxWidth: 900,
+        mx: '$4',
+      }}
+    >
+      design systems for React&nbsp;Native&nbsp;&&nbsp;Web, faster.
+    </Title>
+  )
 
   // return <AnimationTest />
   // return (

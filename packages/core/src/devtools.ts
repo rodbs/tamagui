@@ -1,4 +1,5 @@
 import { onConfiguredOnce } from './conf'
+import { rnw } from './constants/rnw'
 import { getAllSelectors } from './helpers/insertStyleRule'
 
 onConfiguredOnce((conf) => {
@@ -7,6 +8,7 @@ onConfiguredOnce((conf) => {
   }
   globalThis['Tamagui'] = {
     ...conf,
+    rnw,
     get allSelectors() {
       return getAllSelectors()
     },

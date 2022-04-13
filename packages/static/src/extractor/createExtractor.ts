@@ -1,7 +1,14 @@
 import traverse, { NodePath, Visitor } from '@babel/traverse'
 import * as t from '@babel/types'
-import type { StackProps, StaticConfigParsed, TamaguiInternalConfig } from '@tamagui/core'
-import { getSplitStyles, mediaQueryConfig, pseudos } from '@tamagui/core-node'
+import {
+  StackProps,
+  StaticConfigParsed,
+  TamaguiInternalConfig,
+  getSplitStyles,
+  mediaQueryConfig,
+  pseudos,
+  rnw,
+} from '@tamagui/core-node'
 import { stylePropsTransform } from '@tamagui/helpers'
 import { difference, pick } from 'lodash'
 
@@ -23,6 +30,7 @@ import { loadTamagui } from './loadTamagui'
 import { logLines } from './logLines'
 import { normalizeTernaries } from './normalizeTernaries'
 import { removeUnusedHooks } from './removeUnusedHooks'
+import { validHTMLAttributes } from './validHTMLAttributes'
 
 const UNTOUCHED_PROPS = {
   key: true,
@@ -636,20 +644,47 @@ export function createExtractor() {
                   staticConfig
                 )
                 if (out) {
+                  // translate to DOM-compat
+                  out = rnw.createDOMProps(isTextView ? 'span' : 'div', out)
+                  // remove className - we dont use rnw styling
+                  delete out.className
+
                   keys = Object.keys(out)
                 }
               }
-              for (const key of keys) {
+
+              const attributes = keys.map((key) => {
+                const val = out[key]
                 if (!isValidStyleKey(key)) {
+                  if (validHTMLAttributes[key]) {
+                    return {
+                      type: 'attr',
+                      value: t.jsxAttribute(
+                        t.jsxIdentifier(key),
+                        t.jsxExpressionContainer(literalToAst(val))
+                      ),
+                    } as const
+                  }
                   if (shouldPrintDebug) {
                     console.log('  ! inlining, non-static', key)
                   }
                   inlinePropCount++
                 }
-              }
+                return {
+                  type: 'style',
+                  value: { [name]: styleValue },
+                  name,
+                  attr: path.node,
+                } as const
+              })
+
               if (inlinePropCount) {
+                // bail
                 return attr
               }
+
+              // return evaluated attributes
+              return attributes
             }
 
             // FAILED = dynamic or ternary, keep going
