@@ -19,6 +19,10 @@ export const stylePropsView = Object.freeze({
   backfaceVisibility: true,
   backgroundColor: true,
   borderBottomColor: true,
+  borderBottomStyle: true,
+  borderTopStyle: true,
+  borderLeftStyle: true,
+  borderRightStyle: true,
   borderBottomEndRadius: true,
   borderBottomLeftRadius: true,
   borderBottomRightRadius: true,
@@ -103,6 +107,7 @@ export const stylePropsView = Object.freeze({
     contain: true,
     pointerEvents: true,
     boxSizing: true,
+    boxShadow: true,
   }),
 })
 

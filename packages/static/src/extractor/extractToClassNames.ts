@@ -29,6 +29,14 @@ const mergeStyleGroups = {
   shadowOffset: true,
 }
 
+export type ExtractedResponse = {
+  js: string | Buffer
+  styles: string
+  stylesPath?: string
+  ast: t.File
+  map: any // RawSourceMap from 'source-map'
+}
+
 export function extractToClassNames({
   loader,
   extractor,
@@ -47,13 +55,7 @@ export function extractToClassNames({
   shouldPrintDebug: boolean
   cssPath: string
   threaded?: boolean
-}): null | {
-  js: string | Buffer
-  styles: string
-  stylesPath?: string
-  ast: t.File
-  map: any // RawSourceMap from 'source-map'
-} {
+}): ExtractedResponse | null {
   if (typeof source !== 'string') {
     throw new Error('`source` must be a string of javascript')
   }
@@ -231,7 +233,7 @@ export function extractToClassNames({
 
       if (shouldPrintDebug) {
         // prettier-ignore
-        console.log('  classnames (after)\n', logLines(finalClassNames.map(x => x['value']).join(' ')))
+        console.log('  finalClassNames\n', logLines(finalClassNames.map(x => x['value']).join(' ')))
       }
 
       function addTernaryStyle(ternary: Ternary, a: any, b: any) {

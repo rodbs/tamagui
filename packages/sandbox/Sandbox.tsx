@@ -1,6 +1,6 @@
 // debug 123
 import { useState } from 'react'
-import { Theme, Title, Tooltip, YStack, styled } from 'tamagui'
+import { Button, Theme, Title, Tooltip, YStack, styled } from 'tamagui'
 
 import Tamagui from './tamagui.config'
 
@@ -20,56 +20,37 @@ export const Sandbox = () => {
 
 export const Test = () => {
   return (
-    <Title
-      size="$9"
-      $gtSm={{
-        size: '$11',
-        ta: 'center',
-      }}
-      $gtMd={{
-        size: '$12',
-        maxWidth: 900,
-        mx: '$4',
-      }}
-    >
-      design systems for React&nbsp;Native&nbsp;&&nbsp;Web, faster.
-    </Title>
+    <YStack ai="flex-start" $gtSm={{ ai: 'center' }} space="$5">
+      <SearchButton color="$color" width={350} size="$6">
+        Search Docs...
+      </SearchButton>
+    </YStack>
   )
-
-  // return <AnimationTest />
-  // return (
-  //   <>
-  //     <Card
-  //       debug
-  //       width="33.33%"
-  //       $sm={{ width: 'auto' }}
-  //       space
-  //       tag="a"
-  //       href="https://twitter.com/tamagui_js"
-  //       target="_blank"
-  //       rel="noopener noreferrer"
-  //       p="$4"
-  //     >
-  //       hello
-  //     </Card>
-  //   </>
-  // )
 }
 
-export const Card = styled(YStack, {
-  name: 'Card',
-  debug: true,
-  className: 'transition all ease-in ms100',
-  borderRadius: '$2',
-  backgroundColor: '$background',
-  flexShrink: 1,
-  elevation: '$2',
-  hoverStyle: {
-    backgroundColor: '$backgroundHover',
-    elevation: '$4',
-    y: -4,
-  },
-})
+export const SearchButton = (props: any) => {
+  const x = (
+    <Button
+      debug
+      ref={undefined as any}
+      // className="all ease-in ms100"
+      jc="flex-start"
+      borderWidth={1}
+      textAlign="left"
+      elevation="$1"
+      color="$colorTranslucent"
+      hoverStyle={{
+        elevation: '$4',
+      }}
+      {...props}
+      borderRadius={1000}
+    />
+  )
+
+  console.log('1234123', x)
+
+  return x
+}
 
 // const AnimationTest = () => {
 //   const [positionI, setPositionI] = useState(0)
@@ -138,49 +119,3 @@ export const Card = styled(YStack, {
 //     },
 //   },
 // ]
-
-// export const HomeH2 = styled(H2, {
-//   debug: true,
-
-//   mt: -20,
-//   ta: 'center',
-//   als: 'center',
-//   size: '$10',
-//   letterSpacing: -2,
-//   fontSize: 40,
-
-//   $sm: {
-//     size: '$2',
-//     bc: 'red',
-//     letterSpacing: -1,
-//   },
-// })
-
-// export const Test2 = () => {
-//   return (
-//     <XStack width={1200} height={200} pos="relative">
-//       <Marker name="1" l={300} />
-//       <Marker name="2" l={500} />
-//       <Marker name="3" l={800} />
-//     </XStack>
-//   )
-// }
-
-// const Marker = ({ name, active, onPress, ...props }: any) => {
-//   return (
-//     <YStack pos="absolute" l={800} {...props}>
-//       <XStack bc="red" pe="none" ai="flex-start" space>
-//         <YStack w={3} h={80} bc="red" opacity={active ? 0.5 : 0.2} />
-//         <Button
-//           borderWidth={1}
-//           size="$3"
-//           onPress={() => {
-//             onPress(name)
-//           }}
-//         >
-//           {name}
-//         </Button>
-//       </XStack>
-//     </YStack>
-//   )
-// }

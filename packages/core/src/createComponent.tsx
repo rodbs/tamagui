@@ -22,7 +22,12 @@ import { isVariable } from './createVariable'
 import { ComponentState, defaultComponentState } from './defaultComponentState'
 import { addStylesUsingClassname, useStylesAsClassname } from './helpers/addStylesUsingClassname'
 import { extendStaticConfig, parseStaticConfig } from './helpers/extendStaticConfig'
-import { PseudoStyles, SplitStyleResult, getSplitStyles } from './helpers/getSplitStyles'
+import {
+  ClassNamesObject,
+  PseudoStyles,
+  SplitStyleResult,
+  getSplitStyles,
+} from './helpers/getSplitStyles'
 import { wrapThemeManagerContext } from './helpers/wrapThemeManagerContext'
 import { useFeatures } from './hooks/useFeatures'
 import { usePressable } from './hooks/usePressable'
@@ -90,7 +95,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
   let defaultPseudos: PseudoStyles = {}
   let defaultNativeStyle: any
   let defaultNativeStyleSheet: StyleSheet.NamedStyles<{ base: {} }> | null = null
-  let defaultsClassName = ''
+  let defaultsClassName: ClassNamesObject | null = null
   let initialTheme: any
   let splitStyleResult: SplitStyleResult | null = null
 
@@ -127,7 +132,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
       medias,
       style,
       classNames,
-    } = getSplitStyles(props, staticConfig, theme, state)
+    } = getSplitStyles(props, staticConfig, theme, state, defaultsClassName)
 
     const {
       tag,
@@ -336,11 +341,10 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
         const fontFamily =
           fontFamilyName && fontFamilyName[0] === '$' ? fontFamilyName.slice(1) : null
         const classList = [
-          componentName ? componentClassName : null,
-          fontFamily ? `font_${fontFamily}` : null,
+          componentName ? componentClassName : '',
+          fontFamily ? `font_${fontFamily}` : '',
           theme.className,
-          defaultsClassName,
-          classNames,
+          classNames ? Object.values(classNames).join(' ') : '',
           // stylesClassNames,
         ]
 
@@ -349,7 +353,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
         // TODO MOVE TO VARIANTS [number] [any]
         // numberOfLines != null && numberOfLines > 1 && cssText.textMultiLine,
 
-        const className = concatClassName(...classList)
+        const className = classList.join(' ')
         if (process.env.NODE_ENV === 'development') {
           if (props['debug']) {
             // prettier-ignore
@@ -609,13 +613,10 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
     AnimatedText = tamaguiConfig.animations?.Text
     AnimatedView = tamaguiConfig?.animations?.View
     initialTheme = conf.themes[conf.defaultTheme || Object.keys(conf.themes)[0]]
-    splitStyleResult = getSplitStyles(
-      staticConfig.defaultProps,
-      staticConfig,
-      initialTheme,
-      { mounted: true },
-      'variable'
-    )
+    splitStyleResult = getSplitStyles(staticConfig.defaultProps, staticConfig, initialTheme, {
+      mounted: true,
+      resolveVariablesAs: 'variable',
+    })
 
     if (shouldDebug) {
       console.log('splitStyleResult', splitStyleResult, initialTheme)
@@ -624,15 +625,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
     const { classNames, pseudos, style, viewProps } = splitStyleResult
 
     if (isWeb) {
-      if (classNames) {
-        defaultsClassName += Array.isArray(classNames) ? classNames.join(' ') : ''
-      }
-      const stylesObj = {}
-      for (const k in style) {
-        const v = style[k]
-        stylesObj[k] = isVariable(v) ? v.variable : v
-      }
-      defaultsClassName += addStylesUsingClassname([stylesObj, pseudos])
+      defaultsClassName = classNames
     }
 
     // for use in animations + native

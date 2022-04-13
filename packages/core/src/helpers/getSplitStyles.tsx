@@ -30,6 +30,8 @@ export type PseudoStyles = {
   exitStyle?: ViewStyle
 }
 
+export type ClassNamesObject = Record<string, string>
+
 export type SplitStyleResult = ReturnType<typeof getSplitStyles>
 
 function normalizeStyleObject(style: any) {
@@ -53,13 +55,16 @@ export const getSplitStyles = (
   theme: ThemeObject,
   state: Partial<ComponentState> & {
     noClassNames?: boolean
+    resolveVariablesAs?: ResolveVariableTypes
   },
-  resolveVariablesAs?: ResolveVariableTypes
+  defaultClassNames?: ClassNamesObject | null
 ) => {
   const validStyleProps = staticConfig.isText ? stylePropsText : validStyles
   const viewProps: StackProps = {}
   const style: ViewStyle = {}
-  const classNames: Record<string, string> = {}
+  const classNames: ClassNamesObject = {
+    ...defaultClassNames,
+  }
   const pseudos: PseudoStyles = {}
   const medias: Record<MediaKeys, ViewStyle> = {}
   let cur: ViewStyle | null = null
@@ -68,9 +73,10 @@ export const getSplitStyles = (
     if (!cur) return
     normalizeStyleObject(cur)
     if (isWeb && !state.noClassNames) {
+      if (props['debug']) console.log('adding', cur)
       const atomic = getStylesAtomic(cur)
       for (const style of atomic) {
-        classNames[style.identifier] = style.identifier
+        classNames[style.property] = style.identifier
         insertStyleRule(style.identifier, style.rules[0])
       }
     } else {
@@ -102,7 +108,12 @@ export const getSplitStyles = (
       (valInit && valInit[0] === '_')
     ) {
       if (validStyleProps[keyInit]) {
+        next()
         classNames[keyInit] = valInit
+        if (props['debug']) console.log('adding2', keyInit)
+        if (cur) {
+          delete cur[keyInit]
+        }
         continue
       }
     }
@@ -113,7 +124,14 @@ export const getSplitStyles = (
     const out =
       isMedia || isPseudo
         ? true
-        : staticConfig.propMapper(keyInit, valInit, theme, props, staticConfig, resolveVariablesAs)
+        : staticConfig.propMapper(
+            keyInit,
+            valInit,
+            theme,
+            props,
+            staticConfig,
+            state.resolveVariablesAs
+          )
 
     const expanded = out === true || !out ? [[keyInit, valInit]] : Object.entries(out)
 
@@ -221,7 +239,7 @@ export const getSplitStyles = (
     style,
     medias,
     pseudos,
-    classNames: Object.values(classNames),
+    classNames,
   }
 }
 

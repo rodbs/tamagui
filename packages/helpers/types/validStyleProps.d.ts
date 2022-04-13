@@ -19,6 +19,7 @@ export declare const stylePropsView: Readonly<{
     contain?: boolean | undefined;
     pointerEvents?: boolean | undefined;
     boxSizing?: boolean | undefined;
+    boxShadow?: boolean | undefined;
     x: boolean;
     y: boolean;
     scale: boolean;
@@ -35,6 +36,10 @@ export declare const stylePropsView: Readonly<{
     backfaceVisibility: boolean;
     backgroundColor: boolean;
     borderBottomColor: boolean;
+    borderBottomStyle: boolean;
+    borderTopStyle: boolean;
+    borderLeftStyle: boolean;
+    borderRightStyle: boolean;
     borderBottomEndRadius: boolean;
     borderBottomLeftRadius: boolean;
     borderBottomRightRadius: boolean;
@@ -157,6 +162,7 @@ export declare const stylePropsText: Readonly<{
     contain?: boolean | undefined;
     pointerEvents?: boolean | undefined;
     boxSizing?: boolean | undefined;
+    boxShadow?: boolean | undefined;
     x: boolean;
     y: boolean;
     scale: boolean;
@@ -173,6 +179,10 @@ export declare const stylePropsText: Readonly<{
     backfaceVisibility: boolean;
     backgroundColor: boolean;
     borderBottomColor: boolean;
+    borderBottomStyle: boolean;
+    borderTopStyle: boolean;
+    borderLeftStyle: boolean;
+    borderRightStyle: boolean;
     borderBottomEndRadius: boolean;
     borderBottomLeftRadius: boolean;
     borderBottomRightRadius: boolean;
@@ -274,6 +284,7 @@ export declare const stylePropsAll: Readonly<{
     contain?: boolean | undefined;
     pointerEvents?: boolean | undefined;
     boxSizing?: boolean | undefined;
+    boxShadow?: boolean | undefined;
     x: boolean;
     y: boolean;
     scale: boolean;
@@ -290,6 +301,10 @@ export declare const stylePropsAll: Readonly<{
     backfaceVisibility: boolean;
     backgroundColor: boolean;
     borderBottomColor: boolean;
+    borderBottomStyle: boolean;
+    borderTopStyle: boolean;
+    borderLeftStyle: boolean;
+    borderRightStyle: boolean;
     borderBottomEndRadius: boolean;
     borderBottomLeftRadius: boolean;
     borderBottomRightRadius: boolean;
@@ -379,6 +394,7 @@ export declare const validStyles: Readonly<{
     contain?: boolean | undefined;
     pointerEvents?: boolean | undefined;
     boxSizing?: boolean | undefined;
+    boxShadow?: boolean | undefined;
     x: boolean;
     y: boolean;
     scale: boolean;
@@ -395,6 +411,10 @@ export declare const validStyles: Readonly<{
     backfaceVisibility: boolean;
     backgroundColor: boolean;
     borderBottomColor: boolean;
+    borderBottomStyle: boolean;
+    borderTopStyle: boolean;
+    borderLeftStyle: boolean;
+    borderRightStyle: boolean;
     borderBottomEndRadius: boolean;
     borderBottomLeftRadius: boolean;
     borderBottomRightRadius: boolean;

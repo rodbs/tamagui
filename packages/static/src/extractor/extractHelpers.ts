@@ -23,6 +23,9 @@ export const attrStr = (attr?: ExtractedAttr) => {
 }
 
 export const objToStr = (obj: any, spacer = ', ') => {
+  if (!obj) {
+    return `${obj}`
+  }
   return `{${Object.entries(obj)
     .map(
       ([k, v]) =>
