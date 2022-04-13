@@ -20,7 +20,6 @@ export class Variable {
   }
 
   toString() {
-    console.log('to string', isWeb, this.variable, this.val)
     return `${isWeb ? this.variable : this.val}`
   }
 }

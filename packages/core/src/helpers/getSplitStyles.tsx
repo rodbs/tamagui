@@ -66,8 +66,8 @@ export const getSplitStyles = (
     if (!cur) return
     normalizeStyleObject(cur)
     if (isWeb) {
+      console.log('getting em', cur)
       const atomic = getStylesAtomic(cur)
-      if (props['debug']) console.log('gettin em', cur, atomic)
       for (const style of atomic) {
         classNames[style.identifier] = style.identifier
         insertStyleRule(style.identifier, style.rules[0])

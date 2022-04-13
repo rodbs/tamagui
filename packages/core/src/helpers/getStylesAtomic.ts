@@ -3,6 +3,7 @@ import { ViewStyle } from 'react-native'
 
 import { pseudos } from '../constants/pseudos'
 import { rnw } from '../constants/rnw'
+import { isVariable } from '../createVariable'
 
 const generateStyle = (style: any) => {
   const { atomic, createCompileableStyle, createReactDOMStyle, i18Style } = rnw
@@ -28,7 +29,8 @@ export function getStylesAtomic(style: any, avoidCollection = false) {
     if (!!pseudos[key]) {
       styles[key] = style[key]
     } else {
-      styles.base[key] = style[key]
+      const val = style[key]
+      styles.base[key] = isVariable(val) ? val.variable : val
     }
   }
   return Object.keys(styles)
