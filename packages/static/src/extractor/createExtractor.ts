@@ -1129,6 +1129,16 @@ export function createExtractor() {
               return acc
             }
 
+            if (
+              shouldFlatten &&
+              cur.type === 'attr' &&
+              !t.isJSXSpreadAttribute(cur.value) &&
+              cur.value.name.name === 'tag'
+            ) {
+              // remove tag=""
+              return acc
+            }
+
             if (cur.type !== 'style') {
               acc.push(cur)
               return acc
