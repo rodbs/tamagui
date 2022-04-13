@@ -345,7 +345,6 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
           fontFamily ? `font_${fontFamily}` : '',
           theme.className,
           classNames ? Object.values(classNames).join(' ') : '',
-          // stylesClassNames,
         ]
 
         // TODO restore this to isText classList

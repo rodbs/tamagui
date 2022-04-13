@@ -20,6 +20,7 @@ import { isSimpleSpread } from './extractHelpers'
 import { extractMediaStyle } from './extractMediaStyle'
 import { getPrefixLogs } from './getPrefixLogs'
 import { hoistClassNames } from './hoistClassNames'
+import { literalToAst } from './literalToAst'
 import { logLines } from './logLines'
 
 const mergeStyleGroups = {
@@ -147,13 +148,37 @@ export function extractToClassNames({
               if (!attr.name) {
                 throw new Error(`No name`)
               }
+
+              // only ever one at a time i believe so we can be lazy with this access
+              const pseudoStyleKey = attr.value.hoverStyle
+                ? 'hoverStyle'
+                : attr.value.pressStyle
+                ? 'pressStyle'
+                : attr.value.focusStyle
+                ? 'focusStyle'
+                : null
+
               const styles = getStylesAtomic(attr.value)
+
               finalStyles = [...finalStyles, ...styles]
-              for (const style of styles) {
-                // leave them as attributes
+
+              if (pseudoStyleKey) {
                 finalAttrs.push(
-                  t.jsxAttribute(t.jsxIdentifier(style.property), t.stringLiteral(style.identifier))
+                  t.jsxAttribute(
+                    t.jsxIdentifier(pseudoStyleKey),
+                    t.jsxExpressionContainer(literalToAst(attr.value[pseudoStyleKey]))
+                  )
                 )
+              } else {
+                for (const style of styles) {
+                  // leave them as attributes
+                  finalAttrs.push(
+                    t.jsxAttribute(
+                      t.jsxIdentifier(style.property),
+                      t.stringLiteral(style.identifier)
+                    )
+                  )
+                }
               }
             } else {
               const styles = addStyles(attr.value)

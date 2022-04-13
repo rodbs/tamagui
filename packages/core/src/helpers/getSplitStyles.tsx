@@ -73,7 +73,6 @@ export const getSplitStyles = (
     if (!cur) return
     normalizeStyleObject(cur)
     if (isWeb && !state.noClassNames) {
-      if (props['debug']) console.log('adding', cur)
       const atomic = getStylesAtomic(cur)
       for (const style of atomic) {
         classNames[style.property] = style.identifier
@@ -110,7 +109,6 @@ export const getSplitStyles = (
       if (validStyleProps[keyInit]) {
         next()
         classNames[keyInit] = valInit
-        if (props['debug']) console.log('adding2', keyInit)
         if (cur) {
           delete cur[keyInit]
         }
@@ -159,9 +157,13 @@ export const getSplitStyles = (
           continue
         }
         pseudos[key] = pseudos[key] || {}
-        const out = getSubStyle(val, staticConfig, theme, props)
-        Object.assign(pseudos[key], out)
-        // Object.assign(style, out)
+        const pseudoStyles = getStylesAtomic({ [key]: val })
+        console.log('pseudoStyles', key, pseudoStyles, val)
+        for (const style of pseudoStyles) {
+          classNames[`${style.property}-${key}`] = style.identifier
+          insertStyleRule(style.identifier, style.rules[0])
+        }
+        console.log('2classNames', classNames)
         continue
       }
 
@@ -184,12 +186,9 @@ export const getSplitStyles = (
 
         if (isWeb) {
           const mediaStyles = getStylesAtomic(mediaStyle)
-          if (process.env.NODE_ENV === 'development' && props['debug']) {
-            console.log('mediaStyles', key, mediaStyles, { valInit, mediaStyle })
-          }
           for (const style of mediaStyles) {
             const out = createMediaStyle(style, mediaKey, mediaQueryConfig)
-            classNames[out.identifier] = out.identifier
+            classNames[`${out.identifier}-${mediaKey}`] = out.identifier
             insertStyleRule(out.identifier, out.styleRule)
           }
           if (mediaState[mediaKey]) {
@@ -201,6 +200,7 @@ export const getSplitStyles = (
             Object.assign(style, mediaStyle)
           }
         }
+        console.log('what is', 'media', mediaState, key)
         continue
       }
 
