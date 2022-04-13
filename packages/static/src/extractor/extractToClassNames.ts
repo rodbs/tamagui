@@ -99,6 +99,7 @@ export function extractToClassNames({
       filePath,
       lineNumbers,
       programPath,
+      isFlattened,
     }) => {
       let finalClassNames: ClassNameObject[] = []
       let finalAttrs: (t.JSXAttribute | t.JSXSpreadAttribute)[] = []
@@ -140,15 +141,30 @@ export function extractToClassNames({
       for (const attr of attrs) {
         switch (attr.type) {
           case 'style':
-            const styles = addStyles(attr.value)
-            const newClassNames = concatClassName(styles.map((x) => x.identifier).join(' '))
-            // prettier-ignore
-            const existing = finalClassNames.find((x) => x.type == 'StringLiteral') as t.StringLiteral | null
-            if (existing) {
-              existing.value = `${existing.value} ${newClassNames}`
+            if (!isFlattened) {
+              if (!attr.name) {
+                throw new Error(`No name`)
+              }
+              const styles = getStylesAtomic(attr.value)
+              finalStyles = [...finalStyles, ...styles]
+              for (const style of styles) {
+                // leave them as attributes
+                finalAttrs.push(
+                  t.jsxAttribute(t.jsxIdentifier(style.property), t.stringLiteral(style.identifier))
+                )
+              }
             } else {
-              finalClassNames = [...finalClassNames, t.stringLiteral(newClassNames)]
+              const styles = addStyles(attr.value)
+              const newClassNames = concatClassName(styles.map((x) => x.identifier).join(' '))
+              // prettier-ignore
+              const existing = finalClassNames.find((x) => x.type == 'StringLiteral') as t.StringLiteral | null
+              if (existing) {
+                existing.value = `${existing.value} ${newClassNames}`
+              } else {
+                finalClassNames = [...finalClassNames, t.stringLiteral(newClassNames)]
+              }
             }
+
             break
           case 'attr':
             const val = attr.value

@@ -1,5 +1,5 @@
 import { onConfiguredOnce } from './conf'
-import { insertedSelectors } from './helpers/insertStyleRule'
+import { getAllSelectors } from './helpers/insertStyleRule'
 
 onConfiguredOnce((conf) => {
   if (globalThis['Tamagui']) {
@@ -7,8 +7,8 @@ onConfiguredOnce((conf) => {
   }
   globalThis['Tamagui'] = {
     ...conf,
-    get insertedCSS() {
-      return insertedSelectors
+    get allSelectors() {
+      return getAllSelectors()
     },
   }
 })

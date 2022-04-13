@@ -1,4 +1,3 @@
-import { addRule } from '@tamagui/helpers'
 import type { StyleObject } from '@tamagui/helpers'
 import { ViewStyle } from 'react-native'
 
@@ -89,7 +88,9 @@ function getAtomicStyle(
       if (rules.length > 1) {
         console.warn('have never seen more than one, verifying')
       }
-      addRule(rules[0])
+      // TODO this side effect is weird and should be done better
+      // console.warn('disablign for now')
+      // addRule(rules[0])
     }
 
     const result: StyleObject = {

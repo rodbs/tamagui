@@ -301,7 +301,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
       }
     } else {
       styles = [
-        defaultNativeStyleSheet ? (defaultNativeStyleSheet.base as ViewStyle) : null,
+        isWeb ? null : defaultNativeStyleSheet ? (defaultNativeStyleSheet.base as ViewStyle) : null,
         // parity w react-native-web, only for text in text
         // TODO this should be able to be done w css to replicate after extraction:
         //  (.text .text { display: inline-flex; }) (but if they set display we'd need stronger precendence)
@@ -323,12 +323,12 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
 
     if (isWeb) {
       const hasntSetInitialAnimationState = props.animation && !state.animation
-      const disableInsertStyles = hasntSetInitialAnimationState || shouldAvoidClasses || false
-      const stylesClassNames = useStylesAsClassname(
-        Array.isArray(styles) ? styles : [styles],
-        disableInsertStyles,
-        props.debug
-      )
+      // const disableInsertStyles = hasntSetInitialAnimationState || shouldAvoidClasses || false
+      // const stylesClassNames = useStylesAsClassname(
+      //   Array.isArray(styles) ? styles : [styles],
+      //   disableInsertStyles,
+      //   props.debug
+      // )
       if (!shouldAvoidClasses) {
         const fontFamilyName = isText
           ? props.fontFamily || staticConfig.defaultProps.fontFamily
@@ -336,20 +336,14 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
         const fontFamily =
           fontFamilyName && fontFamilyName[0] === '$' ? fontFamilyName.slice(1) : null
         const classList = [
+          componentName ? componentClassName : null,
           fontFamily ? `font_${fontFamily}` : null,
           theme.className,
           defaultsClassName,
           classNames,
-          // TODO the order of this seems ill-defined.......
-          // having props props.className before stylesClassNames fixes <Button fontWeight="800" />
-          // need to see what this breaks, but likely solution is to figure out which actually come first
-          // we have the defaultProps / defaultsClassName so we have the info to figure it out...
-          props.className,
-          stylesClassNames,
+          // stylesClassNames,
         ]
-        if (componentName) {
-          classList.unshift(componentClassName)
-        }
+
         // TODO restore this to isText classList
         // hasTextAncestor === true && cssText.textHasAncestor,
         // TODO MOVE TO VARIANTS [number] [any]
@@ -359,7 +353,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
         if (process.env.NODE_ENV === 'development') {
           if (props['debug']) {
             // prettier-ignore
-            console.log('  » className', { isStringElement, pseudos, state, defaultsClassName, classNames, propsClassName: props.className, style, styles, classList, stylesClassNames, className: className.trim().split(' '), themeClassName: theme.className })
+            console.log('  » className', { isStringElement, pseudos, state, defaultsClassName, classNames, propsClassName: props.className, style, classList, className: className.trim().split(' '), themeClassName: theme.className })
           }
         }
         viewProps.className = className
@@ -665,15 +659,15 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
     }
   })
 
-  component['staticConfig'] = {
-    validStyles: validStyleProps,
-    ...staticConfig,
-  }
-
   let res: StaticComponent<ComponentPropTypes, {}, Ref> = component as any
 
   if (configIn.memo) {
     res = memo(res) as any
+  }
+
+  res['staticConfig'] = {
+    validStyles: validStyleProps,
+    ...staticConfig,
   }
 
   // res.extractable HoC

@@ -4474,7 +4474,7 @@ __metadata:
     style-loader: ^3.3.0
     tamagui: ^1.0.0-alpha.68
     typescript: ^4.5.2
-    webpack: ^5.68.0
+    webpack: ^5.72.0
   peerDependencies:
     react-native-web: "*"
   languageName: unknown

@@ -24,6 +24,7 @@ async function build() {
       './dist/core/src/static.js',
     ])
     await fs.remove('dist/core')
+    await fs.copy('../core/types', './types')
   } catch (err) {
     console.error('Error building core-node:', err.message)
   }

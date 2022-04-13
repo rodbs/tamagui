@@ -51,10 +51,6 @@ export function extendStaticConfig(
           ...config.validStyles,
         }
       : parent.staticConfig.validStyles || stylePropsView,
-    validPropsExtra: {
-      ...parent.staticConfig.validPropsExtra,
-      ...config.validPropsExtra,
-    },
     defaultProps: {
       ...parent.staticConfig.defaultProps,
       ...config.defaultProps,

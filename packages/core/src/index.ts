@@ -14,13 +14,14 @@ export * from './constants/constants'
 export * from './constants/platform'
 export * from './constants/rnw'
 
-export * from './helpers/isObj'
+export * from './helpers/getExpandedShorthands'
+export * from './helpers/getSplitStyles'
 export * from './helpers/getStylesAtomic'
+export * from './helpers/isObj'
+export * from './helpers/isTamaguiElement'
 export * from './helpers/matchMedia'
 export * from './helpers/themeable'
 export * from './helpers/withStaticProperties'
-export * from './helpers/isTamaguiElement'
-export * from './helpers/getExpandedShorthands'
 
 export * from './contexts/ButtonInsideButtonContext'
 

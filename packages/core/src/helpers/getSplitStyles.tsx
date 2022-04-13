@@ -1,10 +1,4 @@
-import {
-  addRule,
-  stylePropsText,
-  stylePropsTransform,
-  validPseudoKeys,
-  validStyles,
-} from '@tamagui/helpers'
+import { stylePropsText, stylePropsTransform, validPseudoKeys, validStyles } from '@tamagui/helpers'
 import { ViewStyle } from 'react-native'
 
 import { isWeb } from '../constants/platform'
@@ -50,7 +44,7 @@ export const getSplitStyles = (
   const style: ViewStyle = {}
 
   let cur: ViewStyle | null = null
-  let classNames: string[] | null = null
+  const classNames: Record<string, string> = {}
   const pseudos: PseudoStyles = {}
 
   const medias: {
@@ -64,6 +58,18 @@ export const getSplitStyles = (
     if (skipKeys[keyInit]) {
       viewProps[keyInit] = valInit
       continue
+    }
+
+    if (
+      // isPropClassName
+      keyInit === 'className' ||
+      // isExtractedClassName
+      (valInit && valInit[0] === '_')
+    ) {
+      if (validStyleProps[keyInit]) {
+        classNames[keyInit] = valInit
+        continue
+      }
     }
 
     let isMedia = keyInit[0] === '$'
@@ -131,9 +137,7 @@ export const getSplitStyles = (
           }
           for (const style of mediaStyles) {
             const out = createMediaStyle(style, mediaKey, mediaQueryConfig)
-            classNames = classNames || []
-            classNames.push(out.identifier)
-            addRule(out.styleRule)
+            classNames[out.identifier] = out.identifier
             insertStyleRule(out.identifier, out.styleRule)
           }
           if (mediaState[mediaKey]) {
@@ -148,6 +152,7 @@ export const getSplitStyles = (
         continue
       }
 
+      // TODO
       if (key === 'style' || key.startsWith('_style')) {
         if (cur) {
           // process last
@@ -159,6 +164,7 @@ export const getSplitStyles = (
         Object.assign(style, val)
         continue
       }
+
       // expand flex so it merged with flexShrink etc properly
       // TODO this shouldn't be here...
       if (key === 'flex') {
@@ -207,7 +213,7 @@ export const getSplitStyles = (
     style,
     medias,
     pseudos,
-    classNames,
+    classNames: Object.values(classNames),
   }
 }
 

@@ -1,7 +1,7 @@
-// debug
-import { useState } from 'react'
+// debug 123
+import { useRef, useState } from 'react'
 import React from 'react'
-import { Button, Square, Theme, YStack } from 'tamagui'
+import { Button, Square, Theme, VisuallyHidden, YStack } from 'tamagui'
 
 import Tamagui from './tamagui.config'
 
@@ -23,80 +23,89 @@ export const Test = () => {
   // return <AnimationTest />
   return (
     <>
-      <Button borderRadius={1000} tag="a" fontWeight="800">
-        Documentation
-      </Button>
-    </>
-  )
-}
-
-const AnimationTest = () => {
-  const [positionI, setPositionI] = useState(0)
-  const position = positions[positionI]
-  const next = (to = 1) => {
-    setPositionI((x) => {
-      return (x + to) % positions.length
-    })
-  }
-
-  return (
-    <>
-      <Square
-        animation="bouncy"
-        debug
-        elevation="$4"
-        size={110}
-        bc="red"
-        br="$9"
+      <Button
+        bordered
+        icon={() => null}
         hoverStyle={{
-          scale: 1.1,
+          elevation: '$6',
+          scale: 1.025,
         }}
-        pressStyle={{
-          scale: 0.9,
-        }}
-        {...position}
-        onPress={() => next()}
+        my="$-6"
+        size="$8"
+        circular
+        elevation="$4"
       />
-
-      <Button pos="absolute" bottom={20} left={20} size="$6" circular onPress={() => next()} />
     </>
   )
 }
 
-export const positions = [
-  {
-    x: 0,
-    y: 0,
-    scale: 1,
-    rotate: '0deg',
-  },
-  {
-    x: -50,
-    y: -50,
-    scale: 0.5,
-    rotate: '-45deg',
-    hoverStyle: {
-      scale: 0.6,
-      x: -85,
-      y: -85,
-    },
-    pressStyle: {
-      scale: 0.4,
-    },
-  },
-  {
-    x: 50,
-    y: 50,
-    scale: 1,
-    rotate: '180deg',
-    hoverStyle: {
-      scale: 1,
-    },
-    pressStyle: {
-      scale: 1,
-    },
-  },
-]
+// const AnimationTest = () => {
+//   const [positionI, setPositionI] = useState(0)
+//   const position = positions[positionI]
+//   const next = (to = 1) => {
+//     setPositionI((x) => {
+//       return (x + to) % positions.length
+//     })
+//   }
+
+//   return (
+//     <>
+//       <Square
+//         animation="bouncy"
+//         debug
+//         elevation="$4"
+//         size={110}
+//         bc="red"
+//         br="$9"
+//         hoverStyle={{
+//           scale: 1.1,
+//         }}
+//         pressStyle={{
+//           scale: 0.9,
+//         }}
+//         {...position}
+//         onPress={() => next()}
+//       />
+
+//       <Button pos="absolute" bottom={20} left={20} size="$6" circular onPress={() => next()} />
+//     </>
+//   )
+// }
+
+// export const positions = [
+//   {
+//     x: 0,
+//     y: 0,
+//     scale: 1,
+//     rotate: '0deg',
+//   },
+//   {
+//     x: -50,
+//     y: -50,
+//     scale: 0.5,
+//     rotate: '-45deg',
+//     hoverStyle: {
+//       scale: 0.6,
+//       x: -85,
+//       y: -85,
+//     },
+//     pressStyle: {
+//       scale: 0.4,
+//     },
+//   },
+//   {
+//     x: 50,
+//     y: 50,
+//     scale: 1,
+//     rotate: '180deg',
+//     hoverStyle: {
+//       scale: 1,
+//     },
+//     pressStyle: {
+//       scale: 1,
+//     },
+//   },
+// ]
 
 // export const HomeH2 = styled(H2, {
 //   debug: true,

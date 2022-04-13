@@ -1,3 +1,4 @@
+// debug
 // import React from 'react'
 // import { H3, H4, Paragraph, Text, YStack, useMedia } from 'tamagui'
 
@@ -133,11 +134,7 @@ const HeroTop = memo(() => {
             </YStack>
           </NextLink>
 
-          <NextLink
-            href="https://discord.gg/4qh6tdcVDa"
-            passHref
-            // css={{ mr: '$5', '@bp2': { mr: '$7' } }}
-          >
+          <NextLink href="https://discord.gg/4qh6tdcVDa" passHref>
             <YStack
               p="$2"
               $sm={{ height: 0, width: 0, overflow: 'hidden', mx: -18 }}
