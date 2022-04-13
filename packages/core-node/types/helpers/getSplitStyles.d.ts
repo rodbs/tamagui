@@ -13,7 +13,9 @@ export declare type PseudoStyles = {
 export declare type SplitStyleResult = ReturnType<typeof getSplitStyles>;
 export declare const getSplitStyles: (props: {
     [key: string]: any;
-}, staticConfig: StaticConfigParsed, theme: ThemeObject, state: Partial<ComponentState>, resolveVariablesAs?: ResolveVariableTypes | undefined) => {
+}, staticConfig: StaticConfigParsed, theme: ThemeObject, state: Partial<ComponentState> & {
+    noClassNames?: boolean;
+}, resolveVariablesAs?: ResolveVariableTypes | undefined) => {
     viewProps: StackProps;
     style: ViewStyle;
     medias: Record<string, ViewStyle>;

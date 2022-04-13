@@ -1216,7 +1216,9 @@ export function createExtractor() {
                 }
               }
             }
-            const out = getSplitStyles(props, staticConfig, defaultTheme, {})
+            const out = getSplitStyles(props, staticConfig, defaultTheme, {
+              noClassNames: true,
+            })
             const outStyle = {
               ...out.style,
               ...out.pseudos,

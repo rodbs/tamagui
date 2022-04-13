@@ -19,24 +19,26 @@ export const Sandbox = () => {
 }
 
 export const Test = () => {
+  return <YStack bc="red" w={100} h={100} />
+
   // return <AnimationTest />
-  return (
-    <>
-      <Card
-        debug
-        width="33.33%"
-        $sm={{ width: 'auto' }}
-        space
-        tag="a"
-        href="https://twitter.com/tamagui_js"
-        target="_blank"
-        rel="noopener noreferrer"
-        p="$4"
-      >
-        hello
-      </Card>
-    </>
-  )
+  // return (
+  //   <>
+  //     <Card
+  //       debug
+  //       width="33.33%"
+  //       $sm={{ width: 'auto' }}
+  //       space
+  //       tag="a"
+  //       href="https://twitter.com/tamagui_js"
+  //       target="_blank"
+  //       rel="noopener noreferrer"
+  //       p="$4"
+  //     >
+  //       hello
+  //     </Card>
+  //   </>
+  // )
 }
 
 export const Card = styled(YStack, {

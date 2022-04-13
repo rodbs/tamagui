@@ -51,7 +51,9 @@ export const getSplitStyles = (
   props: { [key: string]: any },
   staticConfig: StaticConfigParsed,
   theme: ThemeObject,
-  state: Partial<ComponentState>,
+  state: Partial<ComponentState> & {
+    noClassNames?: boolean
+  },
   resolveVariablesAs?: ResolveVariableTypes
 ) => {
   const validStyleProps = staticConfig.isText ? stylePropsText : validStyles
@@ -65,8 +67,7 @@ export const getSplitStyles = (
   function next() {
     if (!cur) return
     normalizeStyleObject(cur)
-    if (isWeb) {
-      console.log('getting em', cur)
+    if (isWeb && !state.noClassNames) {
       const atomic = getStylesAtomic(cur)
       for (const style of atomic) {
         classNames[style.identifier] = style.identifier
@@ -84,8 +85,6 @@ export const getSplitStyles = (
     // reset it for next group of styles
     cur = null
   }
-
-  if (props['debug']) console.log('GO', props)
 
   for (const keyInit in props) {
     // be sure to sync next few lines below to getSubStyle (*1)
