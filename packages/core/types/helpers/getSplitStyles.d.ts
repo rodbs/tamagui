@@ -16,9 +16,7 @@ export declare const getSplitStyles: (props: {
 }, staticConfig: StaticConfigParsed, theme: ThemeObject, state: Partial<ComponentState>, resolveVariablesAs?: ResolveVariableTypes | undefined) => {
     viewProps: StackProps;
     style: ViewStyle;
-    medias: {
-        [x: string]: ViewStyle;
-    };
+    medias: Record<string, ViewStyle>;
     pseudos: PseudoStyles;
     classNames: string[];
 };

@@ -1,7 +1,6 @@
 // debug 123
-import { useRef, useState } from 'react'
-import React from 'react'
-import { Button, Square, Theme, VisuallyHidden, YStack } from 'tamagui'
+import React, { useState } from 'react'
+import { Theme, YStack, styled } from 'tamagui'
 
 import Tamagui from './tamagui.config'
 
@@ -23,21 +22,36 @@ export const Test = () => {
   // return <AnimationTest />
   return (
     <>
-      <Button
-        bordered
-        icon={() => null}
-        hoverStyle={{
-          elevation: '$6',
-          scale: 1.025,
-        }}
-        my="$-6"
-        size="$8"
-        circular
-        elevation="$4"
-      />
+      <Card
+        debug
+        width="33.33%"
+        $sm={{ width: 'auto' }}
+        space
+        tag="a"
+        href="https://twitter.com/tamagui_js"
+        target="_blank"
+        rel="noopener noreferrer"
+        p="$4"
+      >
+        hello
+      </Card>
     </>
   )
 }
+
+export const Card = styled(YStack, {
+  name: 'Card',
+  className: 'transition all ease-in ms100',
+  borderRadius: '$2',
+  backgroundColor: '$background',
+  flexShrink: 1,
+  elevation: '$2',
+  hoverStyle: {
+    backgroundColor: '$backgroundHover',
+    elevation: '$4',
+    y: -4,
+  },
+})
 
 // const AnimationTest = () => {
 //   const [positionI, setPositionI] = useState(0)

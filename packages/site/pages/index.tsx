@@ -22,7 +22,7 @@ import { SearchButton } from '../components/Search'
 import { ThemeTint } from '../components/ThemeTint'
 
 export default function Home() {
-  return <MediaPlayer />
+  // return <MediaPlayer />
 
   return (
     <>

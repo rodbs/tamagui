@@ -32,6 +32,21 @@ export type PseudoStyles = {
 
 export type SplitStyleResult = ReturnType<typeof getSplitStyles>
 
+function normalizeStyleObject(style: any) {
+  // fix flex to match web
+  // see spec for flex shorthand https://developer.mozilla.org/en-US/docs/Web/CSS/flex
+  if (typeof style.flex === 'number') {
+    const val = style.flex
+    delete style.flex
+    style.flexGrow = style.flexGrow ?? val
+    style.flexShrink = style.flexShrink ?? 1
+  }
+
+  if (!isWeb) {
+    fixNativeShadow(style)
+  }
+}
+
 export const getSplitStyles = (
   props: { [key: string]: any },
   staticConfig: StaticConfigParsed,
@@ -42,14 +57,9 @@ export const getSplitStyles = (
   const validStyleProps = staticConfig.isText ? stylePropsText : validStyles
   const viewProps: StackProps = {}
   const style: ViewStyle = {}
-
-  let cur: ViewStyle | null = null
   const classNames: Record<string, string> = {}
   const pseudos: PseudoStyles = {}
-
-  const medias: {
-    [key in MediaKeys]: ViewStyle
-  } = {}
+  const medias: Record<MediaKeys, ViewStyle> = {}
 
   for (const keyInit in props) {
     // be sure to sync next few lines below to getSubStyle (*1)
@@ -82,6 +92,23 @@ export const getSplitStyles = (
 
     const expanded = out === true || !out ? [[keyInit, valInit]] : Object.entries(out)
 
+    function add(key: string, val: any) {
+      normalizeStyleObject(val)
+      if (isWeb) {
+        const atomic = getStylesAtomic({ [key]: val })
+        for (const style of atomic) {
+          classNames[style.identifier] = style.identifier
+          insertStyleRule(style.identifier, style.rules[0])
+        }
+      } else {
+        if (key in stylePropsTransform) {
+          mergeTransform(style, key, val)
+        } else {
+          Object.assign(style, val)
+        }
+      }
+    }
+
     for (const [key, val] of expanded) {
       if (val === undefined) {
         continue
@@ -95,6 +122,7 @@ export const getSplitStyles = (
         (staticConfig.inlineProps && staticConfig.inlineProps.has(key))
       ) {
         viewProps[key] = val
+        // continue (?)
       }
 
       // pseudo
@@ -107,7 +135,6 @@ export const getSplitStyles = (
         pseudos[key] = pseudos[key] || {}
         const out = getSubStyle(val, staticConfig, theme, props)
         Object.assign(pseudos[key], out)
-
         // Object.assign(style, out)
         continue
       }
@@ -131,9 +158,8 @@ export const getSplitStyles = (
 
         if (isWeb) {
           const mediaStyles = getStylesAtomic(mediaStyle)
-          if (process.env.NODE_ENV === 'development') {
-            if (props['debug'])
-              console.log('mediaStyles', key, mediaStyles, { valInit, mediaStyle })
+          if (process.env.NODE_ENV === 'development' && props['debug']) {
+            console.log('mediaStyles', key, mediaStyles, { valInit, mediaStyle })
           }
           for (const style of mediaStyles) {
             const out = createMediaStyle(style, mediaKey, mediaQueryConfig)
@@ -154,42 +180,17 @@ export const getSplitStyles = (
 
       // TODO
       if (key === 'style' || key.startsWith('_style')) {
-        if (cur) {
-          // process last
-          fixNativeShadow(cur)
-          Object.assign(style, cur)
-          cur = null
-        }
-        fixNativeShadow(val)
-        Object.assign(style, val)
+        add(key, val)
         continue
       }
 
-      // expand flex so it merged with flexShrink etc properly
-      // TODO this shouldn't be here...
-      if (key === 'flex') {
-        cur = cur || {}
-        // see spec for flex shorthand https://developer.mozilla.org/en-US/docs/Web/CSS/flex
-        // TODO this fixed a behavior but need to find / document / test
-        Object.assign(cur, {
-          flexGrow: val,
-          flexShrink: 1,
-        })
-        continue
-      }
       if (!isWeb && key === 'pointerEvents') {
         viewProps[key] = val
         continue
       }
+
       if (validStyleProps[key]) {
-        // transforms
-        if (key in stylePropsTransform) {
-          cur = cur || {}
-          mergeTransform(cur, key, val)
-          continue
-        }
-        cur = cur || {}
-        cur[key] = val
+        add(key, val)
         continue
       }
 
@@ -200,12 +201,6 @@ export const getSplitStyles = (
         }
       }
     }
-  }
-
-  // push last style
-  if (cur) {
-    fixNativeShadow(cur)
-    Object.assign(style, cur)
   }
 
   return {
@@ -247,7 +242,7 @@ const getSubStyle = (
       }
     }
   }
-  fixNativeShadow(styleOut)
+  normalizeStyleObject(styleOut)
   return styleOut
 }
 

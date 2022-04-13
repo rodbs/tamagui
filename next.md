@@ -17,6 +17,8 @@
   - bugs
     - Image SSR / site weirdness on some
     - // TODO i think media + pseudo needs handling here
+    - // continue (?) see if breaks anything
+    - // Object.assign(style, out) see what this was
 
 - 1: 
   - create-tamagui-app
