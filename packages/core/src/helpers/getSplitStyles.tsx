@@ -8,7 +8,7 @@ import { MediaKeys, StackProps, StaticConfigParsed, ThemeObject } from '../types
 import { createMediaStyle } from './createMediaStyle'
 import { ResolveVariableTypes } from './createPropMapper'
 import { fixNativeShadow } from './fixNativeShadow'
-import { getStylesAtomic } from './getStylesAtomic'
+import { ViewStyleWithPseudos, getStylesAtomic } from './getStylesAtomic'
 import { insertStyleRule } from './insertStyleRule'
 
 export type SplitStyles = ReturnType<typeof getSplitStyles>
@@ -67,16 +67,20 @@ export const getSplitStyles = (
   }
   const pseudos: PseudoStyles = {}
   const medias: Record<MediaKeys, ViewStyle> = {}
-  let cur: ViewStyle | null = null
+  let cur: ViewStyleWithPseudos | null = null
 
-  function next() {
+  function push() {
     if (!cur) return
     normalizeStyleObject(cur)
-    if (isWeb && !state.noClassNames) {
+    if (isWeb) {
       const atomic = getStylesAtomic(cur)
-      for (const style of atomic) {
-        classNames[style.property] = style.identifier
-        insertStyleRule(style.identifier, style.rules[0])
+      for (const atomicStyle of atomic) {
+        if (!state.noClassNames) {
+          classNames[atomicStyle.property] = atomicStyle.identifier
+          insertStyleRule(atomicStyle.identifier, atomicStyle.rules[0])
+        } else {
+          style[atomicStyle.property] = atomicStyle.value
+        }
       }
     } else {
       for (const key in cur) {
@@ -106,13 +110,15 @@ export const getSplitStyles = (
       // isExtractedClassName
       (valInit && valInit[0] === '_')
     ) {
-      if (validStyleProps[keyInit]) {
-        next()
+      if (keyInit === 'className' || validStyleProps[keyInit]) {
+        push()
         classNames[keyInit] = valInit
         if (cur) {
           delete cur[keyInit]
         }
         continue
+      } else {
+        // target="_blank" etc
       }
     }
 
@@ -138,6 +144,11 @@ export const getSplitStyles = (
         continue
       }
 
+      if (val[0] === '_') {
+        classNames[key] = val
+        continue
+      }
+
       isMedia = key[0] === '$'
       isPseudo = validPseudoKeys[key]
 
@@ -158,12 +169,10 @@ export const getSplitStyles = (
         }
         pseudos[key] = pseudos[key] || {}
         const pseudoStyles = getStylesAtomic({ [key]: val })
-        console.log('pseudoStyles', key, pseudoStyles, val)
         for (const style of pseudoStyles) {
           classNames[`${style.property}-${key}`] = style.identifier
           insertStyleRule(style.identifier, style.rules[0])
         }
-        console.log('2classNames', classNames)
         continue
       }
 
@@ -206,7 +215,7 @@ export const getSplitStyles = (
 
       // TODO
       if (key === 'style' || key.startsWith('_style')) {
-        next()
+        push()
         Object.assign(style, val)
         continue
       }
@@ -225,14 +234,14 @@ export const getSplitStyles = (
       // pass to view props
       if (!staticConfig.variants || !(key in staticConfig.variants)) {
         if (key !== 'animation' && key !== 'debug') {
-          next()
+          push()
           viewProps[key] = val
         }
       }
     }
   }
 
-  next()
+  push()
 
   return {
     viewProps,

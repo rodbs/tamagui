@@ -1376,6 +1376,25 @@ export function createExtractor() {
             return node
           }
 
+          // final lazy extra loop: remove duplicate styles
+          // so if you have:
+          //   style({ color: 'red' }), ...someProps, style({ color: 'green' })
+          // this will mutate:
+          //   style({}), ...someProps, style({ color: 'green' })
+          const existingStyleKeys = new Set()
+          for (let i = attrs.length - 1; i >= 0; i--) {
+            const attr = attrs[i]
+            if (attr.type === 'style') {
+              for (const key in attr.value) {
+                if (existingStyleKeys.has(key)) {
+                  delete attr.value[key]
+                } else {
+                  existingStyleKeys.add(key)
+                }
+              }
+            }
+          }
+
           if (shouldPrintDebug) {
             console.log('  - attrs (after):\n', logLines(attrs.map(attrStr).join(', ')))
           }

@@ -8,7 +8,6 @@ export * from './createVariable';
 export * from './styled';
 export * from './types';
 export { getHasConfigured, getConfig, getThemes, getTokens, onConfiguredOnce } from './conf';
-export * from './constants/pseudos';
 export * from './constants/constants';
 export * from './constants/platform';
 export * from './constants/rnw';

@@ -1,6 +1,6 @@
 // debug 1232
 import { useState } from 'react'
-import { Button, Theme, Title, Tooltip, YStack, styled } from 'tamagui'
+import { Button, Card, Paragraph, Theme, XStack, YStack } from 'tamagui'
 
 import Tamagui from './tamagui.config'
 
@@ -18,39 +18,47 @@ export const Sandbox = () => {
   )
 }
 
-export const Test = () => {
+export const Test = (props) => {
+  const isScrolled = false
   return (
-    <YStack ai="flex-start" $gtSm={{ ai: 'center' }} space="$5">
-      <SearchButton color="$color" width={350} size="$6">
-        Search Docs...
-      </SearchButton>
-    </YStack>
+    <>
+      <XStack
+        className="ease-out all ms200"
+        y={isScrolled ? -1 : -60}
+        py={0}
+        bbw={1}
+        bbc="$borderColor"
+        zi={1000}
+        // @ts-ignore
+        pos="fixed"
+        top={0}
+        left={0}
+        right={0}
+        bc="$backgroundHover"
+        elevation="$2"
+      />
+    </>
   )
 }
 
-export const SearchButton = (props: any) => {
-  const x = (
-    <Button
-      debug
-      ref={undefined as any}
-      // className="all ease-in ms100"
-      jc="flex-start"
-      borderWidth={1}
-      textAlign="left"
-      elevation="$1"
-      color="$colorTranslucent"
-      hoverStyle={{
-        elevation: '$4',
-      }}
-      {...props}
-      borderRadius={1000}
-    />
-  )
+// <Button borderRadius={1000} tag="a" fontWeight="800">
+// Documentation
+// </Button>
 
-  console.log('1234123', x)
-
-  return x
-}
+// <Card
+// size="$6"
+// overflow="visible"
+// bordered
+// pointerEvents={props.pointerEvents}
+// debug
+// pl={0}
+// pr={0}
+// pb={0}
+// pt={0}
+// ai="stretch"
+// >
+// hello world
+// </Card>
 
 // const AnimationTest = () => {
 //   const [positionI, setPositionI] = useState(0)

@@ -21,6 +21,8 @@
     - // Object.assign(style, out) see what this was
 
 - 1: 
+  - auto skeleton components
+  - <Avatar />, <Checkbox />/ <Switch />, <Label />, <Select />, <Tabs />
   - create-tamagui-app
       - get some demos in that 100% pass compile / native
   - animateProps={[]} (basically transition-properties)
@@ -34,7 +36,8 @@
   - test component theme + alt theme (plus with compiled)
   - docs: extractable(), deoptProps, getExpandedShorthands
 
-- 2:
+- 2: 
+  - <Toast />, <Card />
   - load theme hook via feature if possible
   - add fonts section to guides
   - document $body being default font family
@@ -44,6 +47,7 @@
   - floating-ui
 
 - 3
+  - <Video />, <Spinner />
   - fix memory leak causing OOM eventually on site
   - // this can be done with CSS entirely right?
   - useLayout feature hook
@@ -97,7 +101,7 @@
     - tamagui sandbox ./packages/site/components/OffsetBox.tsx
     - tamagui compile ./packages/site/components/OffsetBox.tsx
 
-  - auto skeleton components
+  
   - <List /> (works with drawer + draggable + selectable)
   - <Menu />
   - <MenuDrawer />
@@ -146,3 +150,4 @@ animation popup 
   - it would change key={} alongside that
   - that way HMR still works, but loads less hooks
   - works in production for extra perf
+- compiler hot reload (shouldn't be too hard for basic case)

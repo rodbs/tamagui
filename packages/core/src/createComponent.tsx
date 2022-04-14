@@ -1,4 +1,4 @@
-import { concatClassName, stylePropsView } from '@tamagui/helpers'
+import { stylePropsView } from '@tamagui/helpers'
 import { useForceUpdate } from '@tamagui/use-force-update'
 import React, {
   Children,
@@ -20,7 +20,6 @@ import { isAndroid, isTouchDevice, isWeb } from './constants/platform'
 import { rnw } from './constants/rnw'
 import { isVariable } from './createVariable'
 import { ComponentState, defaultComponentState } from './defaultComponentState'
-import { addStylesUsingClassname, useStylesAsClassname } from './helpers/addStylesUsingClassname'
 import { extendStaticConfig, parseStaticConfig } from './helpers/extendStaticConfig'
 import {
   ClassNamesObject,
@@ -42,10 +41,6 @@ import {
   UseAnimationHook,
 } from './types'
 import { TextAncestorContext } from './views/TextAncestorContext'
-
-if (process.env.TAMAGUI_TARGET === 'web') {
-  require('./tamagui-base.css')
-}
 
 export const mouseUps = new Set<Function>()
 
@@ -116,7 +111,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
     if (process.env.NODE_ENV === 'development') {
       if (props['debug']) {
         // prettier-ignore
-        console.warn(componentName || Component?.displayName || Component?.name || '[Unnamed Component]', ' debug prop on:')
+        console.warn(componentName || Component?.displayName || Component?.name || '[Unnamed Component]', ' debug prop on:', { props: Object.entries(props) })
         if (props['debug'] === 'break') debugger
       }
     }
@@ -327,7 +322,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
     // can just remove  && !shouldAvoidClasses and add in a viewProps.style = styles in isWeb
 
     if (isWeb) {
-      const hasntSetInitialAnimationState = props.animation && !state.animation
+      // const hasntSetInitialAnimationState = props.animation && !state.animation
       // const disableInsertStyles = hasntSetInitialAnimationState || shouldAvoidClasses || false
       // const stylesClassNames = useStylesAsClassname(
       //   Array.isArray(styles) ? styles : [styles],
@@ -617,7 +612,7 @@ export function createComponent<ComponentPropTypes extends Object = DefaultProps
       resolveVariablesAs: 'variable',
     })
 
-    if (shouldDebug) {
+    if (process.env.NODE_ENV === 'development' && shouldDebug) {
       console.log('splitStyleResult', splitStyleResult, initialTheme)
     }
 
@@ -831,7 +826,17 @@ const merge = (...styles: (ViewStyle | null | false | undefined)[]) => {
 
 export const AbsoluteFill = (props: any) =>
   isWeb ? (
-    <div className="tamagui-absolute-fill">{props.children}</div>
+    <div
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      }}
+    >
+      {props.children}
+    </div>
   ) : (
     <View style={StyleSheet.absoluteFill}>{props.child}</View>
   )

@@ -16,7 +16,7 @@ import { babelParse } from './babelParse'
 import { buildClassName } from './buildClassName'
 import { Extractor } from './createExtractor'
 import { ensureImportingConcat } from './ensureImportingConcat'
-import { isSimpleSpread } from './extractHelpers'
+import { attrStr, isSimpleSpread } from './extractHelpers'
 import { extractMediaStyle } from './extractMediaStyle'
 import { getPrefixLogs } from './getPrefixLogs'
 import { hoistClassNames } from './hoistClassNames'
@@ -150,35 +150,32 @@ export function extractToClassNames({
               }
 
               // only ever one at a time i believe so we can be lazy with this access
-              const pseudoStyleKey = attr.value.hoverStyle
-                ? 'hoverStyle'
-                : attr.value.pressStyle
-                ? 'pressStyle'
-                : attr.value.focusStyle
-                ? 'focusStyle'
-                : null
+              const { hoverStyle, pressStyle, focusStyle } = attr.value
+              const pseudos = [
+                ['hoverStyle', hoverStyle],
+                ['pressStyle', pressStyle],
+                ['focusStyle', focusStyle],
+              ] as const
 
               const styles = getStylesAtomic(attr.value)
-
               finalStyles = [...finalStyles, ...styles]
 
-              if (pseudoStyleKey) {
-                finalAttrs.push(
-                  t.jsxAttribute(
-                    t.jsxIdentifier(pseudoStyleKey),
-                    t.jsxExpressionContainer(literalToAst(attr.value[pseudoStyleKey]))
-                  )
-                )
-              } else {
-                for (const style of styles) {
-                  // leave them as attributes
+              for (const [key, value] of pseudos) {
+                if (value && Object.keys(value).length) {
                   finalAttrs.push(
                     t.jsxAttribute(
-                      t.jsxIdentifier(style.property),
-                      t.stringLiteral(style.identifier)
+                      t.jsxIdentifier(key),
+                      t.jsxExpressionContainer(literalToAst(value))
                     )
                   )
                 }
+              }
+
+              for (const style of styles) {
+                // leave them as attributes
+                finalAttrs.push(
+                  t.jsxAttribute(t.jsxIdentifier(style.property), t.stringLiteral(style.identifier))
+                )
               }
             } else {
               const styles = addStyles(attr.value)
@@ -259,6 +256,7 @@ export function extractToClassNames({
       if (shouldPrintDebug) {
         // prettier-ignore
         console.log('  finalClassNames\n', logLines(finalClassNames.map(x => x['value']).join(' ')))
+        console.log('  finalAttrs', finalAttrs)
       }
 
       function addTernaryStyle(ternary: Ternary, a: any, b: any) {

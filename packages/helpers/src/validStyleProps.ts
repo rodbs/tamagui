@@ -102,6 +102,8 @@ export const stylePropsView = Object.freeze({
 
   // allow a few web only ones
   ...(process.env.TAMAGUI_TARGET === 'web' && {
+    overflowX: true,
+    overflowY: true,
     userSelect: true,
     cursor: true,
     contain: true,

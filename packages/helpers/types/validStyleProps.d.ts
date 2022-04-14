@@ -14,6 +14,8 @@ export declare const stylePropsTransform: Readonly<{
     rotateZ: boolean;
 }>;
 export declare const stylePropsView: Readonly<{
+    overflowX?: boolean | undefined;
+    overflowY?: boolean | undefined;
     userSelect?: boolean | undefined;
     cursor?: boolean | undefined;
     contain?: boolean | undefined;
@@ -157,6 +159,8 @@ export declare const stylePropsText: Readonly<{
     textShadowOffset: boolean;
     textShadowRadius: boolean;
     textTransform: boolean;
+    overflowX?: boolean | undefined;
+    overflowY?: boolean | undefined;
     userSelect?: boolean | undefined;
     cursor?: boolean | undefined;
     contain?: boolean | undefined;
@@ -279,6 +283,8 @@ export declare const stylePropsAll: Readonly<{
     textShadowOffset: boolean;
     textShadowRadius: boolean;
     textTransform: boolean;
+    overflowX?: boolean | undefined;
+    overflowY?: boolean | undefined;
     userSelect?: boolean | undefined;
     cursor?: boolean | undefined;
     contain?: boolean | undefined;
@@ -389,6 +395,8 @@ export declare const validPseudoKeys: Readonly<{
     focusStyle: boolean;
 }>;
 export declare const validStyles: Readonly<{
+    overflowX?: boolean | undefined;
+    overflowY?: boolean | undefined;
     userSelect?: boolean | undefined;
     cursor?: boolean | undefined;
     contain?: boolean | undefined;

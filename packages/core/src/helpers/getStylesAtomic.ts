@@ -1,10 +1,10 @@
 import type { StyleObject } from '@tamagui/helpers'
 import { ViewStyle } from 'react-native'
 
-import { pseudos } from '../constants/pseudos'
 import { rnw } from '../constants/rnw'
 import { isVariable } from '../createVariable'
 
+// TODO this part can move to styleq likely
 const generateStyle = (style: any) => {
   const { atomic, createCompileableStyle, createReactDOMStyle, i18Style } = rnw
   return {
@@ -20,24 +20,47 @@ const borderDefaults = {
   borderRightWidth: 'borderRightStyle',
 }
 
-export function getStylesAtomic(style: any, avoidCollection = false) {
-  const styles: { [key: string]: ViewStyle } = {
-    base: {},
-  }
-  // split pseudos
-  for (const key in style) {
-    if (!!pseudos[key]) {
-      styles[key] = style[key]
-    } else {
-      const val = style[key]
-      styles.base[key] = isVariable(val) ? val.variable : val
+export type ViewStyleWithPseudos = ViewStyle & {
+  hoverStyle?: ViewStyle
+  pressStyle?: ViewStyle
+  focusStyle?: ViewStyle
+}
+
+// *0 order matches to *1
+export const pseudos = {
+  hoverStyle: {
+    name: 'hover',
+    priority: 1,
+  },
+  pressStyle: {
+    name: 'active',
+    priority: 2,
+  },
+  focusStyle: {
+    name: 'focus',
+    priority: 3,
+  },
+}
+
+const pseudosOrdered = Object.values(pseudos)
+
+export function getStylesAtomic(stylesIn: ViewStyleWithPseudos, avoidCollection = false) {
+  const { hoverStyle, pressStyle, focusStyle, ...base } = stylesIn
+  let res: StyleObject[] = []
+
+  // *1 order matched to *0
+  for (const [index, style] of [hoverStyle, pressStyle, focusStyle, base].entries()) {
+    if (!style) continue
+    const pseudo = pseudosOrdered[index]
+    for (const skey in style) {
+      if (isVariable(style[skey])) {
+        style[skey] = style[skey].toString()
+      }
     }
+    res = [...res, ...getAtomicStyle(style, pseudo, avoidCollection)]
   }
-  return Object.keys(styles)
-    .map((key) => {
-      return getAtomicStyle(styles[key], pseudos[key], avoidCollection)
-    })
-    .flat()
+
+  return res
 }
 
 const importantRegex = /\!important*/g
