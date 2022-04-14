@@ -1,4 +1,4 @@
-import type { StyleObject } from '@tamagui/helpers';
+import { StyleObject } from '@tamagui/helpers';
 import { ViewStyle } from 'react-native';
 export declare type ViewStyleWithPseudos = ViewStyle & {
     hoverStyle?: ViewStyle;

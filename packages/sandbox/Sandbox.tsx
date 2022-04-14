@@ -1,8 +1,10 @@
 // debug 1232
-import { useState } from 'react'
-import { Button, Card, Paragraph, Theme, XStack, YStack } from 'tamagui'
+import React, { useState } from 'react'
+import { Theme, XStack, YStack } from 'tamagui'
 
 import Tamagui from './tamagui.config'
+
+React['keep']
 
 export const Sandbox = () => {
   const [theme, setTheme] = useState('light' as any)
@@ -24,8 +26,10 @@ export const Test = (props) => {
     <>
       <XStack
         className="ease-out all ms200"
-        y={isScrolled ? -1 : -60}
+        y={100}
+        x={100}
         py={0}
+        bc="red"
         bbw={1}
         bbc="$borderColor"
         zi={1000}
@@ -34,7 +38,8 @@ export const Test = (props) => {
         top={0}
         left={0}
         right={0}
-        bc="$backgroundHover"
+        w={100}
+        h={100}
         elevation="$2"
       />
     </>

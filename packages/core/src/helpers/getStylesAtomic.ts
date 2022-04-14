@@ -1,4 +1,4 @@
-import type { StyleObject } from '@tamagui/helpers'
+import { StyleObject, mergeTransform, stylePropsTransform } from '@tamagui/helpers'
 import { ViewStyle } from 'react-native'
 
 import { rnw } from '../constants/rnw'
@@ -53,8 +53,13 @@ export function getStylesAtomic(stylesIn: ViewStyleWithPseudos, avoidCollection 
     if (!style) continue
     const pseudo = pseudosOrdered[index]
     for (const skey in style) {
-      if (isVariable(style[skey])) {
-        style[skey] = style[skey].toString()
+      const val = style[skey]
+      if (isVariable(val)) {
+        style[skey] = val.toString()
+      }
+      if (stylePropsTransform[skey]) {
+        delete style[skey]
+        mergeTransform(style, skey, val)
       }
     }
     res = [...res, ...getAtomicStyle(style, pseudo, avoidCollection)]

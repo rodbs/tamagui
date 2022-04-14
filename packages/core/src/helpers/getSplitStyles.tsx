@@ -1,4 +1,10 @@
-import { stylePropsText, stylePropsTransform, validPseudoKeys, validStyles } from '@tamagui/helpers'
+import {
+  mergeTransform,
+  stylePropsText,
+  stylePropsTransform,
+  validPseudoKeys,
+  validStyles,
+} from '@tamagui/helpers'
 import { ViewStyle } from 'react-native'
 
 import { isWeb } from '../constants/platform'
@@ -284,19 +290,4 @@ const getSubStyle = (
   }
   normalizeStyleObject(styleOut)
   return styleOut
-}
-
-const mapTransformKeys = {
-  x: 'translateX',
-  y: 'translateY',
-}
-
-const mergeTransform = (obj: ViewStyle, key: string, val: any) => {
-  const transform: any[] = obj.transform
-    ? Array.isArray(obj.transform)
-      ? obj.transform
-      : [obj.transform]
-    : []
-  transform.push({ [mapTransformKeys[key] || key]: val })
-  obj.transform = transform
 }

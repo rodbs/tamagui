@@ -1,24 +1,16 @@
 - beta:
-  - move compiler to output inline classname props to fix button bugs:
-    - bc="$background" => backgroundColor="_background-sy78as67"
-  - fix on native + simple native demo (maybe with starters repo)
-  - compiler 100% on site
-  - animations
-    - enterStyle/exitStyle + docs
-    - css
-    - test hover/press styles + add to animations docs
-  - compiler
-    - check it with variants extracting fully
-    - props
-      - theme (+ work with visually hidden)
-      - onPress, onPressIn, onPressOut, onHoverIn, onHoverOut, ref, key
-  - docs
-    - animations
-  - bugs
-    - Image SSR / site weirdness on some
-    - // TODO i think media + pseudo needs handling here
-    - // continue (?) see if breaks anything
-    - // Object.assign(style, out) see what this was
+  - 0% fix on native + simple native demo (maybe with starters repo)
+  - 90% compiler 100% on site
+  - 50% animation enterStyle/exitStyle + docs
+  - 75% animation css
+  - 75% animation test hover/press styles + add to animations docs
+  - 0% compiler theme (+ work with visually hidden)
+  - 0% onPress, onPressIn, onPressOut, onHoverIn, onHoverOut, ref, key
+  - 80% animations docs
+  - 0% bug image ssr / site weirdness on some
+  - 0% bug // TODO i think media + pseudo needs handling here
+  - 0% bug // continue (?) see if breaks anything
+  - 0% bug // Object.assign(style, out) see what this was
 
 - 1: 
   - auto skeleton components

@@ -113,7 +113,7 @@ const HeroTop = memo(() => {
               }}
             >
               An optimizing compiler for 🔼 performance with 🔽 code.
-              Write&nbsp;once,&nbsp;run&nbsp;everywhere - easy.
+              Write&nbsp;once,&nbsp;run&nbsp;everywhere, easy.
             </Paragraph>
           </YStack>
         </YStack>
