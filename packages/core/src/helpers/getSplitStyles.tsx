@@ -174,10 +174,14 @@ export const getSplitStyles = (
           continue
         }
         pseudos[key] = pseudos[key] || {}
-        const pseudoStyles = getStylesAtomic({ [key]: val })
-        for (const style of pseudoStyles) {
-          classNames[`${style.property}-${key}`] = style.identifier
-          insertStyleRule(style.identifier, style.rules[0])
+        if (state.noClassNames) {
+          pseudos[key] = val
+        } else {
+          const pseudoStyles = getStylesAtomic({ [key]: val })
+          for (const style of pseudoStyles) {
+            classNames[`${style.property}-${key}`] = style.identifier
+            insertStyleRule(style.identifier, style.rules[0])
+          }
         }
         continue
       }

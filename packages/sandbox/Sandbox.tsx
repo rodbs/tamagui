@@ -1,6 +1,6 @@
 // debug 1232
 import React, { useState } from 'react'
-import { Theme, XStack, YStack } from 'tamagui'
+import { Paragraph, Theme, XStack, YStack } from 'tamagui'
 
 import Tamagui from './tamagui.config'
 
@@ -24,24 +24,17 @@ export const Test = (props) => {
   const isScrolled = false
   return (
     <>
-      <XStack
-        className="ease-out all ms200"
-        y={100}
-        x={100}
-        py={0}
-        bc="red"
-        bbw={1}
-        bbc="$borderColor"
-        zi={1000}
-        // @ts-ignore
-        pos="fixed"
-        top={0}
-        left={0}
-        right={0}
-        w={100}
-        h={100}
-        elevation="$2"
-      />
+      <Paragraph
+        p="$2"
+        px="$3"
+        cursor="pointer"
+        size="$3"
+        opacity={0.5}
+        hoverStyle={{ opacity: 1 }}
+        tag="a"
+      >
+        Docs
+      </Paragraph>
     </>
   )
 }
