@@ -163,31 +163,37 @@ export const withTamagui = (tamaguiOptions: WithTamaguiProps) => {
               if (typeof external !== 'function') {
                 return external
               }
-              // only runs on server
-              if (isWebpack5) {
-                return async (opts: { context: string; request: string }) => {
+              return (...args: any[]) => {
+                console.log('wut', args)
+                if (typeof args[1] === 'function') {
+                  // webpack4 style
+                  const [{ context, request }, cb] = args
+                  const res = includeModule(context, request)
+                  if (res === 'inline') {
+                    return cb(null, undefined)
+                  }
+                  if (typeof res === 'string') {
+                    return cb(null, res)
+                  }
+                  if (res) {
+                    return external(context, cb)
+                  }
+                  return cb()
+                } else {
+                  // webpack5 style
+                  const opts: { context: string; request: string } = args[0]
                   const { request, context } = opts
                   const res = includeModule(context, request)
                   if (res === 'inline') {
                     return
                   }
                   if (typeof res === 'string') {
-                    return res
+                    return Promise.resolve(res)
                   }
-                  if (res) {
-                    return await external(opts)
+                  if (res !== undefined) {
+                    return Promise.resolve(external(opts))
                   }
                 }
-              }
-              return (ctx, req, cb) => {
-                const res = includeModule(ctx, req)
-                if (typeof res === 'string') {
-                  return cb(null, res)
-                }
-                if (res) {
-                  return external(ctx, cb)
-                }
-                return cb()
               }
             }),
           ]
