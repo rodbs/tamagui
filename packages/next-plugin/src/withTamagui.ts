@@ -30,7 +30,7 @@ export const withTamagui = (tamaguiOptions: WithTamaguiProps) => {
         }
 
         const isNext12 = typeof options.config?.swcMinify === 'boolean'
-        const isWebpack5 = !!(config.future?.webpack5 || config.webpack5)
+        const isWebpack5 = true
 
         // fixes https://github.com/kentcdodds/mdx-bundler/issues/143
         const jsxRuntime = require.resolve('react/jsx-runtime')
@@ -163,37 +163,20 @@ export const withTamagui = (tamaguiOptions: WithTamaguiProps) => {
               if (typeof external !== 'function') {
                 return external
               }
-              return (...args: any[]) => {
-                console.log('wut', args)
-                if (typeof args[1] === 'function') {
-                  // webpack4 style
-                  const [{ context, request }, cb] = args
-                  const res = includeModule(context, request)
-                  if (res === 'inline') {
-                    return cb(null, undefined)
-                  }
-                  if (typeof res === 'string') {
-                    return cb(null, res)
-                  }
-                  if (res) {
-                    return external(context, cb)
-                  }
+              // only runs on server
+              console.log('isWebpack5', isWebpack5)
+              return (ctx, cb) => {
+                const res = includeModule(ctx.context, ctx.request)
+                if (res === 'inline') {
                   return cb()
-                } else {
-                  // webpack5 style
-                  const opts: { context: string; request: string } = args[0]
-                  const { request, context } = opts
-                  const res = includeModule(context, request)
-                  if (res === 'inline') {
-                    return
-                  }
-                  if (typeof res === 'string') {
-                    return Promise.resolve(res)
-                  }
-                  if (res !== undefined) {
-                    return Promise.resolve(external(opts))
-                  }
                 }
+                if (typeof res === 'string') {
+                  return cb(null, res)
+                }
+                if (res) {
+                  return external(ctx, cb)
+                }
+                return cb()
               }
             }),
           ]
