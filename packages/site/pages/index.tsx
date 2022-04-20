@@ -20,6 +20,7 @@ import { InstallInput } from '../components/InstallInput'
 import { SearchButton } from '../components/Search'
 
 export default function Home() {
+  // return <HeroResponsive />
   return (
     <>
       <TitleAndMetaTags title="Tamagui — React Native + Web UI kit" />
