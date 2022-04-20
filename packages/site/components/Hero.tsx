@@ -154,9 +154,10 @@ const HeroTop = memo(() => {
               borderRadius={1000}
               iconAfter={ArrowRight}
               tag="a"
+              size="$6"
               fontWeight="800"
             >
-              Docs
+              Get started
             </Button>
           </NextLink>
 

@@ -3,7 +3,7 @@ import { TitleAndMetaTags } from '@components/TitleAndMetaTags'
 import { Community } from '@tamagui/site/components/HeroCommunity'
 import { FeaturesGrid } from '@tamagui/site/components/HeroFeaturesGrid'
 import { useMemo } from 'react'
-import { Separator, XStack, YStack } from 'tamagui'
+import { Separator, XStack, YStack, styled } from 'tamagui'
 
 import { useTint } from '../components/ColorToggleButton'
 import { ContainerLarge } from '../components/Container'
@@ -41,11 +41,11 @@ export default function Home() {
           <InstallInput />
         </XStack>
       </ContainerLarge>
-      <Section>
+      <Section pos="relative" zi={1000}>
         <YStack fullscreen className="bg-dot-grid mask-gradient-down" />
         <HeroExampleThemes />
       </Section>
-      <Section>
+      <Section pb="$0">
         <HeroResponsive />
       </Section>
       <SectionTinted gradient>
@@ -75,20 +75,18 @@ export default function Home() {
   )
 }
 
-const Section = ({ children, below, className }: any) => {
-  return (
-    <YStack
-      className={className}
-      contain="paint"
-      pos="relative"
-      ov="hidden"
-      py="$12"
-      zi={below ? 0 : 1}
-    >
-      {children}
-    </YStack>
-  )
-}
+const Section = styled(YStack, {
+  pos: 'relative',
+  py: '$12',
+
+  variants: {
+    below: {
+      true: {
+        zi: -1,
+      },
+    },
+  },
+})
 
 const SectionTinted = ({ children, gradient, extraPad, ...props }: any) => {
   const { tint } = useTint()
@@ -102,7 +100,7 @@ const SectionTinted = ({ children, gradient, extraPad, ...props }: any) => {
         // o={0.85}
         zi={-1}
         // @ts-ignore
-        bc={gradient ? `$${tint}1` : null}
+        // bc={gradient ? `$${tint}1` : null}
         btw={0.5}
         bbw={0.5}
         // @ts-ignore

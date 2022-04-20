@@ -80,10 +80,12 @@ export function Header({
             <Paragraph
               fontFamily="$silkscreen"
               p="$2"
-              px="$3"
+              px="$5"
               cursor="pointer"
-              size="$3"
-              opacity={0.5}
+              size="$6"
+              letterSpacing={3}
+              theme="alt2"
+              o={0.8}
               hoverStyle={{ opacity: 1 }}
               tag="a"
             >
@@ -95,10 +97,12 @@ export function Header({
             <Paragraph
               fontFamily="$silkscreen"
               p="$2"
-              px="$3"
+              px="$5"
               cursor="pointer"
-              size="$3"
-              opacity={0.5}
+              size="$6"
+              letterSpacing={3}
+              theme="alt2"
+              o={0.8}
               hoverStyle={{ opacity: 1 }}
               tag="a"
             >
