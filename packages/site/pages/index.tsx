@@ -51,13 +51,13 @@ export default function Home() {
       <SectionTinted gradient>
         <HeroPerformance />
       </SectionTinted>
+      <SectionTinted gradient>
+        <HeroExampleAnimations />
+      </SectionTinted>
       <Section>
         <YStack fullscreen className="bg-dot-grid mask-gradient-down" />
         <HeroExampleCode />
       </Section>
-      <SectionTinted gradient>
-        <HeroExampleAnimations />
-      </SectionTinted>
       <Section>
         <FeaturesGrid />
       </Section>

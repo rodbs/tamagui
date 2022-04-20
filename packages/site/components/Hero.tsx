@@ -132,7 +132,6 @@ const HeroTop = memo(() => {
                 ta: 'center',
                 size: '$6',
                 maxWidth: 500,
-                letterSpacing: 0,
                 fontWeight: '400',
               }}
               $gtMd={{
@@ -141,8 +140,8 @@ const HeroTop = memo(() => {
                 fontWeight: '400',
               }}
             >
-              Write&nbsp;once,&nbsp;run&nbsp;everywhere thanks to an optimizing compiler. 🔼 perf
-              with 🔽 code.
+              Write&nbsp;once,&nbsp;run&nbsp;everywhere with an optimizing compiler = 🔼 perf 🔽
+              code.
             </Paragraph>
           </YStack>
         </YStack>

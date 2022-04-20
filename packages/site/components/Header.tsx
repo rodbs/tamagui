@@ -75,12 +75,11 @@ export function Header({
       </XStack>
 
       <XStack pointerEvents="auto" tag="nav">
-        <XStack ai="center">
+        <XStack ai="center" space="$2">
           <NextLink href="/docs/intro/installation" passHref>
             <Paragraph
               fontFamily="$silkscreen"
               p="$2"
-              px="$5"
               cursor="pointer"
               size="$6"
               letterSpacing={3}
@@ -97,7 +96,6 @@ export function Header({
             <Paragraph
               fontFamily="$silkscreen"
               p="$2"
-              px="$5"
               cursor="pointer"
               size="$6"
               letterSpacing={3}
