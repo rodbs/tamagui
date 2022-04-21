@@ -14,14 +14,10 @@
   - create-tamagui-app
       - get some demos in that 100% pass compile / native
   - animateProps={[]} (basically transition-properties)
-  - // @ts-ignore TODO we need to make GetProps only use StackStylePropsBase and then later build that up better in styled()
-  - // @ts-expect-error TODO
   - check ScrollView SSR compat saw a bug
   - do a series of small demo videos to share on twitter etc
   - <BlurView />
   - check theme change slow
-  - slow types
-  - test component theme + alt theme (plus with compiled)
   - docs: extractable(), deoptProps, getExpandedShorthands
 
 - 2: 
