@@ -673,6 +673,10 @@ export function createExtractor() {
               let didInline = false
               const attributes = keys.map((key) => {
                 const val = out[key]
+                if (key === 'theme') {
+                  inlined.set(key, val)
+                  return attr
+                }
                 if (isValidStyleKey(key)) {
                   return {
                     type: 'style',
@@ -682,13 +686,7 @@ export function createExtractor() {
                   } as const
                 }
                 if (validHTMLAttributes[key]) {
-                  return {
-                    type: 'attr',
-                    value: t.jsxAttribute(
-                      t.jsxIdentifier(key),
-                      t.jsxExpressionContainer(literalToAst(val))
-                    ),
-                  } as const
+                  return attr
                 }
                 if (shouldPrintDebug) {
                   console.log('  ! inlining, non-static', key)
@@ -1094,40 +1092,35 @@ export function createExtractor() {
 
           // wrap theme around children on flatten
           if (shouldFlatten && shouldWrapInnerTheme) {
+            if (typeof themeVal !== 'string') {
+              console.warn('??')
+              return
+            }
+
             if (shouldPrintDebug) {
               console.log('  - wrapping theme', allOtherPropsExtractable, themeVal)
             }
-            const parents = traversePath.parentPath.node
-            if (!t.isJSXElement(parents) && !t.isJSXFragment(parents)) {
-              // cant support this bail
-              shouldFlatten = false
-            } else {
-              if (typeof themeVal === 'string') {
-                // insert import
-                if (!hasImportedTheme) {
-                  hasImportedTheme = true
-                  programPath.node.body.push(
-                    t.importDeclaration(
-                      [t.importSpecifier(t.identifier('_TamaguiTheme'), t.identifier('Theme'))],
-                      t.stringLiteral('@tamagui/core')
-                    )
-                  )
-                }
 
-                const children = parents.children
-                parents.children = [
-                  t.jsxElement(
-                    t.jsxOpeningElement(t.jsxIdentifier('_TamaguiTheme'), [
-                      t.jsxAttribute(t.jsxIdentifier('name'), t.stringLiteral(`${themeVal}`)),
-                    ]),
-                    t.jsxClosingElement(t.jsxIdentifier('_TamaguiTheme')),
-                    children
-                  ),
-                ]
-              } else {
-                // failed eval
-              }
+            // add import
+            if (!hasImportedTheme) {
+              hasImportedTheme = true
+              programPath.node.body.push(
+                t.importDeclaration(
+                  [t.importSpecifier(t.identifier('_TamaguiTheme'), t.identifier('Theme'))],
+                  t.stringLiteral('@tamagui/core')
+                )
+              )
             }
+
+            traversePath.replaceWith(
+              t.jsxElement(
+                t.jsxOpeningElement(t.jsxIdentifier('_TamaguiTheme'), [
+                  t.jsxAttribute(t.jsxIdentifier('name'), t.stringLiteral(`${themeVal}`)),
+                ]),
+                t.jsxClosingElement(t.jsxIdentifier('_TamaguiTheme')),
+                [traversePath.node]
+              )
+            )
           }
 
           // only if we flatten, ensure the default styles are there
