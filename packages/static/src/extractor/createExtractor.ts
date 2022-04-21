@@ -60,6 +60,11 @@ export type Extractor = ReturnType<typeof createExtractor>
 const createTernary = (x: Ternary) => x
 
 export function createExtractor() {
+  if (!process.env.TAMAGUI_TARGET) {
+    console.log('⚠️ Please set process.env.TAMAGUI_TARGET to either "web" or "native"')
+    process.exit(1)
+  }
+
   const shouldAddDebugProp =
     // really basic disable this for next.js because it messes with ssr
     !process.env.npm_package_dependencies_next &&
@@ -1075,11 +1080,10 @@ export function createExtractor() {
           const themeVal = inlined.get('theme')
           inlined.delete('theme')
           const allOtherPropsExtractable = [...inlined].every(([k, v]) => INLINE_EXTRACTABLE[k])
-          const shouldWrapInnerTheme = !!(hasOnlyStringChildren && themeVal)
+          const shouldWrapInnerTheme =
+            allOtherPropsExtractable && !!(hasOnlyStringChildren && themeVal)
           const canFlattenProps =
-            inlined.size === 0 ||
-            (allOtherPropsExtractable && shouldWrapInnerTheme) ||
-            allOtherPropsExtractable
+            inlined.size === 0 || shouldWrapInnerTheme || allOtherPropsExtractable
 
           let shouldFlatten =
             !shouldDeopt &&
@@ -1089,9 +1093,9 @@ export function createExtractor() {
             (staticConfig.neverFlatten === 'jsx' ? hasOnlyStringChildren : true)
 
           // wrap theme around children on flatten
-          if (shouldWrapInnerTheme) {
+          if (shouldFlatten && shouldWrapInnerTheme) {
             if (shouldPrintDebug) {
-              console.log('wrapping theme', { themeVal, inlined, allOtherPropsExtractable })
+              console.log('  - wrapping theme', allOtherPropsExtractable, themeVal)
             }
             const parents = traversePath.parentPath.node
             if (!t.isJSXElement(parents) && !t.isJSXFragment(parents)) {

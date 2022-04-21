@@ -20,7 +20,11 @@ import { InstallInput } from '../components/InstallInput'
 import { SearchButton } from '../components/Search'
 
 export default function Home() {
-  // return <HeroResponsive />
+  return (
+    <YStack py="$10">
+      <HeroResponsive />
+    </YStack>
+  )
   return (
     <>
       <TitleAndMetaTags title="Tamagui — React Native + Web UI kit" />
