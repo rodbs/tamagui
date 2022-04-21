@@ -21,11 +21,6 @@ import { SearchButton } from '../components/Search'
 
 export default function Home() {
   return (
-    <YStack py="$10">
-      <HeroResponsive />
-    </YStack>
-  )
-  return (
     <>
       <TitleAndMetaTags title="Tamagui — React Native + Web UI kit" />
       <HeaderFloating isHome />

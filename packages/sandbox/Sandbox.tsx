@@ -3,9 +3,17 @@
 import { Paragraph } from 'tamagui'
 
 const x = (
-  <Paragraph theme="alt1" size="$2">
-    tamagui.dev
-  </Paragraph>
+  <>
+    <Paragraph theme="alt1" size="$2">
+      tamagui.dev
+    </Paragraph>
+    <Paragraph theme="alt1" size="$2" x={pppp}>
+      tamagui.dev
+    </Paragraph>
+    <Paragraph theme={props.theme} size="$2">
+      tamagui.dev
+    </Paragraph>
+  </>
 )
 
 // // debug-verbose
