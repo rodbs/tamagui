@@ -27,6 +27,7 @@ import {
   SplitStyleResult,
   getSplitStyles,
 } from './helpers/getSplitStyles'
+import { getAllSelectors } from './helpers/insertStyleRule'
 import { wrapThemeManagerContext } from './helpers/wrapThemeManagerContext'
 import { useFeatures } from './hooks/useFeatures'
 import { usePressable } from './hooks/usePressable'
@@ -355,7 +356,7 @@ export function createComponent<
         if (process.env.NODE_ENV === 'development') {
           if (props['debug']) {
             // prettier-ignore
-            console.log('  » className', { isStringElement, pseudos, state, defaultsClassName, classNames, propsClassName: props.className, style, classList, className: className.trim().split(' '), themeClassName: theme.className })
+            console.log('  » className', { isStringElement, pseudos, state, defaultsClassName, classNames, propsClassName: props.className, style, classList, className: className.trim().split(' '), themeClassName: theme.className, values: Object.fromEntries(Object.entries(classNames).map(([k, v]) => [v, getAllSelectors()[v]])) })
           }
         }
         viewProps.className = className
@@ -437,8 +438,6 @@ export function createComponent<
         pressIn: false,
       })
     }, [])
-
-    console.log('attachHover, attachHover', attachHover, pseudos && pseudos.hoverStyle)
 
     const events = shouldAttach
       ? {
@@ -572,10 +571,10 @@ export function createComponent<
 
     content = createElement(ViewComponent, viewProps, childEls)
 
-    console.log('should', attachHover)
     if (isWeb && events && attachHover) {
       content = (
         <span
+          className="tui_Hoverable"
           style={{
             display: 'contents',
           }}

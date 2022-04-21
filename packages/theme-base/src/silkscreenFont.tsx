@@ -29,7 +29,8 @@ export const silkscreenFont = createFont({
     4: '300',
   },
   letterSpacing: {
-    4: 1,
-    6: 3,
+    4: 0,
+    5: 1,
+    6: 2,
   },
 })

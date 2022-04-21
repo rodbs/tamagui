@@ -159,18 +159,18 @@ export const lightGradient = [
 ]
 
 export const darkGradient = [
-  '#0f0f0f',
   '#111111',
-  '#141414',
+  '#151515',
   '#191919',
-  '#242424',
-  '#292929',
+  '#232323',
+  '#282828',
   '#323232',
   '#383838',
   '#424242',
   '#494949',
   '#545454',
   '#626262',
+  '#777777',
 ]
 
 const lightThemes = createThemesFrom('light', createTheme, {

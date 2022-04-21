@@ -26,9 +26,7 @@ export const HeroTypography = () => {
       {/* <YStack theme="alt2" fullscreen className="hero-gradient-white mask-gradient-down" /> */}
       <ContainerLarge position="relative" space="$8">
         <YStack ai="center" space="$2">
-          <HomeH2>
-            <span className="rainbow clip-text">Typography</span> (easier)
-          </HomeH2>
+          <HomeH2>Typography (easier)</HomeH2>
           <HomeH3>Plug-and-play fonts, individually tuned.</HomeH3>
         </YStack>
 
@@ -44,13 +42,13 @@ export const HeroTypography = () => {
         >
           <OverlayCard />
 
-          <YStack ai="flex-end" scale={1.2} zi={-1} x={-40}>
-            <H1 theme="blue_alt2">Hot-swappable</H1>
-            <H2 theme="purple_alt2">individually-styled</H2>
-            <H3 theme="pink_alt2">typed and optimized</H3>
-            <H4 theme="red_alt2">premade or custom</H4>
-            <H5 theme="orange_alt2">easy to author</H5>
-            <H6 theme="yellow_alt2">font themes</H6>
+          <YStack className="rainbow clip-text ta-right" display="block" zi={-1} space="$0.5">
+            <H1>Hot-swappable</H1>
+            <H2>individually-styled</H2>
+            <H3>typed and optimized</H3>
+            <H4>premade or custom</H4>
+            <H5>easy to author</H5>
+            <H6>font themes</H6>
           </YStack>
         </XStack>
       </ContainerLarge>

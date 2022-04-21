@@ -36,7 +36,7 @@ export default function Home() {
         <HeroBelow />
       </YStack>
       <Separator borderStyle="dotted" />
-      <ContainerLarge zi={100}>
+      <ContainerLarge zi={100000}>
         <XStack mt={-28} mb="$-4" jc="center" ai="center">
           <InstallInput />
         </XStack>
@@ -91,18 +91,18 @@ const Section = styled(YStack, {
 const SectionTinted = ({ children, gradient, extraPad, ...props }: any) => {
   const { tint } = useTint()
   const childrenMemo = useMemo(() => children, [children])
-  // const className = gradient ? `gradient-${tint}` : ''
+  const className = gradient ? `gradient-${tint}` : ''
   return (
-    <YStack contain="paint" pos="relative" py="$12" {...props}>
+    <YStack zi={-1} contain="paint" pos="relative" py="$12" {...props}>
       <YStack
         fullscreen
-        // className={className}
+        className={className}
         // o={0.85}
         zi={-1}
         // @ts-ignore
-        // bc={gradient ? `$${tint}1` : null}
-        btw={0.5}
-        bbw={0.5}
+        bc={gradient ? `$${tint}2` : null}
+        btw={1}
+        bbw={1}
         // @ts-ignore
         boc={`$${tint}3`}
       />

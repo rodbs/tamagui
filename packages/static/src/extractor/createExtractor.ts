@@ -231,27 +231,23 @@ export function createExtractor() {
           // found a valid tag
           res.found++
 
-          if (shouldPrintDebug) {
-            console.log(`\n<${originalNodeName} />`)
-          }
-
           const filePath = sourcePath.replace(process.cwd(), '.')
           const lineNumbers = node.loc
             ? node.loc.start.line +
               (node.loc.start.line !== node.loc.end.line ? `-${node.loc.end.line}` : '')
             : ''
+          const preName = componentName ? `${componentName}.` : ''
+          const tagId = `${preName}${node.name.name}@${filePath.replace('./', '')}:${lineNumbers}`
+
+          if (shouldPrintDebug) {
+            console.log(`\n<${originalNodeName} /> (${tagId})`)
+          }
 
           // add data-is
           if (shouldAddDebugProp && !disableDebugAttr) {
-            const preName = componentName ? `${componentName}.` : ''
             res.modified++
             node.attributes.unshift(
-              t.jsxAttribute(
-                t.jsxIdentifier('data-is'),
-                t.stringLiteral(
-                  `${preName}${node.name.name}@${filePath.replace('./', '')}:${lineNumbers}`
-                )
-              )
+              t.jsxAttribute(t.jsxIdentifier('data-is'), t.stringLiteral(tagId))
             )
           }
 
@@ -699,7 +695,9 @@ export function createExtractor() {
 
               // weird logic whats going on here
               if (didInline) {
-                console.log('we inlined something off', { attributes })
+                if (shouldPrintDebug) {
+                  console.log('  bailing flattening due to attributes', attributes)
+                }
                 // bail
                 return attr
               }
@@ -1092,6 +1090,9 @@ export function createExtractor() {
 
           // wrap theme around children on flatten
           if (shouldWrapInnerTheme) {
+            if (shouldPrintDebug) {
+              console.log('wrapping theme', { themeVal, inlined, allOtherPropsExtractable })
+            }
             const parents = traversePath.parentPath.node
             if (!t.isJSXElement(parents) && !t.isJSXFragment(parents)) {
               // cant support this bail

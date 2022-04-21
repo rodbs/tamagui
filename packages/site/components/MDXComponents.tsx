@@ -14,6 +14,7 @@ import {
   H4,
   H5,
   Image,
+  ImageProps,
   Paragraph,
   Separator,
   Text,
@@ -70,15 +71,7 @@ export const components = {
 
   IntroParagraph: ({ children, ...props }) => {
     return (
-      <Paragraph
-        tag="span"
-        size="$5"
-        className="paragraph"
-        display="block"
-        mt="$1"
-        mb="$1"
-        {...props}
-      >
+      <Paragraph tag="span" size="$5" className="paragraph" display="block" mt="$1" {...props}>
         {children}
       </Paragraph>
     )
@@ -135,15 +128,15 @@ export const components = {
 
   h3: ({ children, id, ...props }) => (
     <LinkHeading mt="$4" mb="$1" id={id}>
-      <H3 data-heading size="$6" fow="800" {...props}>
+      <H3 data-heading {...props}>
         {children}
       </H3>
       {getNonTextChildren(children)}
     </LinkHeading>
   ),
 
-  h4: (props) => <H4 mt="$3" size="$5" fow="800" {...props} />,
-  h5: (props) => <H5 mt="$3" size="$4" fow="800" {...props} />,
+  h4: (props) => <H4 mt="$3" fow="800" {...props} />,
+  h5: (props) => <H5 mt="$3" fow="800" {...props} />,
 
   p: (props) => (
     <Paragraph
@@ -239,15 +232,23 @@ export const components = {
     )
   },
 
-  Image: ({ children, size, ...props }) => (
-    <YStack tag="figure" f={1} mx={0} mb="$3">
-      <OffsetBox size={size}>
-        <Image maxWidth="100%" width={100} height={100} src="" {...props} />
-      </OffsetBox>
+  Image: ({ children, size, ...props }: ImageProps & { size?: 'hero' }) => (
+    <OffsetBox
+      debug
+      size={size}
+      tag="figure"
+      f={1}
+      mx={0}
+      mb="$3"
+      ai="center"
+      jc="center"
+      ov="hidden"
+    >
+      <Image maxWidth="100%" {...props} />
       <Text tag="figcaption" lineHeight={23} color="$colorPress" mt="$2">
         {children}
       </Text>
-    </YStack>
+    </OffsetBox>
   ),
 
   Video: ({

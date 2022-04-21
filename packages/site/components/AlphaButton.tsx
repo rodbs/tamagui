@@ -6,7 +6,7 @@ export const AlphaButton = () => (
   <YStack $sm={{ width: 0, height: 0, overflow: 'hidden', mx: -4 }}>
     <NextLink href="/blog/tamagui-enters-beta-themes-and-animations" passHref>
       <Button
-        rotate="-5deg"
+        rotate="-2.5deg"
         theme="pink_alt2"
         p="$2"
         px="$3"

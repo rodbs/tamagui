@@ -22,13 +22,13 @@ export const TamaguiLogo = ({
 )
 
 const colors = [
-  'var(--red9)',
-  'var(--orange9)',
-  'var(--yellow9)',
-  'var(--green9)',
-  'var(--blue9)',
-  'var(--purple9)',
-  'var(--pink9)',
+  'var(--red9)', //'var(--pink9)',
+  'var(--orange9)', //'var(--orange9)',
+  'var(--yellow9)', //'var(--red9)',
+  'var(--green9)', //'var(--color)',
+  'var(--blue9)', //'var(--color)',
+  'var(--purple9)', //'var(--color)',
+  'var(--pink9)', //'var(--color)',
 ]
 
 export const LogoWords = ({ color, downscale = 1 }: { color?: string; downscale?: number }) => {

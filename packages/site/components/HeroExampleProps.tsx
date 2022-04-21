@@ -1,6 +1,5 @@
-import { Paragraph, SizableText, Text, XStack, YStack } from 'tamagui'
+import { Card, Paragraph, SizableText, Text, XStack, YStack } from 'tamagui'
 
-import { Card } from './Card'
 import { CheckCircle } from './CheckCircle'
 import { ContainerLarge } from './Container'
 import { HomeH2, HomeH3 } from './HomeH2'
@@ -23,7 +22,7 @@ const Features = ({ items, ...props }: any) => {
   return (
     <YStack space {...props}>
       {items.map((feature, i) => (
-        <Card br="$8" key={i} p="$4" py="$6">
+        <Card elevation="$1" key={i} p="$4" py="$6">
           <XStack tag="li">
             <Text color="$green9">
               <CheckCircle />

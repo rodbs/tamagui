@@ -229,7 +229,7 @@ export const getSplitStyles = (
 
         if (!mediaQueryConfig[mediaKey]) {
           // this isn't a media key, pass through
-          viewProps[key] = valInit
+          viewProps[key] = val
           continue
         }
 
@@ -239,7 +239,7 @@ export const getSplitStyles = (
         // THIS USED TO PROXY BACK TO REGULAR PROPS BUT THAT IS THE WRONG BEHAVIOR
         // we avoid passing in default props for media queries because that would confuse things like SizableText.size:
         const mediaStyle = getSubStyle(
-          valInit,
+          val,
           staticConfig,
           theme,
           props,

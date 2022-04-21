@@ -30,7 +30,7 @@ export function HeroExampleCode() {
               <span className="rainbow clip-text">DX</span> 🤝{' '}
               <span className="rainbow clip-text">UX</span>
             </HomeH2>
-            <HomeH3>Maintance&nbsp; * &nbsp;Performance&nbsp; * &nbsp;Platforms</HomeH3>
+            <HomeH3>Syntax&nbsp; * &nbsp;Performance&nbsp; * &nbsp;Compatibility</HomeH3>
           </YStack>
 
           <InteractiveContainer theme={tint} maxWidth="100%" als="center">

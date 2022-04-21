@@ -15,9 +15,9 @@ export function FeaturesGrid() {
           <HomeH2 className="rainbow clip-text" size="$12">
             All-in-one
           </HomeH2>
-          <HomeH3 theme="alt4" maw={700}>
-            The strongest low-level primritives designed to let you rapidly iterate on truly
-            cross-platform apps that just work.
+          <HomeH3 maw={600}>
+            Low-level primitives designed to let you rapidly iterate on truly cross-platform apps
+            without fuss.
           </HomeH3>
         </YStack>
 

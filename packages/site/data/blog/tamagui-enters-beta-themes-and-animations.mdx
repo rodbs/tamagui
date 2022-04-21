@@ -16,9 +16,7 @@ by: nate
   <UL>
     <LI>A style library for creating React Native + Web components.</LI>
     <LI>An optimizing compiler on top, for big performance gains.</LI>
-    <LI>
-      A suite of <span className="rainbow clip-text">universal</span> components.
-    </LI>
+    <LI>A component kit built on both.</LI>
   </UL>
 </IntroParagraph>
 
@@ -34,7 +32,7 @@ Since the first alpha it's been six months, several hundred of bugfixes, three d
 
 Lets take a look at the changes in the beta:
 
-## Start faster
+### Start faster
 
 Introducing **create-tamagui-app**, to get started much faster with Expo, Next.js, and Tamagui:
 
@@ -56,11 +54,11 @@ You can even clone + deploy it instantly with Vercel and Github:
 
 A big shout out to [Fernando Rojo](https://twitter.com/fernandotherojo) for creating [Solito](https://solito.dev), a great library for sharing all your views between Expo and Next.js, and the bootstrap repo we borrowed from.
 
-## Themes 🎨
+### Themes 🎨
 
 Themes have been completely redone and I'm really excited about them, they are a big step forward and I haven't seen any system really give the power and flexibility Tamagui has now.
 
-### Sub-themes
+#### Sub-themes
 
 Tamagui already supported sub-themes, with various edge cases. With the rewrite, sub-themes now work much better, and the `theme` prop is available on every component, including ones you create using the `styled` factory function.
 
@@ -75,19 +73,19 @@ Tamagui already supported sub-themes, with various edge cases. With the rewrite,
   </XStack>
 </ScrollView>
 
-### Component themes
+#### Component themes
 
 Not only that, but you can give any `styled` component a `name` and it ensure that sub-theme applies. Theme props are now normalized to match React Native style properties as well.
 
-### Tons of small improvements
+#### Tons of small improvements
 
 We've also fixed and improved a lot of how the `@tamagui/feather-icons`, the `Button` component, and the theme engine all work together to automatically handle passing values between each other.
 
-### Why it matters
+#### Why it matters
 
 I'm really happy with how this landed. The focus could have been on components, but while working on Tooltip/Popover/Drawer, it became clear how important is is to get the fundamentals right first. **Animations and themes both have an oversized influence on everything above them**.
 
-In general, UI kits are hard because they are like balancing stones; each layer has a huge influence on the next. The interfaces are especially hard, and once they're locked in they're harder to change.
+In general, UI kits are hard because they have recursive complication; where every implementation detail has an outsize influence the one above it.
 
 <XStack
   mt="$4"
@@ -108,11 +106,9 @@ In general, UI kits are hard because they are like balancing stones; each layer 
   />
 </XStack>
 
-This release lays much better foundational stones in themes and animations.
-
 [Read the docs for much more on themes](/docs/intro/themes).
 
-## Animations
+### Animations
 
 Animations are making their way, experimentally, into `@tamagui/core`. They are unstable, but we want to get feedback and use them more in practice.
 
@@ -131,7 +127,7 @@ Which means you can swap entire animation drivers depending on your platform. Wa
 
 [Read the docs on animations](/docs/core/animations) to get started.
 
-## New Components
+### New Components
 
 Over the last few months we've added:
 
@@ -151,31 +147,31 @@ There's tons of room to grow and improve. We're looking at using [Floating UI](h
 
 [Join our Discord to voice which ones you'd like to see](https://discord.gg/4qh6tdcVDa).
 
-## Upgraded Components
+### Upgraded Components
 
 [LinearGradient](/docs/components/linear-gradient), [Image](/docs/components/image), and [Button](/docs/components/button) have received lots of love. LinearGradient now fully supports all theme values and the compiler will help it extract any style properties. Image should still be considered beta, but has gone through many rounds of bugfixes and improvements. And Button now handles passing more text properties down, themes and sizes icons more reliably, and has many fixes for variants like `circular`.
 
-## Focus styling
+### Focus styling
 
 We landed experimental support for the `focusStyle` prop, which works much like `pressStyle` and `hoverStyle`.
 
-## ThemeReset
+### ThemeReset
 
 Sometimes you want to have your theme reset to the one above it. ThemeReset does just this. Note: it's not SSR compatible if you're doing automatic light/dark themes - it will still work, but there may be a flash on first load. There's a fix for this that is a bit involved,so we think it's still useful to release as experimental until we land that.
 
-## A pre-made base theme
+### A pre-made base theme
 
 Use the themes from the Tamagui site itself without any setup at all, simply install `@tamagui/theme-base` and add `themes` and `tokens` to `createTamagui()` in your `tamagui.config.ts`.
 
-Likewise, `@tamagui/shorthands` is new an gives you a nice set of shorthands to use out of the box.
+Likewise, we've released `@tamagui/shorthands`, a nice default set of shorthands to use out of the box.
 
-## And much more...
+### And much more...
 
 - 🐛 [Hundreds of bug-fixes](https://github.com/tamagui/tamagui/releases/tag/v1.0.0-beta.1).
 - ✨ Many docs improvements: new pages, more examples, more props documented, and search.
 - ✨ Smarter styled() function - now automatically detects Text/View and other React Native Web components and properly handles their styling/types.
 
-## Acknowledgements
+### Acknowledgements
 
 This release once again is inspired by or forks code from a variety of other libraries and developers.
 

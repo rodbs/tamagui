@@ -41,9 +41,8 @@ a {
 }
 
 :is(
-  div .paragraph-link,
   p a,
-  span a
+  span:not(.tui_Theme, .tui_Hoverable) a
 ) {
   text-decoration: underline;
   background-color: var(--backgroundPress);
@@ -55,9 +54,8 @@ a {
 }
 
 :is(
-  div .paragraph-link,
   p a,
-  span a
+  span:not(.tui_Theme, .tui_Hoverable) a
 ):hover {
   text-decoration-style: solid;
   background-color: var(--backgroundFocus);
@@ -255,13 +253,25 @@ pre {
 .gradient-teal {
   background: linear-gradient(90deg, transparent, var(--teal1), var(--yellow1), transparent);
 }
-
+/* 
 .rainbow {
   background: -webkit-linear-gradient(
     90deg,
     var(--yellow10) 1%,
     var(--red10) 71%,
     var(--pink10) 71%
+  );
+} */
+
+.rainbow {
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--red10),
+    var(--orange10),
+    var(--green10),
+    var(--blue10),
+    var(--purple10),
+    var(--pink10)
   );
 }
 
@@ -289,7 +299,7 @@ iframe {
 .bg-dot-grid {
   contain: paint;
   background-position: center center;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25px' height='25px' viewBox='0 0 25 25' fill='none'%3E%3Ccircle cx='24' cy='24' r='1' fill='rgba(127,127,127,0.1)' /%3E%3C/svg%3E%0A");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='23px' height='23px' viewBox='0 0 23 23' fill='none'%3E%3Ccircle cx='22' cy='22' r='0.88' fill='rgba(127,127,127,0.3)' /%3E%3C/svg%3E%0A");
 }
 
 .bg-grid {
@@ -593,3 +603,6 @@ input, textarea {
   top: 24%;
 }
 
+.ta-right {
+  text-align: right;
+}

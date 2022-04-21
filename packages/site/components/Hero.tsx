@@ -75,7 +75,7 @@ const HeroTop = memo(() => {
         fullscreen
         left={-1000}
         right={-1000}
-        opacity={0.4}
+        opacity={0.6}
       />
 
       <Header />
@@ -122,26 +122,22 @@ const HeroTop = memo(() => {
             }}
           >
             <Paragraph
-              debug
               color="$gray10"
-              // opacity={0.5}
               size="$5"
-              letterSpacing={0}
               fontFamily="$silkscreen"
+              maw={500}
               $gtSm={{
                 ta: 'center',
                 size: '$6',
-                maxWidth: 500,
                 fontWeight: '400',
               }}
               $gtMd={{
-                size: '$8',
-                maxWidth: 900,
+                size: '$7',
                 fontWeight: '400',
               }}
             >
-              Write&nbsp;once,&nbsp;run&nbsp;everywhere with an optimizing compiler = 🔼 perf 🔽
-              code.
+              <span className="rainbow clip-text">Write&nbsp;once,&nbsp;run&nbsp;everywhere</span>{' '}
+              without downside thanks to an optimizing&nbsp;compiler.
             </Paragraph>
           </YStack>
         </YStack>
@@ -153,8 +149,9 @@ const HeroTop = memo(() => {
               borderRadius={1000}
               iconAfter={ArrowRight}
               tag="a"
-              size="$6"
+              size="$5"
               fontWeight="800"
+              debug
             >
               Get started
             </Button>
