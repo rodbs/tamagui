@@ -57,7 +57,7 @@ export const Footer = () => {
           </YStack>
 
           <YStack $sm={{ ai: 'center' }} px="$4" py="$5" flex={1.5} space="$2">
-            <H4 size="$4" fontFamily="$silkscreen">
+            <H4 mb="$3" size="$4" fontFamily="$silkscreen">
               Overview
             </H4>
             <ParagraphLink href="/docs/intro/introduction">Introduction</ParagraphLink>
@@ -68,7 +68,7 @@ export const Footer = () => {
           </YStack>
 
           <YStack $sm={{ ai: 'center' }} px="$4" py="$5" flex={1.5} space="$2">
-            <H4 size="$4" fontFamily="$silkscreen">
+            <H4 mb="$3" size="$4" fontFamily="$silkscreen">
               Docs
             </H4>
             <ParagraphLink href="/docs/intro/installation">Installation</ParagraphLink>
@@ -77,7 +77,7 @@ export const Footer = () => {
           </YStack>
 
           <YStack $sm={{ ai: 'center' }} px="$4" py="$5" flex={1.5} space="$2">
-            <H4 size="$4" fontFamily="$silkscreen">
+            <H4 mb="$3" size="$4" fontFamily="$silkscreen">
               Community
             </H4>
             {/* <ParagraphLink href="/blog">Blog</ParagraphLink> */}

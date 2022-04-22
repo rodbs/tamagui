@@ -26,7 +26,7 @@ export function HeroPerformance() {
         </YStack>
 
         <YStack pos="relative" px="$2" h={181} br="$8" width="100%" ai="stretch" jc="center">
-          <YStack fullscreen zi={-1} className="bg-grid mask-gradient-right" />
+          {/* <YStack fullscreen zi={-1} className="bg-grid mask-gradient-right" /> */}
 
           <YStack fullscreen rotateY="-10deg" x={300} zi={-1}>
             <Glow />

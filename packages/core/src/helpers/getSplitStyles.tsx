@@ -8,7 +8,6 @@ import {
 import { ViewStyle } from 'react-native'
 
 import { isWeb } from '../constants/platform'
-import { ComponentState } from '../defaultComponentState'
 import { mediaQueryConfig, mediaState } from '../hooks/useMedia'
 import {
   MediaKeys,
@@ -16,6 +15,7 @@ import {
   PsuedoPropKeys,
   StackProps,
   StaticConfigParsed,
+  TamaguiComponentState,
   ThemeObject,
 } from '../types'
 import { createMediaStyle } from './createMediaStyle'
@@ -70,7 +70,7 @@ export const getSplitStyles = (
   props: { [key: string]: any },
   staticConfig: StaticConfigParsed,
   theme: ThemeObject,
-  state: Partial<ComponentState> & {
+  state: Partial<TamaguiComponentState> & {
     noClassNames?: boolean
     resolveVariablesAs?: ResolveVariableTypes
   },

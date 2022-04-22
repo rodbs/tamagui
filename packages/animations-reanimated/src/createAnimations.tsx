@@ -1,5 +1,5 @@
 import { AnimatePresenceContext, usePresence } from '@tamagui/animate-presence'
-import { AnimationDriver, UseAnimationProps, UseAnimationState } from '@tamagui/core'
+import { AnimationDriver, UseAnimationHelpers, UseAnimationProps } from '@tamagui/core'
 import { createContext, useCallback, useContext, useEffect } from 'react'
 import {
   PerpectiveTransform,
@@ -41,12 +41,13 @@ export function createAnimations<A extends Object>(animations: A): AnimationDriv
     animations,
     View: AnimatedView,
     Text: AnimatedText,
-    useAnimations: (props: UseAnimationProps, state: UseAnimationState) => {
-      const { style, exitStyle, onDidAnimate, delay } = state
+    useAnimations: (props: UseAnimationProps, helpers: UseAnimationHelpers) => {
+      const { styleKey, mergedStyles, state, pseudos, onDidAnimate, delay } = helpers
       const [isPresent, safeToUnmount] = usePresence()
       const presence = useContext(AnimatePresenceContext)
       const isMounted = useSharedValue(false)
-      const hasExitStyle = !!exitStyle
+      const isHovering = useSharedValue(false)
+      const hasExitStyle = !!pseudos.exitStyle
       const custom = useCallback(() => {
         'worklet'
         return presence?.custom
@@ -66,6 +67,10 @@ export function createAnimations<A extends Object>(animations: A): AnimationDriv
         isMounted.value = true
       }, [isMounted])
 
+      useEffect(() => {
+        isHovering.value = true
+      }, [state.hover])
+
       useEffect(
         function allowUnMountIfMissingExit() {
           if (!isPresent && !hasExitStyle) {
@@ -76,27 +81,29 @@ export function createAnimations<A extends Object>(animations: A): AnimationDriv
       )
 
       const animatedStyle = useAnimatedStyle(() => {
+        // read this testing effect
+        isHovering.value
+
+        const style = mergedStyles({
+          isExiting: !isPresent,
+        })
+
         const final = {
           transform: [] as any[],
         }
 
-        const isExiting = !isPresent && !!exitStyle
+        const isExiting = !isPresent && !!pseudos.exitStyle
         const transition = animations[props.animation]
 
-        const mergedStyles = {
-          ...style,
-          ...(isExiting && exitStyle),
-        }
-
         const exitingStyleProps: Record<string, boolean> = {}
-        if (exitStyle) {
-          for (const key of Object.keys(exitStyle)) {
+        if (pseudos.exitStyle) {
+          for (const key of Object.keys(pseudos.exitStyle)) {
             exitingStyleProps[key] = true
           }
         }
 
-        for (const key in mergedStyles) {
-          const value = mergedStyles[key]
+        for (const key in style) {
+          const value = style[key]
           const { animation, config, shouldRepeat, repeatCount, repeatReverse } = animationConfig(
             key,
             transition
@@ -179,9 +186,13 @@ export function createAnimations<A extends Object>(animations: A): AnimationDriv
           // end for (key in mergedStyles)
         }
 
+        if (process.env.NODE_ENV === 'development' && props['debug']) {
+          console.log('animation style', JSON.stringify(final, null, 2))
+        }
+
         return final
       }, [
-        style,
+        styleKey,
         custom,
         delay,
         // disableInitialAnimation,

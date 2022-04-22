@@ -50,7 +50,7 @@ export default function Home() {
       <SectionTinted gradient>
         <HeroPerformance />
       </SectionTinted>
-      <SectionTinted gradient>
+      <SectionTinted>
         <HeroExampleAnimations />
       </SectionTinted>
       <Section>
@@ -95,11 +95,11 @@ const SectionTinted = ({ children, gradient, extraPad, ...props }: any) => {
     <YStack zi={-1} contain="paint" pos="relative" py="$12" {...props}>
       <YStack
         fullscreen
-        className={className}
+        // className={className}
         // o={0.85}
         zi={-1}
         // @ts-ignore
-        bc={gradient ? `$${tint}2` : null}
+        bc={gradient ? `$${tint}1` : null}
         btw={1}
         bbw={1}
         // @ts-ignore

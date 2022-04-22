@@ -9,6 +9,7 @@
   - compiler is inserting default props check effects
 
 - 1:
+  - fonts become factory functions to allow customization
   - auto skeleton components
   - <Avatar />, <Checkbox />/ <Switch />, <Label />, <Select />, <Tabs />
   - create-tamagui-app

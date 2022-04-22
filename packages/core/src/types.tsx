@@ -219,6 +219,7 @@ export type TransformStyleProps = {
 //
 export type TamaguiComponentPropsBase = {
   animation?: AnimationKeys
+  animateProps?: string[]
   children?: any | any[]
   debug?: boolean | 'break' | 'verbose'
   disabled?: boolean
@@ -887,6 +888,18 @@ type CSSColorNames =
   | 'yellow'
   | 'yellowgreen'
 
+export type TamaguiComponentState = {
+  hover: boolean
+  press: boolean
+  pressIn: boolean
+  focus: boolean
+  mounted: boolean
+  animation?: null | {
+    style?: any
+    avoidClasses?: boolean
+  }
+}
+
 // Animations:
 
 type AnimationConfig = {
@@ -901,18 +914,27 @@ export type AnimationDriver<A extends AnimationConfig = AnimationConfig> = {
   Text?: any
 }
 
-export type UseAnimationProps = { animation: string; [key: string]: any }
-export type UseAnimationState = {
-  style: ViewStyle | null | undefined
-  isMounted: boolean
-  exitStyle?: ViewStyle | null
+export type UseAnimationProps = TamaguiComponentPropsBase &
+  Record<string, any> & {
+    animation: string
+  }
+
+export type UseAnimationHelpers = {
+  styleKey: string
+  style: ViewStyle
+  state: TamaguiComponentState
+  pseudos: PseudoProps<ViewStyle>
+  // style: ViewStyle | null | undefined
+  // isMounted: boolean
+  // exitStyle?: ViewStyle | null
   onDidAnimate?: any
   delay?: number
+  mergedStyles(props?: { isExiting?: boolean }): ViewStyle
 }
 
 export type UseAnimationHook = (
   props: UseAnimationProps,
-  state: UseAnimationState
+  helpers: UseAnimationHelpers
 ) => {
   style?: StackStylePropsBase
 }

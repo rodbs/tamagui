@@ -1,12 +1,11 @@
 /// <reference types="react" />
 import { ViewStyle } from 'react-native';
-import { ComponentState } from '../defaultComponentState';
 import { PseudoStyles } from '../static';
-import { UseAnimationHook } from '../types';
+import { TamaguiComponentState, UseAnimationHook } from '../types';
 declare type FeatureUtils = {
     forceUpdate: Function;
-    state: ComponentState;
-    setStateShallow: (next: Partial<ComponentState>) => void;
+    state: TamaguiComponentState;
+    setStateShallow: (next: Partial<TamaguiComponentState>) => void;
     useAnimations?: UseAnimationHook;
     pseudos: PseudoStyles;
     style: ViewStyle | null | undefined;

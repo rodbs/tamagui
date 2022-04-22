@@ -19,7 +19,7 @@ import { stackDefaultStyles } from './constants/constants'
 import { isAndroid, isTouchDevice, isWeb } from './constants/platform'
 import { rnw } from './constants/rnw'
 import { isVariable } from './createVariable'
-import { ComponentState, defaultComponentState } from './defaultComponentState'
+import { createShallowUpdate } from './helpers/createShallowUpdate'
 import { extendStaticConfig, parseStaticConfig } from './helpers/extendStaticConfig'
 import {
   ClassNamesObject,
@@ -38,13 +38,25 @@ import {
   StaticConfig,
   StaticConfigParsed,
   TamaguiComponent,
+  TamaguiComponentState,
   TamaguiInternalConfig,
   UseAnimationHook,
 } from './types'
 import { TextAncestorContext } from './views/TextAncestorContext'
 
-export const mouseUps = new Set<Function>()
+React['keep']
 
+export const defaultComponentState: TamaguiComponentState = {
+  hover: false,
+  press: false,
+  pressIn: false,
+  focus: false,
+  // only used by enterStyle
+  mounted: false,
+  animation: null,
+}
+
+export const mouseUps = new Set<Function>()
 if (typeof document !== 'undefined') {
   document.addEventListener('mouseup', () => {
     mouseUps.forEach((x) => x())
@@ -52,23 +64,8 @@ if (typeof document !== 'undefined') {
   })
 }
 
-type DefaultProps = {}
-
-function createShallowUpdate(setter: React.Dispatch<React.SetStateAction<ComponentState>>) {
-  return (next: Partial<ComponentState>) => {
-    setter((prev) => {
-      for (const key in next) {
-        if (prev[key] !== next[key]) {
-          return { ...prev, ...next }
-        }
-      }
-      return prev
-    })
-  }
-}
-
 export function createComponent<
-  ComponentPropTypes extends Object = DefaultProps,
+  ComponentPropTypes extends Object = {},
   Ref = View,
   BaseProps = never
 >(configIn: Partial<StaticConfig> | StaticConfigParsed) {
@@ -121,7 +118,7 @@ export function createComponent<
 
     const forceUpdate = useForceUpdate()
     const theme = useTheme(props.theme, componentName, props, forceUpdate)
-    const [state, set_] = useState<ComponentState>(defaultComponentState)
+    const [state, set_] = useState<TamaguiComponentState>(defaultComponentState)
     const setStateShallow = createShallowUpdate(set_)
 
     const shouldAvoidClasses = !!(state.animation && avoidClasses)

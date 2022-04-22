@@ -114,11 +114,11 @@ export const HeroResponsive = memo(() => {
   }, [])
 
   return (
-    <YStack ref={ref} y={0} mt="$-10" pt="$6" pos="relative">
+    <YStack ref={ref} y={0} mt="$-12" pt="$6" pos="relative">
       <ContainerLarge pos="relative">
         <Header />
-        <Spacer size="$8" />
-        <YStack h={browserHeight + 40} />
+        <Spacer size="$6" />
+        <YStack h={browserHeight + 80} />
         <XStack b={-20} pos="absolute" zi={1} f={1} space="$1">
           <YStack
             className="unselectable"
@@ -167,7 +167,16 @@ export const HeroResponsive = memo(() => {
           </YStack>
         </XStack>
 
-        <YStack pos="absolute" zi={0} t={220} l={-1000} r={-1000} b={-75} ai="center" jc="center">
+        <YStack
+          pos="absolute"
+          zi={0}
+          h={browserHeight + 120}
+          l={-1000}
+          r={-1000}
+          b={-75}
+          ai="center"
+          jc="center"
+        >
           <XStack pos="absolute" t={0} l={0} r={0} bbw={1} boc="$color" opacity={0.1} />
           <YStack pos="relative" f={1} h="100%" w="100%">
             <YStack
@@ -216,25 +225,26 @@ const Marker = memo(({ name, active, onPress, ...props }: any) => {
 
 const Header = memo(() => {
   return (
-    <YStack f={1} space="$2">
+    <YStack f={1} space="$3">
       <XStack>
         <HomeH2 als="flex-start">Responsive, done right</HomeH2>
 
         <XStack jc="center" ai="center" $sm={{ display: 'none' }}>
-          <IconStack als="center" x={40} y={-5} theme="pink_alt2" p="$3">
+          <IconStack als="center" x={40} theme="alt2" p="$3">
             <Monitor size={18} />
           </IconStack>
           <Spacer size="$6" />
         </XStack>
       </XStack>
+
       <Paragraph maxWidth={450} size="$5" theme="alt2">
         Sharing responsive designs between web and native saves time, but hooks are verbose and
         expensive to run.
       </Paragraph>
 
       <Paragraph maxWidth={450} size="$5" theme="alt2">
-        Tamagui styles and hooks compile away to efficient CSS media queries, or hoist to
-        StyleSheet.create on native.
+        Tamagui styles and hooks compile away to efficient CSS media queries (or hoisted StyleSheets
+        on native).
       </Paragraph>
     </YStack>
   )

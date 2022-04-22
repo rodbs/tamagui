@@ -1,6 +1,5 @@
 import { ViewStyle } from 'react-native';
-import { ComponentState } from '../defaultComponentState';
-import { StackProps, StaticConfigParsed, ThemeObject } from '../types';
+import { StackProps, StaticConfigParsed, TamaguiComponentState, ThemeObject } from '../types';
 import { ResolveVariableTypes } from './createPropMapper';
 export declare type SplitStyles = ReturnType<typeof getSplitStyles>;
 export declare type PseudoStyles = {
@@ -14,7 +13,7 @@ export declare type ClassNamesObject = Record<string, string>;
 export declare type SplitStyleResult = ReturnType<typeof getSplitStyles>;
 export declare const getSplitStyles: (props: {
     [key: string]: any;
-}, staticConfig: StaticConfigParsed, theme: ThemeObject, state: Partial<ComponentState> & {
+}, staticConfig: StaticConfigParsed, theme: ThemeObject, state: Partial<TamaguiComponentState> & {
     noClassNames?: boolean;
     resolveVariablesAs?: ResolveVariableTypes;
 }, defaultClassNames?: ClassNamesObject | null | undefined) => {

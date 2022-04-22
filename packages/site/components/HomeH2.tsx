@@ -18,6 +18,7 @@ export const HomeH3 = styled(H3, {
   als: 'center',
   fow: '400',
   size: '$7',
+  letterSpacing: -0.5,
 
   $sm: {
     size: '$6',

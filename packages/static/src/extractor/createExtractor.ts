@@ -304,6 +304,8 @@ export function createExtractor() {
             ...(staticConfig.inlineProps || []),
           ])
           const deoptProps = new Set([
+            // always de-opt animation
+            'animation',
             ...(props.deoptProps || []),
             ...(staticConfig.deoptProps || []),
           ])

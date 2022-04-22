@@ -63,16 +63,6 @@ a {
   text-decoration-color: var(--borderColorPress);
 }
 
-
-
-p,
-input,
-textarea,
-select,
-button {
-  margin: 0;
-}
-
 p a:hover,
 span a:hover {
   color: var(--blue12);
@@ -89,27 +79,11 @@ span._display-1adg3ll > span._display-xoduu5 {
   background-color: #843cc733;
 }
 
-.crisp-edges,
-.crisp-edges * {
-  shape-rendering: crispEdges;
-  image-rendering: optimizeSpeed;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -o-crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: pixelated;
-  image-rendering: optimize-contrast;
-  -ms-interpolation-mode: nearest-neighbor;
-}
-
 .paragraph-parent .paragraph {
   margin: 0;
 }
 
 /*  */
-
-.text-shadow {
-  text-shadow: 0 2px 2px rgb(0 0 0 / 12%);
-}
 
 .hero-scroll {
   overflow: hidden;
@@ -144,14 +118,17 @@ span._display-1adg3ll > span._display-xoduu5 {
 
 /* reset */
 
+p,
+input,
+textarea,
+select,
+button,
 ul,
 ol,
 li,
 pre {
   margin: 0;
 }
-
-/* .transition {} */
 
 .all {
   transition-property: all;
@@ -227,41 +204,32 @@ pre {
 }
 
 .gradient-blue {
-  background: linear-gradient(90deg, transparent, var(--blue1), var(--purple1), transparent);
+  background: linear-gradient(110deg, var(--blue2), var(--purple2), var(--blue2));
 }
 
 .gradient-pink {
-  background: linear-gradient(90deg, transparent, var(--pink1), var(--red1), transparent);
+  background: linear-gradient(110deg, var(--pink2), var(--red2), var(--pink2));
 }
 
 .gradient-red {
-  background: linear-gradient(90deg, transparent, var(--red1), var(--orange1), transparent);
+  background: linear-gradient(110deg, var(--red2), var(--orange2), var(--red2));
 }
 
 .gradient-orange {
-  background: linear-gradient(90deg, transparent, var(--orange1), var(--yellow1), transparent);
+  background: linear-gradient(110deg, var(--orange2), var(--yellow2), var(--orange2));
 }
 
 .gradient-purple {
-  background: linear-gradient(90deg, transparent, var(--purple1), var(--green1), transparent);
+  background: linear-gradient(110deg, var(--purple2), var(--green2), var(--purple2));
 }
 
 .gradient-green {
-  background: linear-gradient(90deg, transparent, var(--green1), var(--teal1), transparent);
+  background: linear-gradient(110deg, var(--green2), var(--teal2), var(--green2));
 }
 
 .gradient-teal {
-  background: linear-gradient(90deg, transparent, var(--teal1), var(--yellow1), transparent);
+  background: linear-gradient(110deg, var(--teal2), var(--yellow2), var(--teal2));
 }
-/* 
-.rainbow {
-  background: -webkit-linear-gradient(
-    90deg,
-    var(--yellow10) 1%,
-    var(--red10) 71%,
-    var(--pink10) 71%
-  );
-} */
 
 .rainbow {
   background: -webkit-linear-gradient(

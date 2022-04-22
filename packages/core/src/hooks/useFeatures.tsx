@@ -2,9 +2,8 @@ import React from 'react'
 import { ViewStyle } from 'react-native'
 
 import { isWeb, useIsomorphicLayoutEffect } from '../constants/platform'
-import { ComponentState } from '../defaultComponentState'
 import { PseudoStyles } from '../static'
-import { UseAnimationHook } from '../types'
+import { TamaguiComponentState, UseAnimationHook, UseAnimationProps } from '../types'
 import { addMediaQueryListener, mediaState, removeMediaQueryListener } from './useMedia'
 
 type FeatureDefinition = {
@@ -14,8 +13,8 @@ type FeatureDefinition = {
 
 type FeatureUtils = {
   forceUpdate: Function
-  state: ComponentState
-  setStateShallow: (next: Partial<ComponentState>) => void
+  state: TamaguiComponentState
+  setStateShallow: (next: Partial<TamaguiComponentState>) => void
   useAnimations?: UseAnimationHook
   pseudos: PseudoStyles
   style: ViewStyle | null | undefined
@@ -71,17 +70,26 @@ function loadAnimationFeature() {
         return null
       }
 
-      const animatedStyleIn = {
-        ...style,
-        ...(state.hover && pseudos.hoverStyle),
-        ...(state.focus && pseudos.focusStyle),
-        ...(state.press && pseudos.pressStyle),
-      }
+      // const animatedStyleIn =
 
-      const res = useAnimations(props as any, {
-        isMounted: state.mounted,
-        style: animatedStyleIn,
-        exitStyle: pseudos?.exitStyle,
+      // we always have .animation set
+      const propsWithAnimation = props as UseAnimationProps
+      const styleKey = JSON.stringify(style)
+
+      const res = useAnimations(propsWithAnimation, {
+        styleKey,
+        style: style || {},
+        state,
+        pseudos,
+        mergedStyles(props) {
+          return {
+            ...style,
+            ...(state.hover && pseudos.hoverStyle),
+            ...(state.focus && pseudos.focusStyle),
+            ...(state.press && pseudos.pressStyle),
+            ...(props?.isExiting && pseudos.exitStyle),
+          }
+        },
         // onDidAnimate, delay
       })
 
@@ -89,7 +97,7 @@ function loadAnimationFeature() {
         setStateShallow({
           animation: res,
         })
-      }, [JSON.stringify(style)])
+      }, [styleKey])
 
       return null
     },
