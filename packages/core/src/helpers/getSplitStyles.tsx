@@ -121,6 +121,7 @@ export const getSplitStyles = (
   function push() {
     if (!cur) return
     normalizeStyleObject(cur)
+
     if (isWeb && !state.noClassNames) {
       const atomic = getStylesAtomic(cur)
       for (const atomicStyle of atomic) {
@@ -131,7 +132,13 @@ export const getSplitStyles = (
           style[atomicStyle.property] = atomicStyle.value
         }
       }
-    } else {
+    }
+
+    if (
+      state.noClassNames ||
+      state.resolveVariablesAs === 'value' ||
+      state.resolveVariablesAs === 'both'
+    ) {
       for (const key in cur) {
         if (key in stylePropsTransform) {
           mergeTransform(style, key, cur[key])
@@ -140,6 +147,7 @@ export const getSplitStyles = (
         }
       }
     }
+
     // reset it for next group of styles
     cur = null
   }
@@ -183,6 +191,10 @@ export const getSplitStyles = (
           )
 
     const expanded = out === true || !out ? [[keyInit, valInit]] : Object.entries(out)
+
+    if (process.env.NODE_ENV === 'development' && props['debug'] === 'verbose') {
+      console.log('split style', keyInit, expanded)
+    }
 
     for (const [key, val] of expanded) {
       if (val === undefined) {

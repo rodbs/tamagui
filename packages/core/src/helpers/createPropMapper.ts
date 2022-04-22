@@ -4,7 +4,7 @@ import { Variable, isVariable } from '../createVariable'
 import { StaticConfig, TamaguiInternalConfig } from '../types'
 import { isObj } from './isObj'
 
-export type ResolveVariableTypes = 'auto' | 'value' | 'variable'
+export type ResolveVariableTypes = 'auto' | 'value' | 'variable' | 'both'
 
 export const createPropMapper = (c: StaticConfig) => {
   const variants = c.variants || {}

@@ -57,10 +57,13 @@ const ButtonFrame = styled(SizableStack, {
   borderColor: '$borderColor',
   justifyContent: 'center',
   alignItems: 'center',
-  cursor: 'pointer',
   flexWrap: 'nowrap',
   hoverable: true,
   pressable: true,
+
+  // TODO only on hoverable/pressable!
+  // would need to merge variants
+  cursor: 'pointer',
 
   variants: {
     active: {

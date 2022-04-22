@@ -40,7 +40,20 @@ export function HeroExampleAnimations() {
     <YStack>
       <ContainerLarge position="relative" space="$6">
         <YStack zi={1} space="$2">
-          <HomeH2>Introducing animations</HomeH2>
+          <HomeH2 pos="relative">
+            Animations
+            <Button
+              hoverable={false}
+              size="$3"
+              theme="pink"
+              pos="absolute"
+              t={-10}
+              r={-70}
+              rotate="5deg"
+            >
+              New
+            </Button>
+          </HomeH2>
           <HomeH3>Plug-and-play drivers for every platform.</HomeH3>
         </YStack>
 

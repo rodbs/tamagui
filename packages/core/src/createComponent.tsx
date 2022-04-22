@@ -92,7 +92,7 @@ export function createComponent<
   let defaultNativeStyleSheet: StyleSheet.NamedStyles<{ base: {} }> | null = null
   let defaultsClassName: ClassNamesObject | null = null
   let initialTheme: any
-  let splitStyleResult: SplitStyleResult | null = null
+  let defaultSplitStyleResult: SplitStyleResult | null = null
 
   function addPseudoToStyles(styles: any[], name: string, pseudos: any) {
     // on web use pseudo object { hoverStyle } to keep specificity with concatClassName
@@ -121,16 +121,16 @@ export function createComponent<
     const [state, set_] = useState<TamaguiComponentState>(defaultComponentState)
     const setStateShallow = createShallowUpdate(set_)
 
-    const shouldAvoidClasses = !!(state.animation && avoidClasses)
-    const splitInfo = getSplitStyles(
+    const shouldAvoidClasses = !!(props.animation && avoidClasses)
+    const splitStyles = getSplitStyles(
       props,
       staticConfig,
       theme,
       shouldAvoidClasses ? { ...state, noClassNames: true, resolveVariablesAs: 'value' } : state,
-      defaultsClassName
+      shouldAvoidClasses ? null : defaultsClassName
     )
 
-    const { viewProps: viewPropsIn, pseudos, medias, style, classNames } = splitInfo
+    const { viewProps: viewPropsIn, pseudos, medias, style, classNames } = splitStyles
     const useAnimations = tamaguiConfig.animations?.useAnimations as UseAnimationHook | undefined
     const isAnimated = !!(useAnimations && props.animation)
     const hasEnterStyle = !!props.enterStyle
@@ -587,7 +587,7 @@ export function createComponent<
       if (props['debug']) {
         viewProps['debug'] = true
         // prettier-ignore
-        console.log('  » ', { propsIn: { ...props }, propsOut: { ...viewProps }, animationStyles, isStringElement, classNamesIn: props.className?.split(' '), classNamesOut: viewProps.className?.split(' '), pressProps, events, shouldAttach, ViewComponent, viewProps, state, styles, pseudos, content, childEls, shouldAvoidClasses, animation: props.animation, style, defaultNativeStyle, splitStyleResult, ...(typeof window !== 'undefined' ? { theme, themeState: theme.__state, themeClassName:  theme.className, staticConfig, tamaguiConfig } : null) })
+        console.log('  » ', { propsIn: { ...props }, propsOut: { ...viewProps }, state, styleWithPseudos, splitStyles, defaultsClassName, animationStyles, isStringElement, classNamesIn: props.className?.split(' '), classNamesOut: viewProps.className?.split(' '), pressProps, events, shouldAttach, ViewComponent, viewProps, styles, pseudos, content, childEls, shouldAvoidClasses, avoidClasses, animation: props.animation, style, defaultNativeStyle, defaultSplitStyleResult, ...(typeof window !== 'undefined' ? { theme, themeState: theme.__state, themeClassName:  theme.className, staticConfig, tamaguiConfig } : null) })
       }
     }
 
@@ -612,12 +612,17 @@ export function createComponent<
     AnimatedText = tamaguiConfig.animations?.Text
     AnimatedView = tamaguiConfig?.animations?.View
     initialTheme = conf.themes[conf.defaultTheme || Object.keys(conf.themes)[0]]
-    splitStyleResult = getSplitStyles(staticConfig.defaultProps, staticConfig, initialTheme, {
-      mounted: true,
-      resolveVariablesAs: 'variable',
-    })
+    defaultSplitStyleResult = getSplitStyles(
+      staticConfig.defaultProps,
+      staticConfig,
+      initialTheme,
+      {
+        mounted: true,
+        resolveVariablesAs: 'both',
+      }
+    )
 
-    const { classNames, pseudos, style, viewProps } = splitStyleResult
+    const { classNames, pseudos, style, viewProps } = defaultSplitStyleResult
 
     if (isWeb) {
       defaultsClassName = classNames
@@ -645,7 +650,7 @@ export function createComponent<
     // prettier-ignore
     if (process.env.NODE_ENV === 'development' && shouldDebug && process.env.IS_STATIC !== 'is_static') {
       // prettier-ignore
-      console.log(`🐛 [${staticConfig.componentName || 'Component'}]`, { staticConfig, ...splitStyleResult })
+      console.log(`🐛 [${staticConfig.componentName || 'Component'}]`, { staticConfig, ...defaultSplitStyleResult })
     }
   })
 

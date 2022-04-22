@@ -1,6 +1,6 @@
 // debug-verbose
 import React, { useState } from 'react'
-import { Button, Square, Theme, VisuallyHidden } from 'tamagui'
+import { Button, Circle, Square, Theme, VisuallyHidden } from 'tamagui'
 
 import Tamagui from './tamagui.config'
 
@@ -47,7 +47,7 @@ const AnimationTest = () => {
     <>
       <Square
         animation="bouncy"
-        debug
+        debug="verbose"
         elevation="$4"
         size={110}
         bc="red"
@@ -60,7 +60,9 @@ const AnimationTest = () => {
         }}
         {...position}
         onPress={() => next()}
-      />
+      >
+        <Circle size={50} bc="blue" />
+      </Square>
 
       <Button pos="absolute" bottom={20} left={20} size="$6" circular onPress={() => next()} />
     </>
