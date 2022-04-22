@@ -114,7 +114,7 @@ export const HeroResponsive = memo(() => {
   }, [])
 
   return (
-    <YStack ref={ref} y={0} mt="$-12" pt="$6" pos="relative">
+    <YStack ref={ref} y={0} mt={-110} pt="$6" pos="relative">
       <ContainerLarge pos="relative">
         <Header />
         <Spacer size="$6" />
@@ -227,7 +227,7 @@ const Header = memo(() => {
   return (
     <YStack f={1} space="$3">
       <XStack>
-        <HomeH2 als="flex-start">Responsive, done right</HomeH2>
+        <HomeH2 als="flex-start">Responsive.</HomeH2>
 
         <XStack jc="center" ai="center" $sm={{ display: 'none' }}>
           <IconStack als="center" x={40} theme="alt2" p="$3">

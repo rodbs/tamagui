@@ -40,7 +40,7 @@ export function HeroExampleAnimations() {
     <YStack>
       <ContainerLarge position="relative" space="$6">
         <YStack zi={1} space="$2">
-          <HomeH2>First-class animations</HomeH2>
+          <HomeH2>Introducing animations</HomeH2>
           <HomeH3>Plug-and-play drivers for every platform.</HomeH3>
         </YStack>
 

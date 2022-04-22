@@ -44,16 +44,17 @@ export default function Home() {
         <YStack fullscreen className="bg-dot-grid mask-gradient-down" />
         <HeroExampleThemes />
       </Section>
-      <Section pb="$0">
+      <Section pb="$0" zi={10}>
         <HeroResponsive />
       </Section>
       <SectionTinted gradient>
         <HeroPerformance />
       </SectionTinted>
-      <SectionTinted>
+      <SectionTinted zi={100}>
+        {/* <YStack fullscreen className="bg-dot-grid mask-gradient-up" /> */}
         <HeroExampleAnimations />
       </SectionTinted>
-      <Section>
+      <Section zi={10}>
         <YStack fullscreen className="bg-dot-grid mask-gradient-down" />
         <HeroExampleCode />
       </Section>
@@ -77,11 +78,12 @@ export default function Home() {
 const Section = styled(YStack, {
   pos: 'relative',
   py: '$12',
+  zi: 2,
 
   variants: {
     below: {
       true: {
-        zi: -1,
+        zi: 1,
       },
     },
   },
@@ -92,7 +94,7 @@ const SectionTinted = ({ children, gradient, extraPad, ...props }: any) => {
   const childrenMemo = useMemo(() => children, [children])
   const className = gradient ? `gradient-${tint}` : ''
   return (
-    <YStack zi={-1} contain="paint" pos="relative" py="$12" {...props}>
+    <YStack zi={2} contain="paint" pos="relative" py="$12" {...props}>
       <YStack
         fullscreen
         // className={className}
@@ -100,8 +102,8 @@ const SectionTinted = ({ children, gradient, extraPad, ...props }: any) => {
         zi={-1}
         // @ts-ignore
         bc={gradient ? `$${tint}1` : null}
-        btw={1}
-        bbw={1}
+        btw={0.5}
+        bbw={0.5}
         // @ts-ignore
         boc={`$${tint}3`}
       />

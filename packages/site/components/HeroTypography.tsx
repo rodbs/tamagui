@@ -22,7 +22,7 @@ import { HomeH2, HomeH3 } from './HomeH2'
 export const HeroTypography = () => {
   return (
     <>
-      <YStack fullscreen className="bg-grid mask-gradient-both" o={0.25} />
+      <YStack fullscreen className="bg-grid mask-gradient-both" o={0.5} />
       {/* <YStack theme="alt2" fullscreen className="hero-gradient-white mask-gradient-down" /> */}
       <ContainerLarge position="relative" space="$8">
         <YStack ai="center" space="$2">

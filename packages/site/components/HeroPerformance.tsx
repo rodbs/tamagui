@@ -17,20 +17,20 @@ export function HeroPerformance() {
 
       <YStack ai="center" zi={1} space="$4">
         <YStack ai="center" space="$2">
-          <HomeH2>Effortless performance</HomeH2>
+          <HomeH2>Next-level performance</HomeH2>
           <HomeH3 maw={580}>
-            Use typed inline props for styling.
+            Media queries, themes, inline styles with logic.
             <br />
-            Get&nbsp;back clean, fast atomic CSS.
+            All output clean, fast atomic CSS.
           </HomeH3>
         </YStack>
 
         <YStack pos="relative" px="$2" h={181} br="$8" width="100%" ai="stretch" jc="center">
           {/* <YStack fullscreen zi={-1} className="bg-grid mask-gradient-right" /> */}
-
+          {/* 
           <YStack fullscreen rotateY="-10deg" x={300} zi={-1}>
             <Glow />
-          </YStack>
+          </YStack> */}
 
           <Paragraph
             pos="absolute"

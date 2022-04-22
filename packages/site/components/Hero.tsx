@@ -73,6 +73,8 @@ const HeroTop = memo(() => {
       <YStack
         className="bg-grid mask-gradient-up"
         fullscreen
+        top="auto"
+        height={420}
         left={-1000}
         right={-1000}
         opacity={0.6}
@@ -81,7 +83,7 @@ const HeroTop = memo(() => {
       <Header />
 
       <YStack
-        space="$6"
+        space="$7"
         position="relative"
         pt="$8"
         $sm={{
@@ -89,7 +91,7 @@ const HeroTop = memo(() => {
           mx: 'auto',
         }}
       >
-        <YStack ai="flex-start" $gtSm={{ ai: 'center' }} space="$5">
+        <YStack ai="flex-start" $gtSm={{ ai: 'center' }} space="$4">
           <Heading
             size="$9"
             $gtSm={{
@@ -125,7 +127,7 @@ const HeroTop = memo(() => {
               color="$gray10"
               size="$5"
               fontFamily="$silkscreen"
-              letterSpacing={-2}
+              letterSpacing={-1.5}
               maw={500}
               $gtSm={{
                 ta: 'center',
@@ -185,7 +187,7 @@ const HeroTop = memo(() => {
         </XStack>
       </YStack>
 
-      <Spacer size="$10" />
+      <Spacer size="$11" />
     </ContainerLarge>
   )
 })
